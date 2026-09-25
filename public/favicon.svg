@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="favSun" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FDB913"/>
+      <stop offset="60%" stop-color="#F7941D"/>
+      <stop offset="100%" stop-color="#E8720C"/>
+    </radialGradient>
+    <linearGradient id="favSwoosh" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7CC142"/>
+      <stop offset="50%" stop-color="#1E7A2E"/>
+      <stop offset="100%" stop-color="#0F5E1F"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Sun -->
+  <circle cx="50" cy="46" r="38" fill="url(#favSun)" />
+  
+  <!-- Mount Kilimanjaro in distance -->
+  <polygon points="56,54 75,32 94,54" fill="#3D7D42" opacity="0.85" />
+  <polygon points="70,38 75,32 80,38 77,41 75,39 73,41" fill="#FFFFFF" />
+
+  <!-- Acacia Tree -->
+  <path d="M28,54 C28,49 26,44 24,39 C23,37 25,35 27,36 C30,37 32,35 34,32 C36,30 39,32 40,34 C43,33 46,31 49,33 C51,35 50,38 46,39 C42,40 38,39 36,41 C33,44 32,49 32,54 Z" fill="#1A1A1A" />
+  <ellipse cx="36" cy="32" rx="15" ry="4.5" fill="#1A1A1A" />
+  <ellipse cx="28" cy="35" rx="8" ry="3" fill="#1A1A1A" />
+  <ellipse cx="44" cy="34" rx="7" ry="2.5" fill="#1A1A1A" />
+
+  <!-- Elephant Silhouette -->
+  <path d="M37,54 C37,51 36,46 39,44 C42,42 47,43 49,46 C51,45 53,46 54,49 C54,51 53,54 53,54 L51,54 L51,50 L48,50 L47,54 L44,54 L44,49 L41,49 L40,54 Z" fill="#1A1A1A" />
+  
+  <!-- Giraffe Silhouette -->
+  <path d="M57,54 L58,54 L58,47 L60,40 L60,37 L61,37 L61,40 L63,45 L65,47 L65,54 L64,54 L64,48 L62,47 L60,54 Z" fill="#1A1A1A" />
+
+  <!-- Ground Line -->
+  <path d="M14,54 Q50,56 86,54 L86,57 Q50,59 14,57 Z" fill="#1A1A1A" />
+
+  <!-- Curved Green Ribbon / Swoosh -->
+  <path d="M12,56 C30,72 68,70 88,40 C85,42 70,62 30,58 C20,57 14,56 12,56 Z" fill="url(#favSwoosh)" />
+
+  <!-- Airplane -->
+  <path d="M85,34 L92,30 L93,31 L89,35 L94,37 L94,38 L88,38 L86,41 L85,41 L86,37 L83,36 Z" fill="#1E7A2E" />
+
+  <!-- Brand Leaf accent -->
+  <path d="M10,75 C10,75 14,68 24,70 C24,70 20,80 10,75 Z" fill="#7CC142" />
+</svg>

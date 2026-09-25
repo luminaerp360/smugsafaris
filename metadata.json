@@ -1,0 +1,6 @@
+{
+  "name": "Smugsafaris Tours & Travel",
+  "description": "Premier African safari tours, wildlife travel, and custom adventures across Kenya and East Africa. Explore, Discover, Experience.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

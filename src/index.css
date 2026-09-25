@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Poppins', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+  --color-brand-green: #1E7A2E;
+  --color-brand-green-dark: #0F5E1F;
+  --color-brand-lime: #7CC142;
+  --color-brand-orange: #F7941D;
+  --color-brand-orange-dark: #E8720C;
+  --color-brand-gold: #FDB913;
+  --color-brand-dark: #1A1A1A;
+  --color-brand-cream: #FAFAF8;
+  --color-brand-sand: #F3EFE6;
+  --color-brand-border: #E8E5DD;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom Safari theme utilities */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f0eb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd2be;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1E7A2E;
+}
