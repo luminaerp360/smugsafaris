@@ -22,6 +22,9 @@ import {
   ChevronUp,
   Utensils,
   Bed,
+  Video,
+  Play,
+  Camera,
 } from 'lucide-react';
 
 export const TourDetailPage: React.FC = () => {
@@ -31,6 +34,7 @@ export const TourDetailPage: React.FC = () => {
 
   const tour = TOURS_DATA.find((t) => t.id === id);
   const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [showVideo, setShowVideo] = useState<boolean>(false);
   const [expandedDays, setExpandedDays] = useState<Record<number, boolean>>({ 1: true });
   const [copiedLink, setCopiedLink] = useState(false);
 
@@ -140,15 +144,49 @@ export const TourDetailPage: React.FC = () => {
           </p>
         </div>
 
-        {/* 3. Photo Gallery Zone */}
+        {/* 3. Photo & Video Gallery Zone */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 mb-8">
-          {/* Main Large Photo */}
+          {/* Main Large Media */}
           <div className="lg:col-span-3 rounded-2xl overflow-hidden aspect-[16/9] bg-stone-900 relative shadow-sm">
-            <img
-              src={currentDisplayImage}
-              alt={tour.title}
-              className="w-full h-full object-cover transition-all duration-300"
-            />
+            {showVideo && tour.video ? (
+              <video
+                src={tour.video}
+                poster={tour.heroImage}
+                autoPlay
+                controls
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <img
+                src={currentDisplayImage}
+                alt={tour.title}
+                className="w-full h-full object-cover transition-all duration-300"
+              />
+            )}
+
+            {/* Video / Photo Switcher Button */}
+            {tour.video && (
+              <button
+                onClick={() => setShowVideo(!showVideo)}
+                className="absolute top-4 right-4 z-10 px-3.5 py-1.5 rounded-full bg-black/70 hover:bg-black/90 text-white backdrop-blur-md text-xs font-bold flex items-center gap-1.5 border border-white/20 transition-all cursor-pointer shadow-lg active:scale-95"
+              >
+                {showVideo ? (
+                  <>
+                    <Camera className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>View Photos</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="w-2 h-2 rounded-full bg-[#FDB913] animate-pulse" />
+                    <Video className="w-3.5 h-3.5 text-[#FDB913]" />
+                    <span>Watch 4K Video</span>
+                  </>
+                )}
+              </button>
+            )}
+
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-xs pointer-events-none">
               <span className="bg-stone-950/70 backdrop-blur-xs px-3 py-1.5 rounded-lg font-semibold flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#FDB913]" />
@@ -159,12 +197,28 @@ export const TourDetailPage: React.FC = () => {
 
           {/* Thumbnails */}
           <div className="grid grid-cols-4 lg:grid-cols-1 gap-3">
-            {[tour.heroImage, ...(tour.galleryImages || [])].slice(0, 4).map((img, idx) => (
+            {tour.video && (
+              <button
+                onClick={() => setShowVideo(true)}
+                className={`rounded-xl overflow-hidden aspect-[16/10] lg:aspect-[16/9] border-2 transition-all cursor-pointer flex flex-col items-center justify-center bg-stone-900 text-white p-2 text-center relative group ${
+                  showVideo ? 'border-[#1E7A2E] ring-2 ring-[#1E7A2E]/40' : 'border-stone-700 hover:border-white/50 opacity-90 hover:opacity-100'
+                }`}
+              >
+                <div className="w-7 h-7 rounded-full bg-[#1E7A2E] text-white flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
+                  <Play className="w-3.5 h-3.5 fill-white ml-0.5" />
+                </div>
+                <span className="text-[10px] font-bold">4K Safari Video</span>
+              </button>
+            )}
+            {[tour.heroImage, ...(tour.galleryImages || [])].slice(0, tour.video ? 3 : 4).map((img, idx) => (
               <button
                 key={idx}
-                onClick={() => setActiveImage(img)}
+                onClick={() => {
+                  setShowVideo(false);
+                  setActiveImage(img);
+                }}
                 className={`rounded-xl overflow-hidden aspect-[16/10] lg:aspect-[16/9] border-2 transition-all cursor-pointer ${
-                  currentDisplayImage === img ? 'border-[#1E7A2E] ring-2 ring-[#1E7A2E]/40' : 'border-transparent opacity-80 hover:opacity-100'
+                  !showVideo && currentDisplayImage === img ? 'border-[#1E7A2E] ring-2 ring-[#1E7A2E]/40' : 'border-transparent opacity-80 hover:opacity-100'
                 }`}
               >
                 <img src={img} alt="" className="w-full h-full object-cover" />

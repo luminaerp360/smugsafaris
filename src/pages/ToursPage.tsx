@@ -17,6 +17,7 @@ import {
   ChevronRight,
   Filter,
   X,
+  Video,
 } from 'lucide-react';
 
 export const ToursPage: React.FC = () => {
@@ -289,19 +290,31 @@ export const ToursPage: React.FC = () => {
                   key={tour.id}
                   className="group bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
                 >
-                  {/* Image Container with Badges */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-stone-100">
-                    <img
-                      src={imgUrl}
-                      alt={tour.title}
-                      loading="lazy"
-                      onError={() => handleImageError(tour.id)}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                  {/* Image/Video Container with Badges */}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-stone-900">
+                    {tour.video ? (
+                      <video
+                        src={tour.video}
+                        poster={imgUrl}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    ) : (
+                      <img
+                        src={imgUrl}
+                        alt={tour.title}
+                        loading="lazy"
+                        onError={() => handleImageError(tour.id)}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent pointer-events-none" />
 
                     {/* Top Badges */}
-                    <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                    <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                       {tour.bestSeller && (
                         <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#FDB913] text-stone-900 shadow-sm">
                           Best Seller
@@ -310,10 +323,17 @@ export const ToursPage: React.FC = () => {
                       <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/90 text-stone-800 backdrop-blur-xs shadow-sm">
                         {tour.style}
                       </span>
+                      {tour.video && (
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-black/60 text-white backdrop-blur-xs shadow-sm flex items-center gap-1 border border-white/20">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#FDB913] animate-pulse" />
+                          <Video className="w-2.5 h-2.5 text-[#FDB913]" />
+                          <span>4K Video</span>
+                        </span>
+                      )}
                     </div>
 
                     {/* Bottom Specs on Image */}
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-medium">
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-medium z-10">
                       <span className="inline-flex items-center gap-1 bg-stone-900/60 backdrop-blur-xs px-2 py-0.5 rounded-md">
                         <Clock className="w-3 h-3 text-[#FDB913]" />
                         {tour.duration}

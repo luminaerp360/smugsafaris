@@ -1,14 +1,146 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { TOURS_DATA, TourPackage } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
-import { Clock, MapPin, Users, Compass, ArrowRight, Sparkles, Check, Search, SlidersHorizontal } from 'lucide-react';
+import {
+  Clock,
+  MapPin,
+  Users,
+  Compass,
+  ArrowRight,
+  Sparkles,
+  Check,
+  Search,
+  SlidersHorizontal,
+  Video,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+} from 'lucide-react';
 
 interface FeaturedToursProps {
   filterDestination?: string;
   filterStyle?: string;
   filterDuration?: string;
 }
+
+const TourCardMedia: React.FC<{
+  tour: TourPackage;
+  hasImgFailed: boolean;
+  onImageError: () => void;
+}> = ({ tour, hasImgFailed, onImageError }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      videoRef.current.play().catch(() => {});
+      setIsPlaying(true);
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (!videoRef.current) return;
+    videoRef.current.muted = !videoRef.current.muted;
+    setIsMuted(videoRef.current.muted);
+  };
+
+  return (
+    <div className="relative aspect-[16/10] overflow-hidden bg-[#182F1D]">
+      {tour.video ? (
+        <video
+          ref={videoRef}
+          src={tour.video}
+          poster={tour.heroImage}
+          autoPlay
+          muted={isMuted}
+          loop
+          playsInline
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+        />
+      ) : !hasImgFailed ? (
+        <img
+          src={tour.heroImage}
+          alt={tour.title}
+          referrerPolicy="no-referrer"
+          onError={onImageError}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      ) : (
+        <div className="w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-[#182F1D] to-[#2D5A34] text-white text-center">
+          <Compass className="w-10 h-10 text-[#7CC142] mb-2" />
+          <span className="text-sm font-bold">{tour.title}</span>
+        </div>
+      )}
+
+      {/* Gradient Scrim for contrast */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
+
+      {/* 4K Safari Video Badge top-left */}
+      {tour.video && (
+        <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold border border-white/20 shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-[#FDB913] animate-pulse" />
+          <Video className="w-3 h-3 text-[#FDB913]" />
+          <span>4K Video</span>
+        </div>
+      )}
+
+      {/* Video Interactive Controls top-right */}
+      {tour.video && (
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5">
+          <button
+            onClick={togglePlay}
+            className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-transform active:scale-90 cursor-pointer"
+            title={isPlaying ? 'Pause preview' : 'Play preview'}
+          >
+            {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 ml-0.5" />}
+          </button>
+          <button
+            onClick={toggleMute}
+            className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-transform active:scale-90 cursor-pointer"
+            title={isMuted ? 'Unmute' : 'Mute'}
+          >
+            {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
+          </button>
+        </div>
+      )}
+
+      {/* Best Seller badge */}
+      {tour.bestSeller && (
+        <div
+          className={`absolute ${
+            tour.video ? 'top-11 right-3 text-[9px] px-2 py-0.5' : 'top-3 right-3 text-[10px] px-2.5 py-1'
+          } bg-gradient-to-r from-[#F7941D] to-[#E8720C] text-white font-extrabold uppercase tracking-wider rounded-md shadow-sm z-10`}
+        >
+          Best Seller
+        </div>
+      )}
+
+      {/* Overlay Duration & Style */}
+      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white font-medium z-10">
+        <span className="flex items-center gap-1.5 drop-shadow-md">
+          <Clock className="w-3.5 h-3.5 text-[#FDB913]" />
+          <span>{tour.duration}</span>
+        </span>
+        <span className="bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded text-[11px] font-semibold text-neutral-200">
+          {tour.style}
+        </span>
+      </div>
+    </div>
+  );
+};
 
 export const FeaturedTours: React.FC<FeaturedToursProps> = ({
   filterDestination = 'all',
@@ -170,44 +302,12 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = ({
                   key={tour.id}
                   className="group bg-white rounded-2xl border border-neutral-200/90 overflow-hidden shadow-sm hover:shadow-md hover:border-[#1E7A2E]/40 transition-all duration-300 flex flex-col"
                 >
-                  {/* Image Container with Fallback */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-[#182F1D]">
-                    {!hasImgFailed ? (
-                      <img
-                        src={tour.heroImage}
-                        alt={tour.title}
-                        referrerPolicy="no-referrer"
-                        onError={() => handleImageError(tour.id)}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-[#182F1D] to-[#2D5A34] text-white text-center">
-                        <Compass className="w-10 h-10 text-[#7CC142] mb-2" />
-                        <span className="text-sm font-bold">{tour.title}</span>
-                      </div>
-                    )}
-
-                    {/* Gradient Scrim for contrast */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
-
-                    {/* Badge top-right if Best Seller */}
-                    {tour.bestSeller && (
-                      <div className="absolute top-3 right-3 bg-gradient-to-r from-[#F7941D] to-[#E8720C] text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm">
-                        Best Seller
-                      </div>
-                    )}
-
-                    {/* Overlay Duration & Style */}
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white font-medium">
-                      <span className="flex items-center gap-1.5 drop-shadow-md">
-                        <Clock className="w-3.5 h-3.5 text-[#FDB913]" />
-                        <span>{tour.duration}</span>
-                      </span>
-                      <span className="bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded text-[11px] font-semibold text-neutral-200">
-                        {tour.style}
-                      </span>
-                    </div>
-                  </div>
+                  {/* Image/Video Media Container */}
+                  <TourCardMedia
+                    tour={tour}
+                    hasImgFailed={hasImgFailed}
+                    onImageError={() => handleImageError(tour.id)}
+                  />
 
                   {/* Card Body */}
                   <div className="p-5 flex-1 flex flex-col justify-between">

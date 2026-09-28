@@ -1,11 +1,119 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { DESTINATIONS_DATA, Destination } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
-import { MapPin, Calendar, Compass, ArrowRight, Eye, Check } from 'lucide-react';
+import {
+  MapPin,
+  Calendar,
+  Compass,
+  ArrowRight,
+  Eye,
+  Check,
+  Video,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  X,
+} from 'lucide-react';
 
 interface DestinationsSectionProps {
   onSelectDestinationFilter: (destName: string) => void;
 }
+
+const DestinationCardMedia: React.FC<{ dest: Destination }> = ({ dest }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      videoRef.current.play().catch(() => {});
+      setIsPlaying(true);
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (!videoRef.current) return;
+    videoRef.current.muted = !videoRef.current.muted;
+    setIsMuted(videoRef.current.muted);
+  };
+
+  return (
+    <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
+      {dest.video ? (
+        <video
+          ref={videoRef}
+          src={dest.video}
+          poster={dest.image}
+          autoPlay
+          muted={isMuted}
+          loop
+          playsInline
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+        />
+      ) : (
+        <img
+          src={dest.image}
+          alt={dest.name}
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
+
+      {/* Country Badge top-left */}
+      <div className="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1 border border-white/20 z-10">
+        <MapPin className="w-3 h-3 text-[#FDB913]" />
+        <span>{dest.country}</span>
+      </div>
+
+      {/* Video Indicator Badge */}
+      {dest.video && (
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold border border-white/20 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#FDB913] animate-pulse" />
+            <Video className="w-3 h-3 text-[#FDB913]" />
+            <span>4K Video</span>
+          </div>
+          <button
+            onClick={togglePlay}
+            className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-transform active:scale-90 cursor-pointer"
+            title={isPlaying ? 'Pause preview' : 'Play preview'}
+          >
+            {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 ml-0.5" />}
+          </button>
+          <button
+            onClick={toggleMute}
+            className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-transform active:scale-90 cursor-pointer"
+            title={isMuted ? 'Unmute' : 'Mute'}
+          >
+            {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
+          </button>
+        </div>
+      )}
+
+      {/* Bottom Title & Tagline */}
+      <div className="absolute bottom-3 left-3 right-3 text-white z-10">
+        <h3 className="text-lg font-bold leading-tight drop-shadow-sm">
+          {dest.name}
+        </h3>
+        <p className="text-xs text-neutral-200 font-medium line-clamp-1 mt-0.5">
+          {dest.tagline}
+        </p>
+      </div>
+    </div>
+  );
+};
 
 export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
   onSelectDestinationFilter,
@@ -46,29 +154,7 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
               className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
-                  <img
-                    src={dest.image}
-                    alt={dest.name}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                  
-                  <div className="absolute top-3 left-3 bg-black/40 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-md flex items-center gap-1 border border-white/20">
-                    <MapPin className="w-3 h-3 text-[#FDB913]" />
-                    <span>{dest.country}</span>
-                  </div>
-
-                  <div className="absolute bottom-3 left-3 right-3 text-white">
-                    <h3 className="text-lg font-bold leading-tight drop-shadow-sm">
-                      {dest.name}
-                    </h3>
-                    <p className="text-xs text-neutral-200 font-medium line-clamp-1 mt-0.5">
-                      {dest.tagline}
-                    </p>
-                  </div>
-                </div>
+                <DestinationCardMedia dest={dest} />
 
                 <div className="p-5">
                   <p className="text-xs text-neutral-600 leading-relaxed line-clamp-3">
@@ -116,16 +202,36 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
       {/* Destination Detail Modal */}
       {selectedDestModal && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 sm:p-8">
-            <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-6">
-              <img
-                src={selectedDestModal.image}
-                alt={selectedDestModal.name}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 text-white">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 sm:p-8 relative">
+            <button
+              onClick={() => setSelectedDestModal(null)}
+              className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center cursor-pointer transition-colors"
+              aria-label="Close modal"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-6 bg-black">
+              {selectedDestModal.video ? (
+                <video
+                  src={selectedDestModal.video}
+                  poster={selectedDestModal.image}
+                  autoPlay
+                  controls
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img
+                  src={selectedDestModal.image}
+                  alt={selectedDestModal.name}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#FDB913]">
                   {selectedDestModal.country}
                 </span>

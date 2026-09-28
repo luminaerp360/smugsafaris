@@ -12,6 +12,7 @@ export interface TourPackage {
   featured: boolean;
   bestSeller?: boolean;
   heroImage: string;
+  video?: string;
   galleryImages: string[];
   overview: string;
   highlights: string[];
@@ -36,6 +37,7 @@ export interface Destination {
   tagline: string;
   description: string;
   image: string;
+  video?: string;
   bestTimeToVisit: string;
   keyWildlife: string[];
   highlights: string[];
@@ -91,6 +93,7 @@ export const TOURS_DATA: TourPackage[] = [
     featured: true,
     bestSeller: true,
     heroImage: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=80',
+    video: '/videos/lion-pride.mp4',
     galleryImages: [
       'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=800&q=80',
@@ -191,6 +194,7 @@ export const TOURS_DATA: TourPackage[] = [
     featured: true,
     bestSeller: true,
     heroImage: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1200&q=80',
+    video: '/videos/safari-landscape.mp4',
     galleryImages: [
       'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=800&q=80',
@@ -267,6 +271,7 @@ export const TOURS_DATA: TourPackage[] = [
     featured: true,
     bestSeller: false,
     heroImage: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=1200&q=80',
+    video: '/videos/elephant-herd.mp4',
     galleryImages: [
       'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=800&q=80',
@@ -355,6 +360,7 @@ export const TOURS_DATA: TourPackage[] = [
     featured: true,
     bestSeller: false,
     heroImage: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1200&q=80',
+    video: '/videos/safari-hero-bg.mp4',
     galleryImages: [
       'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80',
@@ -458,6 +464,7 @@ export const TOURS_DATA: TourPackage[] = [
     featured: false,
     bestSeller: false,
     heroImage: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1200&q=80',
+    video: '/videos/giraffe-savanna.mp4',
     galleryImages: [
       'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=800&q=80',
@@ -538,6 +545,7 @@ export const TOURS_DATA: TourPackage[] = [
     featured: true,
     bestSeller: true,
     heroImage: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80',
+    video: '/videos/cheetah-wild.mp4',
     galleryImages: [
       'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=800&q=80',
@@ -650,6 +658,7 @@ export const DESTINATIONS_DATA: Destination[] = [
     tagline: 'The Jewel of African Wildlife & Great Migration Stage',
     description: 'Universally acclaimed as one of the world’s greatest wildlife sanctuaries. Maasai Mara offers breathtaking rolling savannahs, year-round Big Five encounters, and from July to October, the thundering drama of the Great Wildebeest Migration river crossings.',
     image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1000&q=80',
+    video: '/videos/lion-pride.mp4',
     bestTimeToVisit: 'July to October (Migration), December to March (Predator spotting & clear skies)',
     keyWildlife: ['Lions', 'Cheetahs', 'Leopards', 'Wildebeest', 'Elephants', 'Nile Crocodiles'],
     highlights: [
@@ -667,6 +676,7 @@ export const DESTINATIONS_DATA: Destination[] = [
     tagline: 'Land of African Giants with Mt. Kilimanjaro Views',
     description: 'Set against the unforgettable backdrop of snow-capped Mount Kilimanjaro (Africa’s highest peak), Amboseli is celebrated for having the most famous, habituated elephant herds studied by world-renowned researchers for over 50 years.',
     image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1000&q=80',
+    video: '/videos/elephant-herd.mp4',
     bestTimeToVisit: 'June to October and January to February',
     keyWildlife: ['Giant African Elephants', 'Lions', 'Cheetahs', 'Hippos', 'Giraffes', 'Over 400 Bird Species'],
     highlights: [
@@ -684,6 +694,7 @@ export const DESTINATIONS_DATA: Destination[] = [
     tagline: 'The Endless Plains & Ancient Predator Kingdom',
     description: 'Spanning nearly 15,000 square kilometers, the Serengeti is legendary for its open horizons, towering granite kopjes where lions survey their realm, and millions of migratory ungulates traversing ancient circular paths.',
     image: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1000&q=80',
+    video: '/videos/safari-hero-bg.mp4',
     bestTimeToVisit: 'June to October (Grumeti/Mara crossings), January to March (Southern Ndutu calving season)',
     keyWildlife: ['Lions', 'Leopards', 'Cheetahs', 'Wildebeest', 'Spotted Hyenas', 'Topi'],
     highlights: [
@@ -700,6 +711,7 @@ export const DESTINATIONS_DATA: Destination[] = [
     tagline: 'The Eighth Wonder of the World & Eden of Africa',
     description: 'A colossal intact volcanic caldera 600 meters deep and 20 kilometers wide. The crater floor shelters over 25,000 large mammals, including rare black rhinos, giant bull elephants, and dense lion prides.',
     image: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=1000&q=80',
+    video: '/videos/safari-landscape.mp4',
     bestTimeToVisit: 'Year-Round (Permanent water supply keeps wildlife resident)',
     keyWildlife: ['Black Rhinos', 'Black-maned Lions', 'Flamingos', 'Golden Jackals', 'Zebras'],
     highlights: [
@@ -716,6 +728,7 @@ export const DESTINATIONS_DATA: Destination[] = [
     tagline: 'The Rugged Northern Frontier & Samburu Special Five',
     description: 'Bisected by the palm-fringed Ewaso Nyiro River, Samburu presents a semi-arid landscape of dramatic doum palms, red dust hills, and rare northern species found nowhere else in southern Kenya.',
     image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1000&q=80',
+    video: '/videos/giraffe-savanna.mp4',
     bestTimeToVisit: 'December to March and June to October',
     keyWildlife: ['Grevy’s Zebra', 'Reticulated Giraffe', 'Beisa Oryx', 'Gerenuk', 'Somali Ostrich', 'Leopards'],
     highlights: [
@@ -732,6 +745,7 @@ export const DESTINATIONS_DATA: Destination[] = [
     tagline: 'The Spice Island & Turquoise Indian Ocean Sanctuary',
     description: 'The idyllic finale to any safari adventure. Zanzibar dazzles with powder-white coral beaches, fragrant clove and nutmeg plantations, rich Swahili and Omani architecture in Stone Town, and vibrant coral reefs.',
     image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=80',
+    video: '/videos/cheetah-wild.mp4',
     bestTimeToVisit: 'June to October and December to February',
     keyWildlife: ['Bottlenose Dolphins', 'Green Sea Turtles', 'Red Colobus Monkeys', 'Tropical Reef Fish'],
     highlights: [

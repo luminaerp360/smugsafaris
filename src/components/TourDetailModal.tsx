@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
 import { useSafari } from '../context/SafariContext';
-import { X, Check, Clock, Users, MapPin, Calendar, Sparkles, ChevronDown, Compass, AlertCircle } from 'lucide-react';
+import {
+  X,
+  Check,
+  Clock,
+  Users,
+  MapPin,
+  Calendar,
+  Sparkles,
+  ChevronDown,
+  Compass,
+  AlertCircle,
+  Video,
+  Camera,
+} from 'lucide-react';
 
 export const TourDetailModal: React.FC = () => {
   const { selectedTour, closeTourDetail, formatPrice, openInquiry } = useSafari();
   const [activeDayAccordion, setActiveDayAccordion] = useState<number | null>(1);
   const [activePhoto, setActivePhoto] = useState<number>(0);
+  const [showVideo, setShowVideo] = useState<boolean>(false);
 
   if (!selectedTour) return null;
 
@@ -28,31 +42,69 @@ export const TourDetailModal: React.FC = () => {
           <X className="w-5 h-5" />
         </button>
 
+        {/* Video Toggle Button */}
+        {selectedTour.video && (
+          <button
+            onClick={() => setShowVideo(!showVideo)}
+            className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center gap-1.5 text-xs font-bold backdrop-blur-sm border border-white/20 transition-all cursor-pointer shadow-md"
+          >
+            {showVideo ? (
+              <>
+                <Camera className="w-3.5 h-3.5 text-emerald-400" />
+                <span>View Photos</span>
+              </>
+            ) : (
+              <>
+                <span className="w-2 h-2 rounded-full bg-[#FDB913] animate-pulse" />
+                <Video className="w-3.5 h-3.5 text-[#FDB913]" />
+                <span>Watch 4K Video</span>
+              </>
+            )}
+          </button>
+        )}
+
         {/* Gallery / Hero */}
         <div className="relative aspect-[16/9] sm:aspect-[21/9] bg-neutral-900 overflow-hidden">
-          <img
-            src={allPhotos[activePhoto] || selectedTour.heroImage}
-            alt={selectedTour.title}
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover transition-all duration-300"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          {showVideo && selectedTour.video ? (
+            <video
+              src={selectedTour.video}
+              poster={selectedTour.heroImage}
+              controls
+              autoPlay
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <img
+              src={allPhotos[activePhoto] || selectedTour.heroImage}
+              alt={selectedTour.title}
+              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover transition-all duration-300"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
 
           {/* Photo Switcher Dots */}
-          <div className="absolute bottom-4 right-4 flex items-center gap-1.5 z-10">
-            {allPhotos.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActivePhoto(i)}
-                className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
-                  activePhoto === i ? 'bg-[#FDB913] w-6' : 'bg-white/50 hover:bg-white/80'
-                }`}
-                aria-label={`Photo ${i + 1}`}
-              />
-            ))}
-          </div>
+          {!showVideo && (
+            <div className="absolute bottom-4 right-4 flex items-center gap-1.5 z-10">
+              {allPhotos.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setShowVideo(false);
+                    setActivePhoto(i);
+                  }}
+                  className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
+                    activePhoto === i ? 'bg-[#FDB913] w-6' : 'bg-white/50 hover:bg-white/80'
+                  }`}
+                  aria-label={`Photo ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
 
-          <div className="absolute bottom-4 left-4 sm:left-6 right-16 text-white">
+          <div className="absolute bottom-4 left-4 sm:left-6 right-16 text-white pointer-events-none">
             <span className="text-xs font-bold uppercase tracking-wider text-[#FDB913]">
               {selectedTour.style} · {selectedTour.tier}
             </span>
