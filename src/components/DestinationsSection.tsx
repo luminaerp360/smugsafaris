@@ -8,11 +8,8 @@ import {
   ArrowRight,
   Eye,
   Check,
-  Video,
   Play,
   Pause,
-  Volume2,
-  VolumeX,
   X,
 } from 'lucide-react';
 
@@ -23,7 +20,6 @@ interface DestinationsSectionProps {
 const DestinationCardMedia: React.FC<{ dest: Destination }> = ({ dest }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -38,14 +34,6 @@ const DestinationCardMedia: React.FC<{ dest: Destination }> = ({ dest }) => {
     }
   };
 
-  const toggleMute = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    if (!videoRef.current) return;
-    videoRef.current.muted = !videoRef.current.muted;
-    setIsMuted(videoRef.current.muted);
-  };
-
   return (
     <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
       {dest.video ? (
@@ -54,7 +42,7 @@ const DestinationCardMedia: React.FC<{ dest: Destination }> = ({ dest }) => {
           src={dest.video}
           poster={dest.image}
           autoPlay
-          muted={isMuted}
+          muted
           loop
           playsInline
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -77,27 +65,15 @@ const DestinationCardMedia: React.FC<{ dest: Destination }> = ({ dest }) => {
         <span>{dest.country}</span>
       </div>
 
-      {/* Video Indicator Badge */}
+      {/* Video Play/Pause Control top-right */}
       {dest.video && (
-        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5">
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold border border-white/20 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-[#FDB913] animate-pulse" />
-            <Video className="w-3 h-3 text-[#FDB913]" />
-            <span>4K Video</span>
-          </div>
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
           <button
             onClick={togglePlay}
             className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-transform active:scale-90 cursor-pointer"
             title={isPlaying ? 'Pause preview' : 'Play preview'}
           >
             {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 ml-0.5" />}
-          </button>
-          <button
-            onClick={toggleMute}
-            className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-transform active:scale-90 cursor-pointer"
-            title={isMuted ? 'Unmute' : 'Mute'}
-          >
-            {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
           </button>
         </div>
       )}

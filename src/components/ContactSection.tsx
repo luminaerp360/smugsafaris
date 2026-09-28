@@ -64,6 +64,9 @@ export const ContactSection: React.FC = () => {
                     <a href="tel:+254741938127" className="hover:text-emerald-700 transition-colors">
                       +254 741 938127 <span className="text-[11px] font-normal text-neutral-500">(Kenya)</span>
                     </a>
+                    <a href="tel:0769920741" className="hover:text-emerald-700 transition-colors">
+                      0769 920 741 <span className="text-[11px] font-normal text-neutral-500">(Kenya)</span>
+                    </a>
                   </div>
                   <span className="text-[11px] text-neutral-400">24/7 Guest Emergency Support</span>
                 </div>

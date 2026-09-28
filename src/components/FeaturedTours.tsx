@@ -12,11 +12,8 @@ import {
   Check,
   Search,
   SlidersHorizontal,
-  Video,
   Play,
   Pause,
-  Volume2,
-  VolumeX,
 } from 'lucide-react';
 
 interface FeaturedToursProps {
@@ -32,7 +29,6 @@ const TourCardMedia: React.FC<{
 }> = ({ tour, hasImgFailed, onImageError }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -47,14 +43,6 @@ const TourCardMedia: React.FC<{
     }
   };
 
-  const toggleMute = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    if (!videoRef.current) return;
-    videoRef.current.muted = !videoRef.current.muted;
-    setIsMuted(videoRef.current.muted);
-  };
-
   return (
     <div className="relative aspect-[16/10] overflow-hidden bg-[#182F1D]">
       {tour.video ? (
@@ -63,7 +51,7 @@ const TourCardMedia: React.FC<{
           src={tour.video}
           poster={tour.heroImage}
           autoPlay
-          muted={isMuted}
+          muted
           loop
           playsInline
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -88,18 +76,16 @@ const TourCardMedia: React.FC<{
       {/* Gradient Scrim for contrast */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
 
-      {/* 4K Safari Video Badge top-left */}
-      {tour.video && (
-        <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold border border-white/20 shadow-sm">
-          <span className="w-2 h-2 rounded-full bg-[#FDB913] animate-pulse" />
-          <Video className="w-3 h-3 text-[#FDB913]" />
-          <span>4K Video</span>
+      {/* Best Seller badge top-left */}
+      {tour.bestSeller && (
+        <div className="absolute top-3 left-3 bg-gradient-to-r from-[#F7941D] to-[#E8720C] text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm z-10">
+          Best Seller
         </div>
       )}
 
-      {/* Video Interactive Controls top-right */}
+      {/* Video Play/Pause Control top-right */}
       {tour.video && (
-        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5">
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
           <button
             onClick={togglePlay}
             className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-transform active:scale-90 cursor-pointer"
@@ -107,24 +93,6 @@ const TourCardMedia: React.FC<{
           >
             {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 ml-0.5" />}
           </button>
-          <button
-            onClick={toggleMute}
-            className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-transform active:scale-90 cursor-pointer"
-            title={isMuted ? 'Unmute' : 'Mute'}
-          >
-            {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
-          </button>
-        </div>
-      )}
-
-      {/* Best Seller badge */}
-      {tour.bestSeller && (
-        <div
-          className={`absolute ${
-            tour.video ? 'top-11 right-3 text-[9px] px-2 py-0.5' : 'top-3 right-3 text-[10px] px-2.5 py-1'
-          } bg-gradient-to-r from-[#F7941D] to-[#E8720C] text-white font-extrabold uppercase tracking-wider rounded-md shadow-sm z-10`}
-        >
-          Best Seller
         </div>
       )}
 

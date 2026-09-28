@@ -11,7 +11,7 @@ import {
   ChevronDown,
   Compass,
   AlertCircle,
-  Video,
+  Play,
   Camera,
 } from 'lucide-react';
 
@@ -55,9 +55,8 @@ export const TourDetailModal: React.FC = () => {
               </>
             ) : (
               <>
-                <span className="w-2 h-2 rounded-full bg-[#FDB913] animate-pulse" />
-                <Video className="w-3.5 h-3.5 text-[#FDB913]" />
-                <span>Watch 4K Video</span>
+                <Play className="w-3.5 h-3.5 text-[#FDB913] fill-[#FDB913]" />
+                <span>Watch Video</span>
               </>
             )}
           </button>

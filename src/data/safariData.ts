@@ -963,7 +963,7 @@ export const FAQS_DATA = [
   {
     category: 'Booking & Payments',
     question: 'How do I book a safari with Smugsafaris and what deposit is required?',
-    answer: 'Booking is simple: browse our packages or submit a custom inquiry via our form or WhatsApp (+1 (256) 947-7516 / +254 741 938127). A 30% deposit secures your safari vehicle, driver-guide, and lodge reservations. The remaining 70% balance is payable 30 days prior to departure via bank transfer, credit card (Visa/Mastercard), or secure online payment link.',
+    answer: 'Booking is simple: browse our packages or submit a custom inquiry via our form or WhatsApp (+1 (256) 947-7516 / +254 741 938127 / 0769 920 741). A 30% deposit secures your safari vehicle, driver-guide, and lodge reservations. The remaining 70% balance is payable 30 days prior to departure via bank transfer, credit card (Visa/Mastercard), or secure online payment link.',
   },
   {
     category: 'Booking & Payments',

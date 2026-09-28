@@ -114,6 +114,12 @@ export const ContactPage: React.FC = () => {
                       >
                         +254 741 938127 <span className="text-xs font-normal text-stone-500">(Kenya & East Africa)</span>
                       </a>
+                      <a
+                        href="tel:0769920741"
+                        className="text-[#1E7A2E] font-bold block hover:underline"
+                      >
+                        0769 920 741 <span className="text-xs font-normal text-stone-500">(Kenya Mobile)</span>
+                      </a>
                     </div>
                     <span className="text-[11px] text-stone-400 block mt-1">Direct bookings & 24/7 client concierge</span>
                   </div>

@@ -120,6 +120,14 @@ export const Navbar: React.FC = () => {
                 >
                   +254 741 938127
                 </a>
+                <span className="text-emerald-700">|</span>
+                <a
+                  href="tel:0769920741"
+                  className="hover:text-white transition-colors font-medium text-[11px]"
+                  title="Call Kenya Mobile"
+                >
+                  0769 920 741
+                </a>
               </div>
 
               <span className="hidden md:inline-block text-emerald-700">•</span>
@@ -486,21 +494,31 @@ export const Navbar: React.FC = () => {
               </a>
 
               <a
+                href="tel:0769920741"
+                className="flex items-center justify-center gap-1.5 py-2 px-2 text-[11px] font-bold text-stone-300 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10"
+              >
+                <Phone className="w-3.5 h-3.5 text-stone-400" />
+                <span>0769 920 741</span>
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 mt-2">
+              <a
                 href="tel:+254741938127"
                 className="flex items-center justify-center gap-1.5 py-2 px-2 text-[11px] font-bold text-stone-300 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10"
               >
                 <Phone className="w-3.5 h-3.5 text-stone-400" />
                 <span>+254 741 938127</span>
               </a>
-            </div>
 
-            <a
-              href="tel:+12569477516"
-              className="flex items-center justify-center gap-1.5 py-2 px-3 text-[11px] font-bold text-stone-300 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10 mt-2"
-            >
-              <Phone className="w-3.5 h-3.5 text-[#FDB913]" />
-              <span>US Hotline: +1 (256) 947-7516</span>
-            </a>
+              <a
+                href="tel:+12569477516"
+                className="flex items-center justify-center gap-1.5 py-2 px-2 text-[11px] font-bold text-stone-300 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10"
+              >
+                <Phone className="w-3.5 h-3.5 text-[#FDB913]" />
+                <span>+1 (256) 947-7516</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

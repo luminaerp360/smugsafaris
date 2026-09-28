@@ -179,9 +179,8 @@ export const TourDetailPage: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <span className="w-2 h-2 rounded-full bg-[#FDB913] animate-pulse" />
-                    <Video className="w-3.5 h-3.5 text-[#FDB913]" />
-                    <span>Watch 4K Video</span>
+                    <Play className="w-3.5 h-3.5 text-[#FDB913] fill-[#FDB913]" />
+                    <span>Watch Video</span>
                   </>
                 )}
               </button>
@@ -207,7 +206,7 @@ export const TourDetailPage: React.FC = () => {
                 <div className="w-7 h-7 rounded-full bg-[#1E7A2E] text-white flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
                   <Play className="w-3.5 h-3.5 fill-white ml-0.5" />
                 </div>
-                <span className="text-[10px] font-bold">4K Safari Video</span>
+                <span className="text-[10px] font-bold">Watch Video</span>
               </button>
             )}
             {[tour.heroImage, ...(tour.galleryImages || [])].slice(0, tour.video ? 3 : 4).map((img, idx) => (

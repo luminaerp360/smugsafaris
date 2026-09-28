@@ -11,7 +11,6 @@ import {
   Compass,
   CheckCircle2,
   Search,
-  Video,
 } from 'lucide-react';
 
 export const DestinationsPage: React.FC = () => {
@@ -152,13 +151,6 @@ export const DestinationsPage: React.FC = () => {
                       <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-white/95 text-stone-900 shadow-md">
                         {dest.country}
                       </span>
-                      {dest.video && (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-black/60 backdrop-blur-md text-white border border-white/20 shadow-md">
-                          <span className="w-2 h-2 rounded-full bg-[#FDB913] animate-pulse" />
-                          <Video className="w-3.5 h-3.5 text-[#FDB913]" />
-                          <span>4K Footage</span>
-                        </span>
-                      )}
                     </div>
                   </div>
 

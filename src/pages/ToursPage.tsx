@@ -17,7 +17,6 @@ import {
   ChevronRight,
   Filter,
   X,
-  Video,
 } from 'lucide-react';
 
 export const ToursPage: React.FC = () => {
@@ -323,13 +322,6 @@ export const ToursPage: React.FC = () => {
                       <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/90 text-stone-800 backdrop-blur-xs shadow-sm">
                         {tour.style}
                       </span>
-                      {tour.video && (
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-black/60 text-white backdrop-blur-xs shadow-sm flex items-center gap-1 border border-white/20">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#FDB913] animate-pulse" />
-                          <Video className="w-2.5 h-2.5 text-[#FDB913]" />
-                          <span>4K Video</span>
-                        </span>
-                      )}
                     </div>
 
                     {/* Bottom Specs on Image */}

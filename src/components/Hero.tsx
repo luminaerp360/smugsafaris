@@ -315,12 +315,6 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none z-10" />
 
-                  {/* Top-Left Live Video Tag */}
-                  <div className="absolute top-2 left-2 flex items-center gap-1.5 bg-black/60 backdrop-blur-xs px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold text-emerald-300 border border-emerald-400/30 z-20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Live 4K Safari</span>
-                  </div>
-
                   {/* Top-Right Controls: Play/Pause and Counter */}
                   <div className="absolute top-2 right-2 flex items-center gap-1.5 z-20">
                     <button

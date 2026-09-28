@@ -75,7 +75,7 @@ export const FAQSection: React.FC = () => {
         <div className="space-y-3">
           {filteredFaqs.length === 0 ? (
             <div className="p-8 text-center text-xs text-neutral-500 bg-neutral-50 rounded-xl border border-neutral-200">
-              No matching questions found. Contact our safari desk on WhatsApp (+1 (256) 947-7516 / +254 741 938127) for direct answers.
+              No matching questions found. Contact our safari desk on WhatsApp (+1 (256) 947-7516 / +254 741 938127 / 0769 920 741) for direct answers.
             </div>
           ) : (
             filteredFaqs.map((faq, idx) => {
