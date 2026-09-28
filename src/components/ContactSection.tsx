@@ -34,7 +34,7 @@ export const ContactSection: React.FC = () => {
               Speak With Our Safari Specialists
             </h2>
             <p className="mt-3 text-neutral-600 text-sm sm:text-base leading-relaxed">
-              Have questions about safari seasonality, animal migrations, child-friendly camps, or custom logistics? Reach out to our Nairobi team anytime.
+              Have questions about safari seasonality, animal migrations, child-friendly camps, or custom logistics? Reach out to our Eldoret team anytime.
             </p>
 
             <div className="mt-8 space-y-6">
@@ -43,11 +43,11 @@ export const ContactSection: React.FC = () => {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-neutral-900">Nairobi Safari Operations</h4>
+                  <h4 className="text-sm font-bold text-neutral-900">Eldoret Safari Operations</h4>
                   <p className="text-xs text-neutral-600 mt-0.5">
-                    Muthangari Drive, Westlands, Nairobi, Kenya
+                    Eldoret, Uasin Gishu County, Kenya
                   </p>
-                  <span className="text-[11px] text-neutral-400">P.O. Box 24890-00100 Nairobi</span>
+                  <span className="text-[11px] text-neutral-400">P.O. Box 30100 Eldoret, Kenya</span>
                 </div>
               </div>
 
@@ -57,9 +57,14 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-neutral-900">Phone & WhatsApp Hotline</h4>
-                  <p className="text-xs text-neutral-800 font-semibold mt-0.5">
-                    +254 700 123 456 / +254 722 000 000
-                  </p>
+                  <div className="text-xs text-neutral-800 font-semibold mt-0.5 flex flex-col gap-0.5">
+                    <a href="tel:+12569477516" className="hover:text-emerald-700 transition-colors">
+                      +1 (256) 947-7516 <span className="text-[11px] font-normal text-neutral-500">(USA)</span>
+                    </a>
+                    <a href="tel:+254741938127" className="hover:text-emerald-700 transition-colors">
+                      +254 741 938127 <span className="text-[11px] font-normal text-neutral-500">(Kenya)</span>
+                    </a>
+                  </div>
                   <span className="text-[11px] text-neutral-400">24/7 Guest Emergency Support</span>
                 </div>
               </div>
@@ -71,10 +76,10 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <h4 className="text-sm font-bold text-neutral-900">Email Inquiries</h4>
                   <p className="text-xs text-neutral-800 font-semibold mt-0.5">
-                    info@smugsafaris.com
+                    info@smugsafaris.co.ke
                   </p>
                   <p className="text-xs text-neutral-500">
-                    bookings@smugsafaris.com
+                    bookings@smugsafaris.co.ke
                   </p>
                 </div>
               </div>
@@ -96,13 +101,13 @@ export const ContactSection: React.FC = () => {
             {/* Instant WhatsApp Action */}
             <div className="mt-8 pt-6 border-t border-neutral-200">
               <a
-                href="https://wa.me/254700123456?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20discuss%20a%20safari%20itinerary."
+                href="https://wa.me/254741938127?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20discuss%20a%20safari%20itinerary."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition-colors cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
-                <span>Chat Directly on WhatsApp (+254 700 123 456)</span>
+                <span>Chat Directly on WhatsApp (+254 741 938127)</span>
               </a>
             </div>
           </div>

@@ -1,105 +1,67 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { SafariProvider } from './context/SafariContext';
+import { ScrollToTop } from './components/ScrollToTop';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { StatsBar } from './components/StatsBar';
-import { FeaturedTours } from './components/FeaturedTours';
-import { WhyChooseUs } from './components/WhyChooseUs';
-import { DestinationsSection } from './components/DestinationsSection';
-import { SafariCostEstimator } from './components/SafariCostEstimator';
-import { TravelServicesSection } from './components/TravelServicesSection';
-import { AboutSection } from './components/AboutSection';
-import { GallerySection } from './components/GallerySection';
-import { TestimonialsSection } from './components/TestimonialsSection';
-import { BlogSection } from './components/BlogSection';
-import { FAQSection } from './components/FAQSection';
-import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { TourDetailModal } from './components/TourDetailModal';
 import { InquiryModal } from './components/InquiryModal';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { BackToTop } from './components/BackToTop';
 
-function MainContent() {
-  const [heroSearchFilters, setHeroSearchFilters] = useState<{
-    destination: string;
-    style: string;
-    duration: string;
-  }>({
-    destination: 'all',
-    style: 'all',
-    duration: 'all',
-  });
+// Dedicated Pages
+import { HomePage } from './pages/HomePage';
+import { ToursPage } from './pages/ToursPage';
+import { TourDetailPage } from './pages/TourDetailPage';
+import { DestinationsPage } from './pages/DestinationsPage';
+import { WhyUsPage } from './pages/WhyUsPage';
+import { ServicesPage } from './pages/ServicesPage';
+import { AboutPage } from './pages/AboutPage';
+import { ReviewsPage } from './pages/ReviewsPage';
+import { GalleryPage } from './pages/GalleryPage';
+import { BlogPage } from './pages/BlogPage';
+import { BlogPostPage } from './pages/BlogPostPage';
+import { FAQPage } from './pages/FAQPage';
+import { ContactPage } from './pages/ContactPage';
 
-  const handleHeroSearch = (filters: { destination: string; style: string; duration: string }) => {
-    setHeroSearchFilters(filters);
-  };
-
-  const handleSelectDestinationFromSection = (destName: string) => {
-    setHeroSearchFilters((prev) => ({
-      ...prev,
-      destination: destName,
-    }));
-  };
-
+function AppLayout() {
   return (
-    <div className="min-h-screen bg-[#FAFAF8] text-[#1A1A1A] flex flex-col">
-      {/* Sticky Top Navigation */}
+    <div className="min-h-screen bg-[#FAFAF8] text-[#1A1A1A] flex flex-col font-sans antialiased">
+      <ScrollToTop />
+
+      {/* Global Sticky Top Navigation */}
       <Navbar />
 
+      {/* Dynamic Page Route Outlet */}
       <main className="flex-1">
-        {/* Hero Section */}
-        <Hero onSearchFilter={handleHeroSearch} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/tours" element={<ToursPage />} />
+          <Route path="/tours/:id" element={<TourDetailPage />} />
+          <Route path="/destinations" element={<DestinationsPage />} />
+          <Route path="/why-us" element={<WhyUsPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="/contact" element={<ContactPage />} />
 
-        {/* Credentials / Stats Bar */}
-        <StatsBar />
-
-        {/* Tours Listing & Details */}
-        <FeaturedTours
-          filterDestination={heroSearchFilters.destination}
-          filterStyle={heroSearchFilters.style}
-          filterDuration={heroSearchFilters.duration}
-        />
-
-        {/* 6 Key Pillars / Why Choose Us */}
-        <WhyChooseUs />
-
-        {/* Top East Africa Destinations */}
-        <DestinationsSection onSelectDestinationFilter={handleSelectDestinationFromSection} />
-
-        {/* Interactive Safari Cost Estimator */}
-        <SafariCostEstimator />
-
-        {/* Travel Services */}
-        <TravelServicesSection />
-
-        {/* Company Story & Safari Fleet */}
-        <AboutSection />
-
-        {/* Photo Gallery with Lightbox */}
-        <GallerySection />
-
-        {/* Traveler Reviews & Ratings */}
-        <TestimonialsSection />
-
-        {/* Safari Guides & Travel Tips Blog */}
-        <BlogSection />
-
-        {/* Frequently Asked Questions */}
-        <FAQSection />
-
-        {/* Contact Us & Direct Inquiry */}
-        <ContactSection />
+          {/* Fallback Catch-All */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
 
       {/* Global Footer */}
       <Footer />
 
-      {/* Interactive Modals */}
+      {/* Global Modals for Quick Inquiries & Fast Details */}
       <TourDetailModal />
       <InquiryModal />
 
-      {/* Floating Elements */}
+      {/* Floating Concierge & Back-To-Top Helpers */}
       <FloatingWhatsApp />
       <BackToTop />
     </div>
@@ -108,8 +70,10 @@ function MainContent() {
 
 export default function App() {
   return (
-    <SafariProvider>
-      <MainContent />
-    </SafariProvider>
+    <BrowserRouter>
+      <SafariProvider>
+        <AppLayout />
+      </SafariProvider>
+    </BrowserRouter>
   );
 }

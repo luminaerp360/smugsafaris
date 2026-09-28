@@ -27,7 +27,7 @@ export const WhyChooseUs: React.FC = () => {
     {
       num: '04',
       title: 'Direct Operator & Best Value Guarantee',
-      desc: 'Based directly in Nairobi, Kenya, you deal straight with the source. No foreign intermediaries, no hidden fees, and transparent pricing with all park conservation levies included.',
+      desc: 'Based directly in Eldoret, Kenya, you deal straight with the source. No foreign intermediaries, no hidden fees, and transparent pricing with all park conservation levies included.',
       icon: ShieldCheck,
       proof: 'Up to 25% better value than overseas brokers',
     },

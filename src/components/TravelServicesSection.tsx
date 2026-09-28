@@ -1,7 +1,21 @@
 import React from 'react';
 import { SERVICES_DATA } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
-import { Compass, Plane, Hotel, MapPin, ShieldCheck, Sunrise, Check, ArrowRight } from 'lucide-react';
+import {
+  Compass,
+  Plane,
+  Hotel,
+  Building2,
+  Car,
+  Users,
+  Camera,
+  Heart,
+  MapPin,
+  ShieldCheck,
+  Sunrise,
+  Check,
+  ArrowRight,
+} from 'lucide-react';
 
 export const TravelServicesSection: React.FC = () => {
   const { openInquiry } = useSafari();
@@ -10,6 +24,11 @@ export const TravelServicesSection: React.FC = () => {
     Compass,
     Plane,
     Hotel,
+    Building2,
+    Car,
+    Users,
+    Camera,
+    Heart,
     MapPin,
     ShieldCheck,
     Sunrise,

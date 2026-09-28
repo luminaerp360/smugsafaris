@@ -37,13 +37,16 @@ export const InquiryModal: React.FC = () => {
   };
 
   const getWhatsAppLink = () => {
-    const tourTitle =
-      selectedTour === 'custom'
-        ? 'Custom Tailor-Made Safari'
-        : TOURS_DATA.find((t) => t.id === selectedTour)?.title || 'Safari Inquiry';
+    let tourTitle = 'Custom Tailor-Made Safari';
+    if (selectedTour === 'hotel-booking') tourTitle = 'Hotel, Lodge & Resort Reservation';
+    else if (selectedTour === 'airport-transfer') tourTitle = 'Airport VIP Transfer & Chauffeur';
+    else if (selectedTour === 'corporate-retreat') tourTitle = 'Corporate Retreat / Conference';
+    else if (selectedTour !== 'custom') {
+      tourTitle = TOURS_DATA.find((t) => t.id === selectedTour)?.title || 'Safari Inquiry';
+    }
 
     const text = `Hello Smugsafaris! My name is ${fullName || 'Guest'}. Ref: ${refCode}. I would like to inquire about: ${tourTitle}, arriving around ${travelDate || 'flexible dates'} for ${adults} adults and ${children} children. Tier: ${tier}.`;
-    return `https://wa.me/254700123456?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/254741938127?text=${encodeURIComponent(text)}`;
   };
 
   return (
@@ -70,7 +73,7 @@ export const InquiryModal: React.FC = () => {
               Safari Proposal in Progress!
             </h3>
             <p className="mt-2 text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-md mx-auto">
-              Asante sana, <strong>{fullName}</strong>. Our senior safari director in Nairobi is preparing your customized day-by-day itinerary and quote.
+              Asante sana, <strong>{fullName}</strong>. Our senior safari director in Eldoret is preparing your customized day-by-day itinerary and quote.
             </p>
 
             <div className="mt-5 p-3.5 bg-neutral-50 rounded-xl border border-neutral-200 inline-block text-xs">
@@ -124,6 +127,9 @@ export const InquiryModal: React.FC = () => {
                   className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-3 py-2 text-xs font-medium text-neutral-800 focus:outline-none focus:ring-1 focus:ring-[#1E7A2E] cursor-pointer"
                 >
                   <option value="custom">★ Custom Tailor-Made Itinerary (Design from scratch)</option>
+                  <option value="hotel-booking">🏨 Hotel, Lodge & Resort Reservation Only</option>
+                  <option value="airport-transfer">🚗 Airport VIP Transfer & Chauffeur Service</option>
+                  <option value="corporate-retreat">👥 Corporate Retreat / Conference (MICE)</option>
                   {TOURS_DATA.map((t) => (
                     <option key={t.id} value={t.id}>
                       {t.title} ({t.duration})

@@ -17,7 +17,7 @@ export const AboutSection: React.FC = () => {
             </h2>
             
             <p className="mt-4 text-sm sm:text-base text-neutral-700 leading-relaxed">
-              Founded in Nairobi by veteran Kenyan naturalist guides, <strong className="text-[#0F5E1F]">Smugsafaris Tours & Travel</strong> was born from a simple belief: an African safari should be raw, intimate, and deeply respectful of wildlife and local communities.
+              Founded in Eldoret by veteran Kenyan naturalist guides, <strong className="text-[#0F5E1F]">Smugsafaris Tours & Travel</strong> was born from a simple belief: an African safari should be raw, intimate, and deeply respectful of wildlife and local communities.
             </p>
 
             <p className="mt-3 text-sm text-neutral-600 leading-relaxed">
@@ -55,7 +55,7 @@ export const AboutSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white">
                 <p className="text-xs uppercase tracking-wider font-bold text-[#FDB913]">
-                  Nairobi Headquarters · Westlands, Kenya
+                  Eldoret Headquarters · Kenya
                 </p>
                 <p className="text-sm font-semibold mt-0.5">
                   Over a decade of orchestrating private wildlife journeys across East Africa

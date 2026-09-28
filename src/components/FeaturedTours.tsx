@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { TOURS_DATA, TourPackage } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
 import { Clock, MapPin, Users, Compass, ArrowRight, Sparkles, Check, Search, SlidersHorizontal } from 'lucide-react';
@@ -218,11 +219,8 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = ({
                         <span>Max {tour.maxGroupSize} Guests</span>
                       </div>
 
-                      <h3
-                        onClick={() => openTourDetail(tour.id)}
-                        className="text-lg font-bold text-neutral-900 group-hover:text-[#1E7A2E] transition-colors cursor-pointer line-clamp-2"
-                      >
-                        {tour.title}
+                      <h3 className="text-lg font-bold text-neutral-900 group-hover:text-[#1E7A2E] transition-colors line-clamp-2">
+                        <Link to={`/tours/${tour.id}`}>{tour.title}</Link>
                       </h3>
 
                       <p className="mt-2 text-xs text-neutral-600 line-clamp-2 leading-relaxed">
@@ -259,12 +257,12 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = ({
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => openTourDetail(tour.id)}
-                          className="px-3 py-2 text-xs font-bold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-colors cursor-pointer"
+                        <Link
+                          to={`/tours/${tour.id}`}
+                          className="px-3 py-2 text-xs font-bold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-colors inline-block"
                         >
-                          Details
-                        </button>
+                          Itinerary
+                        </Link>
                         <button
                           onClick={() => openInquiry(tour.id)}
                           className="px-3.5 py-2 text-xs font-bold text-white bg-[#1E7A2E] hover:bg-[#0F5E1F] rounded-lg transition-colors cursor-pointer shadow-sm"
@@ -291,7 +289,7 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = ({
               We Tailor-Make Safaris to Your Exact Dreams
             </h3>
             <p className="mt-1 text-sm text-neutral-300 max-w-xl">
-              Tell us your travel dates, wish-list animals, and budget. Our senior safari architects in Nairobi will craft a custom day-by-day proposal within 24 hours.
+              Tell us your travel dates, wish-list animals, and budget. Our senior safari architects in Eldoret will craft a custom day-by-day proposal within 24 hours.
             </p>
           </div>
 

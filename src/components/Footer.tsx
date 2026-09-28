@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 import { useSafari } from '../context/SafariContext';
-import { MessageCircle, Mail, Phone, MapPin, Check, ShieldCheck, Heart } from 'lucide-react';
+import { MessageCircle, Mail, Phone, MapPin, Check, ShieldCheck, Heart, Sparkles, ArrowRight } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const { scrollToSection, openInquiry } = useSafari();
+  const { openInquiry } = useSafari();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSent, setNewsletterSent] = useState(false);
 
@@ -70,12 +71,12 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Col 1: Brand Wordmark on Dark Background */}
           <div className="lg:col-span-2">
-            <div className="inline-block mb-3">
+            <Link to="/" className="inline-block mb-3">
               <Logo variant="horizontal" theme="dark" />
-            </div>
+            </Link>
 
             <p className="text-xs text-neutral-300 leading-relaxed max-w-sm mt-2">
-              Premier African safari tour operator based in Nairobi, Kenya. We specialize in private, tailor-made wildlife adventures across Maasai Mara, Amboseli, Serengeti, and beyond.
+              Premier African safari tour operator based in Eldoret, Kenya. We specialize in private, tailor-made wildlife adventures across Maasai Mara, Amboseli, Serengeti, and beyond.
             </p>
 
             {/* Certifications & Badges */}
@@ -99,64 +100,96 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-xs text-neutral-300">
               <li>
-                <button
-                  onClick={() => scrollToSection('tours')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
+                <Link
+                  to="/tours/classic-kenya-big-five"
+                  className="hover:text-white transition-colors cursor-pointer text-left block"
                 >
                   7-Day Classic Kenya Big Five
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection('tours')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
+                <Link
+                  to="/tours/maasai-mara-great-migration"
+                  className="hover:text-white transition-colors cursor-pointer text-left block"
                 >
                   4-Day Maasai Mara Migration
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection('tours')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
+                <Link
+                  to="/tours/amboseli-tsavo-kilimanjaro"
+                  className="hover:text-white transition-colors cursor-pointer text-left block"
                 >
                   6-Day Amboseli & Tsavo
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection('tours')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
+                <Link
+                  to="/tours/kenya-tanzania-serengeti-odyssey"
+                  className="hover:text-white transition-colors cursor-pointer text-left block"
                 >
                   8-Day Kenya & Tanzania Odyssey
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection('tours')}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
+                <Link
+                  to="/tours/bush-and-beach-mara-zanzibar"
+                  className="hover:text-white transition-colors cursor-pointer text-left block"
                 >
                   10-Day Bush & Beach: Mara + Zanzibar
-                </button>
+                </Link>
+              </li>
+              <li className="pt-1">
+                <Link
+                  to="/tours"
+                  className="inline-flex items-center gap-1 text-[#7CC142] hover:text-emerald-300 font-bold"
+                >
+                  <span>View All Packages</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Navigation */}
+          {/* Col 3: Navigation Links */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FDB913] mb-4">
-              Quick Links
+              Explore Pages
             </h4>
             <ul className="space-y-2.5 text-xs text-neutral-300">
-              {['Home', 'Destinations', 'Why Us', 'Services', 'About', 'Reviews', 'FAQ', 'Contact'].map((sec) => (
-                <li key={sec}>
-                  <button
-                    onClick={() => scrollToSection(sec.toLowerCase().replace(' ', '-'))}
-                    className="hover:text-white transition-colors cursor-pointer"
-                  >
-                    {sec}
-                  </button>
-                </li>
-              ))}
+              <li>
+                <Link to="/" className="hover:text-white transition-colors">Home</Link>
+              </li>
+              <li>
+                <Link to="/tours" className="hover:text-white transition-colors">Tours & Safaris</Link>
+              </li>
+              <li>
+                <Link to="/destinations" className="hover:text-white transition-colors">Destinations</Link>
+              </li>
+              <li>
+                <Link to="/why-us" className="hover:text-white transition-colors">Why Choose Us</Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-white transition-colors">Travel Services</Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-white transition-colors">About Our Story</Link>
+              </li>
+              <li>
+                <Link to="/reviews" className="hover:text-white transition-colors">Reviews & Ratings</Link>
+              </li>
+              <li>
+                <Link to="/gallery" className="hover:text-white transition-colors">Photo Gallery</Link>
+              </li>
+              <li>
+                <Link to="/blog" className="hover:text-white transition-colors">Safari Guides & Blog</Link>
+              </li>
+              <li>
+                <Link to="/faq" className="hover:text-white transition-colors">Help & FAQ</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link>
+              </li>
             </ul>
           </div>
 
@@ -168,22 +201,30 @@ export const Footer: React.FC = () => {
             <ul className="space-y-3 text-xs text-neutral-300">
               <li className="flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[#7CC142] shrink-0 mt-0.5" />
-                <span>Muthangari Drive, Westlands, Nairobi, Kenya</span>
+                <span>Eldoret, Uasin Gishu County, Kenya</span>
               </li>
-              <li className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[#7CC142] shrink-0" />
-                <span>+254 700 123 456</span>
+              <li className="flex items-start gap-2">
+                <Phone className="w-3.5 h-3.5 text-[#7CC142] shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1 text-xs">
+                  <a href="tel:+12569477516" className="hover:text-white transition-colors">
+                    +1 (256) 947-7516 <span className="text-[10px] text-neutral-400">(USA)</span>
+                  </a>
+                  <a href="tel:+254741938127" className="hover:text-white transition-colors">
+                    +254 741 938127 <span className="text-[10px] text-neutral-400">(Kenya)</span>
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#7CC142] shrink-0" />
-                <span>info@smugsafaris.com</span>
+                <a href="mailto:info@smugsafaris.co.ke" className="hover:text-white transition-colors">info@smugsafaris.co.ke</a>
               </li>
               <li className="pt-2">
                 <button
                   onClick={() => openInquiry()}
-                  className="w-full py-2 px-3 text-xs font-bold text-center text-white bg-[#1E7A2E] hover:bg-[#238b34] rounded-lg transition-colors cursor-pointer"
+                  className="w-full py-2.5 px-3 text-xs font-bold text-center text-white bg-gradient-to-r from-[#1E7A2E] to-[#0F471A] hover:from-[#238B34] hover:to-[#166527] rounded-xl transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
                 >
-                  Request a Free Quote
+                  <Sparkles className="w-3.5 h-3.5 text-[#FDB913]" />
+                  <span>Request Free Safari Quote</span>
                 </button>
               </li>
             </ul>

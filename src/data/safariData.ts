@@ -745,12 +745,28 @@ export const DESTINATIONS_DATA: Destination[] = [
 
 export const SERVICES_DATA: TravelService[] = [
   {
+    id: 'hotel-and-resort-bookings',
+    title: 'Hotel, Lodge & Resort Bookings',
+    tagline: 'Negotiated rates across premier hotels, beach resorts & luxury safari lodges',
+    description: 'We secure guaranteed reservations and exclusive preferred-partner rates across East Africa. From 5-star city business hotels in Nairobi and Eldoret (Serena, Sarova, Hemingsways, Radisson) to tropical beach resorts in Diani/Watamu and world-class safari lodges, enjoy complimentary room upgrades, flexible booking conditions, and group discounts.',
+    iconName: 'Building2',
+    features: ['Contracted operator rates', 'City transit & boutique hotels', 'Beachfront villas & resorts', 'Corporate & group discounts'],
+  },
+  {
     id: 'safari-land-cruisers',
     title: 'Custom 4x4 Safari Land Cruisers',
     tagline: 'Purpose-built for photographic safaris and rough terrain',
     description: 'Our fleet of customized Toyota Land Cruisers feature full 360-degree pop-up game-viewing roofs, onboard charging inverters (USB/220V), mini-refrigerators for cold drinks, high-frequency two-way radios, and guaranteed individual window seating for every traveler.',
     iconName: 'Compass',
     features: ['Pop-up viewing roof', 'Guaranteed window seat', 'Cold drink fridge', 'USB & camera charging ports'],
+  },
+  {
+    id: 'airport-vip-transfers',
+    title: 'Airport VIP Transfers & Chauffeur Services',
+    tagline: 'Punctual meet & greet across all major East African airports',
+    description: 'Seamless private transfers connecting Jomo Kenyatta International (JKIA), Wilson Airport, Eldoret International Airport (EDL), Mombasa (MBA), and Kilimanjaro (JRO). Enjoy flight tracking, professional uniformed chauffeurs, luggage assistance, and air-conditioned executive vehicles.',
+    iconName: 'Car',
+    features: ['Meet & greet terminal protocol', 'JKIA, Eldoret & Wilson transfers', 'Executive sedans & luxury vans', 'Live flight delay monitoring'],
   },
   {
     id: 'bush-flights',
@@ -762,11 +778,43 @@ export const SERVICES_DATA: TravelService[] = [
   },
   {
     id: 'luxury-camp-booking',
-    title: 'Luxury Tented Camps & Lodge Booking',
+    title: 'Luxury Tented Camps & Safari Lodges',
     tagline: 'Direct partnerships with leading eco-lodges and luxury camps',
     description: 'Enjoy exclusive rates and VIP room allocations across East Africa’s most distinguished safari properties, from vintage Hemingway-style tented camps to 5-star cliffside safari lodges with private plunge pools.',
     iconName: 'Hotel',
     features: ['Best rate guarantee', 'Handpicked eco-lodges', 'Romantic bush dinners', 'Family suites available'],
+  },
+  {
+    id: 'corporate-mice-retreats',
+    title: 'Corporate Retreats, Conferences & MICE',
+    tagline: 'Memorable corporate escapes, team building & executive conferences',
+    description: 'We organize end-to-end Meetings, Incentives, Conferences, and Exhibitions (MICE) in inspiring safari locations. From lakeside conference venues in Naivasha and team building in the Rift Valley to exclusive corporate retreats in the Maasai Mara, we handle transport, audiovisual, accommodation, and curated team activities.',
+    iconName: 'Users',
+    features: ['Full event logistics & transport', 'Team-building facilitators', 'Conference hall reservations', 'Curated group bush dinners'],
+  },
+  {
+    id: 'balloon-safaris',
+    title: 'Hot Air Balloon Safaris & Bush Breakfasts',
+    tagline: 'Glide over the waking savannah at golden sunrise',
+    description: 'Experience the magic of drifting silently above herds of grazing elephants and galloping zebras at dawn, concluding with an unforgettable champagne breakfast served right in the middle of the savannah.',
+    iconName: 'Sunrise',
+    features: ['Sunrise launch', '1-hour panoramic flight', 'Champagne bush breakfast', 'Flight certificate'],
+  },
+  {
+    id: 'photography-filming-logistics',
+    title: 'Wildlife Photography & Film Crew Logistics',
+    tagline: 'Custom vehicle setups, equipment support & filming permits',
+    description: 'Tailored for professional wildlife photographers, documentary crews, and camera enthusiasts. We provide modified open-sided or hatch Land Cruisers with specialized gimbal mounts, beanbag supports, low-angle doors, camera charging inverters, and Kenya Film Commission permit handling.',
+    iconName: 'Camera',
+    features: ['Low-angle photo shoot doors', 'Heavy-duty lens beanbags', 'Drone & film permit clearance', 'Photographer-trained driver-guides'],
+  },
+  {
+    id: 'honeymoons-celebrations',
+    title: 'Romantic Honeymoons & Bush Celebrations',
+    tagline: 'Unforgettable milestone moments under the African sky',
+    description: 'Elevate your special moments with private candlelight dinners in the middle of the savannah, romantic ridge-top sundowner cocktails with panoramic views, surprise champagne celebrations, and personalized honeymoon turndowns with fresh flowers and sparkling wine.',
+    iconName: 'Heart',
+    features: ['Private candlelit bush dinners', 'Sunset ridge sundowners', 'Honeymoon suite perks & gifts', 'Surprise celebration planning'],
   },
   {
     id: 'tailor-made-safaris',
@@ -783,14 +831,6 @@ export const SERVICES_DATA: TravelService[] = [
     description: 'Every Smugsafaris guest is automatically covered with AMREF Flying Doctors emergency aero-medical evacuation coverage throughout Kenya, backed by our pre-departure Kenya eVisa/ETA guidance.',
     iconName: 'ShieldCheck',
     features: ['AMREF Flying Doctors included', 'eVisa / ETA assistance', '24/7 emergency response', 'Pre-trip packing consult'],
-  },
-  {
-    id: 'balloon-safaris',
-    title: 'Hot Air Balloon Safaris & Bush Breakfasts',
-    tagline: 'Glide over the waking savannah at golden sunrise',
-    description: 'Experience the magic of drifting silently above herds of grazing elephants and galloping zebras at dawn, concluding with an unforgettable champagne breakfast served right in the middle of the savannah.',
-    iconName: 'Sunrise',
-    features: ['Sunrise launch', '1-hour panoramic flight', 'Champagne bush breakfast', 'Flight certificate'],
   },
 ];
 
@@ -909,7 +949,7 @@ export const FAQS_DATA = [
   {
     category: 'Booking & Payments',
     question: 'How do I book a safari with Smugsafaris and what deposit is required?',
-    answer: 'Booking is simple: browse our packages or submit a custom inquiry via our form or WhatsApp (+254 700 123 456). A 30% deposit secures your safari vehicle, driver-guide, and lodge reservations. The remaining 70% balance is payable 30 days prior to departure via bank transfer, credit card (Visa/Mastercard), or secure online payment link.',
+    answer: 'Booking is simple: browse our packages or submit a custom inquiry via our form or WhatsApp (+1 (256) 947-7516 / +254 741 938127). A 30% deposit secures your safari vehicle, driver-guide, and lodge reservations. The remaining 70% balance is payable 30 days prior to departure via bank transfer, credit card (Visa/Mastercard), or secure online payment link.',
   },
   {
     category: 'Booking & Payments',
@@ -957,20 +997,20 @@ export const TEAM_MEMBERS = [
     role: 'Founder & Head of Safari Operations',
     experience: '16 Years Experience',
     bio: 'Born in the Great Rift Valley, Jackson is a licensed KPSGA Gold-level naturalist guide who has led over 500 expeditions across Maasai Mara, Serengeti, and Samburu.',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+    avatar: '/images/team/jackson-kirui.jpg',
   },
   {
     name: 'David Ole Nkoitoi',
     role: 'Senior Maasai Naturalist & Cultural Liaison',
     experience: '12 Years Experience',
     bio: 'A native of the Maasai Mara ecosystem with an extraordinary instinct for big cat behavior and ancient tracking techniques, David turns every game drive into a wildlife masterclass.',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    avatar: '/images/team/david-nkoitoi.jpg',
   },
   {
     name: 'Beatrice Wanjiku',
     role: 'Guest Experience & Safari Concierge Manager',
     experience: '9 Years Experience',
-    bio: 'Beatrice oversees seamless luxury accommodations, dietary requests, bush flight logistics, and 24/7 guest communications from our Nairobi headquarters.',
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+    bio: 'Beatrice oversees seamless luxury accommodations, dietary requests, bush flight logistics, and 24/7 guest communications from our Eldoret headquarters.',
+    avatar: '/images/team/beatrice-wanjiku.jpg',
   },
 ];
