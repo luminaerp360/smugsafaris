@@ -108,6 +108,29 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
+  // Rotating Dynamic Headline Text with smooth transitions
+  const ROTATING_TEXTS = [
+    'Private Luxury 4x4',
+    'The Great Migration',
+    'Kilimanjaro Giants',
+    'Untamed Serengeti',
+    'Vintage Tented Luxury',
+  ];
+  const [textIndex, setTextIndex] = useState(0);
+  const [isFading, setIsFading] = useState(false);
+
+  useEffect(() => {
+    const textTimer = setInterval(() => {
+      setIsFading(true);
+      setTimeout(() => {
+        setTextIndex((prev) => (prev + 1) % ROTATING_TEXTS.length);
+        setIsFading(false);
+      }, 350);
+    }, 3200);
+
+    return () => clearInterval(textTimer);
+  }, []);
+
   // Synchronize video playback with current slide
   useEffect(() => {
     videoRefs.current.forEach((vid, idx) => {
@@ -201,28 +224,36 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-center">
           {/* Left Column: Headlines & Call to Actions */}
-          <div className="lg:col-span-7 space-y-3 sm:space-y-4 py-2 sm:py-4">
+          <div className="lg:col-span-7 space-y-2.5 sm:space-y-3.5 py-1 sm:py-2">
             {/* Pill Badge */}
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] sm:text-xs font-semibold text-emerald-200">
               <Sparkles className="w-3 h-3 text-[#FDB913]" />
-              <span>Tailor-Made Kenya & Tanzania Private Safaris</span>
+              <span>Tailor-Made Kenya & Tanzania Safaris</span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-extrabold tracking-tight leading-[1.18]">
-              Explore Africa’s Wild Soul in{' '}
-              <span className="bg-gradient-to-r from-[#FDB913] via-[#F7941D] to-[#E8720C] bg-clip-text text-transparent">
-                Private Luxury 4x4
+            {/* Dynamic Headline with Smooth Text Transition */}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-extrabold tracking-tight leading-[1.16]">
+              Witness Africa’s Wild Soul in{' '}
+              <span className="inline-block min-w-[180px] sm:min-w-[220px]">
+                <span
+                  className={`inline-block bg-gradient-to-r from-[#FDB913] via-[#F7941D] to-[#E8720C] bg-clip-text text-transparent font-black transition-all duration-350 transform ${
+                    isFading
+                      ? 'opacity-0 -translate-y-2 scale-95'
+                      : 'opacity-100 translate-y-0 scale-100'
+                  }`}
+                >
+                  {ROTATING_TEXTS[textIndex]}
+                </span>
               </span>
             </h1>
 
-            {/* Sub-headline */}
-            <p className="text-xs sm:text-sm md:text-[15px] text-emerald-100/90 max-w-xl leading-relaxed font-normal">
-              Experience the Great Migration in Maasai Mara, giant bull elephants under Kilimanjaro’s snows, and pure luxury tented camps with native East African naturalist guides.
+            {/* Clean, Non-busy 1-Sentence Value Prop */}
+            <p className="text-xs sm:text-sm text-emerald-100/90 max-w-lg leading-relaxed font-normal">
+              Custom 4x4 private safaris with certified native naturalists across Kenya & Tanzania.
             </p>
 
             {/* Primary Action Buttons */}
-            <div className="flex flex-row items-center gap-2.5 sm:gap-3 pt-1">
+            <div className="flex flex-row items-center gap-2.5 sm:gap-3 pt-0.5">
               <button
                 onClick={() => openInquiry()}
                 className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#1E7A2E] to-[#0F471A] hover:from-[#238B34] hover:to-[#166527] text-white text-xs sm:text-sm font-extrabold shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center gap-1.5 shrink-0"
@@ -239,15 +270,15 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
               </Link>
             </div>
 
-            {/* Trust Badges Bar */}
-            <div className="pt-2 sm:pt-3 border-t border-white/15 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[10px] sm:text-[11px] text-neutral-300">
+            {/* Minimalist Trust Badges Bar */}
+            <div className="pt-2 border-t border-white/15 flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] sm:text-[11px] text-neutral-300">
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#7CC142]" />
                 <span>KATO Bonded #482</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Award className="w-3.5 h-3.5 text-[#FDB913]" />
-                <span>KPSGA Naturalists</span>
+                <span>100% Private 4x4 Fleet</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#7CC142]" />
@@ -256,8 +287,8 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
             </div>
           </div>
 
-          {/* Right Column: Hero Safari Showcase Card with Moving Video Carousel (Desktop only to keep mobile uncluttered) */}
-          <div className="hidden lg:block lg:col-span-5">
+          {/* Right Column: Hero Safari Showcase Card with Moving Video Carousel (Visible on all screens) */}
+          <div className="lg:col-span-5">
             <div
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
@@ -380,7 +411,7 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
                 </div>
 
                 {/* Specs Tags matching active slide */}
-                <div className="grid grid-cols-2 gap-1.5 text-[10px] sm:text-[11px]">
+                <div className="hidden sm:grid grid-cols-2 gap-1.5 text-[10px] sm:text-[11px]">
                   <div className="bg-white/5 border border-white/10 px-2 py-1 sm:py-1.5 rounded-lg flex items-center gap-1.5">
                     <CheckCircle2 className="w-3 h-3 text-[#7CC142] shrink-0" />
                     <span className="text-neutral-200 truncate">{currentSlide.tags[0]}</span>
