@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { FAQS_DATA } from '../data/safariData';
 import { ChevronDown, HelpCircle, Search } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 export const FAQSection: React.FC = () => {
   const [selectedCat, setSelectedCat] = useState<string>('all');
@@ -29,17 +30,19 @@ export const FAQSection: React.FC = () => {
   return (
     <section id="faq" className="py-16 md:py-24 bg-white border-b border-neutral-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
-            Everything You Need to Know
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
-            Frequently Asked Safari Questions
-          </h2>
-          <p className="mt-2 text-neutral-600 text-sm max-w-lg mx-auto">
-            Practical answers on booking procedures, health requirements, tipping guidelines, and what to pack for the bush.
-          </p>
-        </div>
+        <ScrollReveal direction="left" distance={40}>
+          <div className="text-center mb-10">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
+              Everything You Need to Know
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
+              Frequently Asked Safari Questions
+            </h2>
+            <p className="mt-2 text-neutral-600 text-sm max-w-lg mx-auto">
+              Practical answers on booking procedures, health requirements, tipping guidelines, and what to pack for the bush.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Filter & Search Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-8">
@@ -81,30 +84,36 @@ export const FAQSection: React.FC = () => {
             filteredFaqs.map((faq, idx) => {
               const isOpen = openIndex === idx;
               return (
-                <div
+                <ScrollReveal
                   key={faq.question}
-                  className="border border-neutral-200 rounded-xl overflow-hidden transition-colors"
+                  direction={idx % 2 === 0 ? 'left' : 'right'}
+                  delay={Math.min((idx % 4) * 60, 240)}
+                  distance={35}
                 >
-                  <button
-                    onClick={() => toggleAccordion(idx)}
-                    className="w-full p-4 sm:p-5 text-left bg-white hover:bg-neutral-50 flex items-center justify-between gap-4 transition-colors cursor-pointer"
+                  <div
+                    className="border border-neutral-200 rounded-xl overflow-hidden transition-colors"
                   >
-                    <span className="text-sm font-bold text-neutral-900">
-                      {faq.question}
-                    </span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-neutral-500 shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 text-[#1E7A2E]' : ''
-                      }`}
-                    />
-                  </button>
+                    <button
+                      onClick={() => toggleAccordion(idx)}
+                      className="w-full p-4 sm:p-5 text-left bg-white hover:bg-neutral-50 flex items-center justify-between gap-4 transition-colors cursor-pointer"
+                    >
+                      <span className="text-sm font-bold text-neutral-900">
+                        {faq.question}
+                      </span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-neutral-500 shrink-0 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180 text-[#1E7A2E]' : ''
+                        }`}
+                      />
+                    </button>
 
-                  {isOpen && (
-                    <div className="px-4 sm:px-5 pb-5 pt-1 text-xs sm:text-sm text-neutral-600 leading-relaxed bg-white border-t border-neutral-100 animate-fade-in">
-                      {faq.answer}
-                    </div>
-                  )}
-                </div>
+                    {isOpen && (
+                      <div className="px-4 sm:px-5 pb-5 pt-1 text-xs sm:text-sm text-neutral-600 leading-relaxed bg-white border-t border-neutral-100 animate-fade-in">
+                        {faq.answer}
+                      </div>
+                    )}
+                  </div>
+                </ScrollReveal>
               );
             })
           )}

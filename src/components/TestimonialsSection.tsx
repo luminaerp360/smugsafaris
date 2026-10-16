@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { REVIEWS_DATA, Review } from '../data/safariData';
 import { Star, MessageSquarePlus, Check, X, ShieldCheck } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 export const TestimonialsSection: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>(REVIEWS_DATA);
@@ -42,71 +43,80 @@ export const TestimonialsSection: React.FC = () => {
   return (
     <section id="reviews" className="py-16 md:py-24 bg-[#FAFAF8] border-b border-neutral-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
-              Verified Traveler Stories
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
-              Guest Reviews & Reflections
-            </h2>
-            <p className="mt-2 text-neutral-600 text-sm sm:text-base max-w-xl">
-              Real safari experiences shared by travelers who explored the African bush with Smugsafaris.
-            </p>
-          </div>
-
-          <div className="mt-4 md:mt-0 flex items-center gap-3">
-            <div className="flex items-center gap-1 text-amber-500">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-              ))}
-              <span className="ml-1 text-sm font-extrabold text-neutral-900 tabular-nums">4.9 / 5.0</span>
+        <ScrollReveal direction="left" distance={40}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
+                Verified Traveler Stories
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
+                Guest Reviews & Reflections
+              </h2>
+              <p className="mt-2 text-neutral-600 text-sm sm:text-base max-w-xl">
+                Real safari experiences shared by travelers who explored the African bush with Smugsafaris.
+              </p>
             </div>
 
-            <button
-              onClick={() => setIsReviewModalOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-[#0F5E1F] bg-emerald-100 hover:bg-emerald-200 rounded-lg transition-colors cursor-pointer"
-            >
-              <MessageSquarePlus className="w-3.5 h-3.5" />
-              <span>Leave a Review</span>
-            </button>
+            <div className="mt-4 md:mt-0 flex items-center gap-3">
+              <div className="flex items-center gap-1 text-amber-500">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                ))}
+                <span className="ml-1 text-sm font-extrabold text-neutral-900 tabular-nums">4.9 / 5.0</span>
+              </div>
+
+              <button
+                onClick={() => setIsReviewModalOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-[#0F5E1F] bg-emerald-100 hover:bg-emerald-200 rounded-lg transition-colors cursor-pointer"
+              >
+                <MessageSquarePlus className="w-3.5 h-3.5" />
+                <span>Leave a Review</span>
+              </button>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Reviews Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reviews.map((rev) => (
-            <div
+          {reviews.map((rev, idx) => (
+            <ScrollReveal
               key={rev.id}
-              className="bg-white rounded-2xl border border-neutral-200 p-6 flex flex-col justify-between shadow-xs hover:shadow-sm transition-all"
+              direction={idx % 2 === 0 ? 'left' : 'right'}
+              delay={Math.min((idx % 3) * 80, 240)}
+              distance={45}
+              className="h-full"
             >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-1">
-                    {[...Array(rev.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                  <span className="text-[11px] text-neutral-400 font-medium">{rev.date}</span>
-                </div>
-
-                <p className="text-xs text-neutral-700 leading-relaxed italic">
-                  "{rev.comment}"
-                </p>
-              </div>
-
-              <div className="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+              <div
+                className="bg-white rounded-2xl border border-neutral-200 p-6 flex flex-col justify-between shadow-xs hover:shadow-sm transition-all h-full"
+              >
                 <div>
-                  <h4 className="text-xs font-bold text-neutral-900">{rev.author}</h4>
-                  <span className="text-[11px] text-neutral-500 block">{rev.country}</span>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-1">
+                      {[...Array(rev.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <span className="text-[11px] text-neutral-400 font-medium">{rev.date}</span>
+                  </div>
+
+                  <p className="text-xs text-neutral-700 leading-relaxed italic">
+                    "{rev.comment}"
+                  </p>
                 </div>
-                <div className="text-right">
-                  <span className="text-[10px] font-semibold text-[#1E7A2E] bg-emerald-50 px-2 py-0.5 rounded">
-                    {rev.tourTaken.split(' ')[0]} Tour
-                  </span>
+
+                <div className="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+                  <div>
+                    <h4 className="text-xs font-bold text-neutral-900">{rev.author}</h4>
+                    <span className="text-[11px] text-neutral-500 block">{rev.country}</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[10px] font-semibold text-[#1E7A2E] bg-emerald-50 px-2 py-0.5 rounded">
+                      {rev.tourTaken.split(' ')[0]} Tour
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

@@ -16,6 +16,7 @@ import {
   Check,
   ArrowRight,
 } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 export const TravelServicesSection: React.FC = () => {
   const { openInquiry } = useSafari();
@@ -37,26 +38,34 @@ export const TravelServicesSection: React.FC = () => {
   return (
     <section id="services" className="py-16 md:py-24 bg-white border-b border-neutral-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
-            Full-Spectrum Safari & Travel Solutions
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
-            Our Safari & Travel Services
-          </h2>
-          <p className="mt-3 text-neutral-600 text-sm sm:text-base leading-relaxed">
-            Beyond packaged wildlife tours, we provide end-to-end travel logistics across East Africa for private travelers, film crews, photographers, and corporate groups.
-          </p>
-        </div>
+        <ScrollReveal direction="left" distance={40}>
+          <div className="max-w-3xl mb-12">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
+              Full-Spectrum Safari & Travel Solutions
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
+              Our Safari & Travel Services
+            </h2>
+            <p className="mt-3 text-neutral-600 text-sm sm:text-base leading-relaxed">
+              Beyond packaged wildlife tours, we provide end-to-end travel logistics across East Africa for private travelers, film crews, photographers, and corporate groups.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {SERVICES_DATA.map((srv) => {
+          {SERVICES_DATA.map((srv, idx) => {
             const Icon = iconMap[srv.iconName] || Compass;
             return (
-              <div
+              <ScrollReveal
                 key={srv.id}
-                className="bg-[#FAFAF8] rounded-2xl border border-neutral-200 p-6 flex flex-col justify-between hover:border-[#1E7A2E]/50 hover:shadow-sm transition-all duration-300"
+                direction={idx % 2 === 0 ? 'left' : 'right'}
+                delay={Math.min((idx % 3) * 80, 240)}
+                distance={45}
+                className="h-full"
               >
+                <div
+                  className="bg-[#FAFAF8] rounded-2xl border border-neutral-200 p-6 flex flex-col justify-between hover:border-[#1E7A2E]/50 hover:shadow-sm transition-all duration-300 h-full"
+                >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-emerald-100 text-[#0F5E1F] flex items-center justify-center mb-4">
                     <Icon className="w-6 h-6 text-[#1E7A2E]" />
@@ -93,7 +102,8 @@ export const TravelServicesSection: React.FC = () => {
                   </button>
                 </div>
               </div>
-            );
+            </ScrollReveal>
+          );
           })}
         </div>
       </div>

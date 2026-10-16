@@ -1,6 +1,7 @@
 import React from 'react';
 import { TEAM_MEMBERS } from '../data/safariData';
 import { ShieldCheck, Compass, Check, Users, Sparkles, Award } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 export const AboutSection: React.FC = () => {
   return (
@@ -9,59 +10,63 @@ export const AboutSection: React.FC = () => {
         {/* Main Story Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-6">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
-              Our Heritage & Passion
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1 text-balance">
-              Rooted in the African Savannah. Dedicated to Authentic Safaris.
-            </h2>
-            
-            <p className="mt-4 text-sm sm:text-base text-neutral-700 leading-relaxed">
-              Founded in Eldoret by veteran Kenyan naturalist guides, <strong className="text-[#0F5E1F]">Smugsafaris Tours & Travel</strong> was born from a simple belief: an African safari should be raw, intimate, and deeply respectful of wildlife and local communities.
-            </p>
+            <ScrollReveal direction="left" distance={45}>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
+                Our Heritage & Passion
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1 text-balance">
+                Rooted in the African Savannah. Dedicated to Authentic Safaris.
+              </h2>
+              
+              <p className="mt-4 text-sm sm:text-base text-neutral-700 leading-relaxed">
+                Founded in Eldoret by veteran Kenyan naturalist guides, <strong className="text-[#0F5E1F]">Smugsafaris Tours & Travel</strong> was born from a simple belief: an African safari should be raw, intimate, and deeply respectful of wildlife and local communities.
+              </p>
 
-            <p className="mt-3 text-sm text-neutral-600 leading-relaxed">
-              Why the name <em>Smugsafaris</em>? Because when you sit beneath an acacia tree watching a lioness groom her cubs against a blood-orange African sunset, with chilled drinks and a trusted guide beside you, that feeling of serene, quiet fulfillment is unmistakable. We curate the moments that make travelers feel genuinely privileged to witness the wild.
-            </p>
+              <p className="mt-3 text-sm text-neutral-600 leading-relaxed">
+                Why the name <em>Smugsafaris</em>? Because when you sit beneath an acacia tree watching a lioness groom her cubs against a blood-orange African sunset, with chilled drinks and a trusted guide beside you, that feeling of serene, quiet fulfillment is unmistakable. We curate the moments that make travelers feel genuinely privileged to witness the wild.
+              </p>
 
-            <div className="mt-6 grid grid-cols-2 gap-4 text-xs font-semibold text-neutral-800">
-              <div className="p-3 bg-white rounded-xl border border-neutral-200 flex items-center gap-2.5">
-                <ShieldCheck className="w-5 h-5 text-[#1E7A2E] shrink-0" />
-                <span>KATO Bonded Operator #482</span>
+              <div className="mt-6 grid grid-cols-2 gap-4 text-xs font-semibold text-neutral-800">
+                <div className="p-3 bg-white rounded-xl border border-neutral-200 flex items-center gap-2.5">
+                  <ShieldCheck className="w-5 h-5 text-[#1E7A2E] shrink-0" />
+                  <span>KATO Bonded Operator #482</span>
+                </div>
+                <div className="p-3 bg-white rounded-xl border border-neutral-200 flex items-center gap-2.5">
+                  <Award className="w-5 h-5 text-[#F7941D] shrink-0" />
+                  <span>KPSGA Certified Naturalists</span>
+                </div>
+                <div className="p-3 bg-white rounded-xl border border-neutral-200 flex items-center gap-2.5">
+                  <Compass className="w-5 h-5 text-[#1E7A2E] shrink-0" />
+                  <span>Custom Private 4x4 Fleet</span>
+                </div>
+                <div className="p-3 bg-white rounded-xl border border-neutral-200 flex items-center gap-2.5">
+                  <Sparkles className="w-5 h-5 text-[#F7941D] shrink-0" />
+                  <span>Eco-Tourism Gold Standards</span>
+                </div>
               </div>
-              <div className="p-3 bg-white rounded-xl border border-neutral-200 flex items-center gap-2.5">
-                <Award className="w-5 h-5 text-[#F7941D] shrink-0" />
-                <span>KPSGA Certified Naturalists</span>
-              </div>
-              <div className="p-3 bg-white rounded-xl border border-neutral-200 flex items-center gap-2.5">
-                <Compass className="w-5 h-5 text-[#1E7A2E] shrink-0" />
-                <span>Custom Private 4x4 Fleet</span>
-              </div>
-              <div className="p-3 bg-white rounded-xl border border-neutral-200 flex items-center gap-2.5">
-                <Sparkles className="w-5 h-5 text-[#F7941D] shrink-0" />
-                <span>Eco-Tourism Gold Standards</span>
-              </div>
-            </div>
+            </ScrollReveal>
           </div>
 
           <div className="lg:col-span-6">
-            <div className="relative rounded-2xl overflow-hidden shadow-lg border border-neutral-200 bg-neutral-900">
-              <img
-                src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1000&q=80"
-                alt="Smugsafaris expedition in Maasai Mara"
-                referrerPolicy="no-referrer"
-                className="w-full aspect-[4/3] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <p className="text-xs uppercase tracking-wider font-bold text-[#FDB913]">
-                  Eldoret Headquarters · Kenya
-                </p>
-                <p className="text-sm font-semibold mt-0.5">
-                  Over a decade of orchestrating private wildlife journeys across East Africa
-                </p>
+            <ScrollReveal direction="right" distance={45}>
+              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-neutral-200 bg-neutral-900">
+                <img
+                  src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1000&q=80"
+                  alt="Smugsafaris expedition in Maasai Mara"
+                  referrerPolicy="no-referrer"
+                  className="w-full aspect-[4/3] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <p className="text-xs uppercase tracking-wider font-bold text-[#FDB913]">
+                    Eldoret Headquarters · Kenya
+                  </p>
+                  <p className="text-sm font-semibold mt-0.5">
+                    Over a decade of orchestrating private wildlife journeys across East Africa
+                  </p>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
 

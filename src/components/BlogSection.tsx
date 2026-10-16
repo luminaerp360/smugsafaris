@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BLOG_POSTS, BlogPost } from '../data/safariData';
 import { BookOpen, Clock, Calendar, ArrowRight, X } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 export const BlogSection: React.FC = () => {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
@@ -8,76 +9,85 @@ export const BlogSection: React.FC = () => {
   return (
     <section id="blog" className="py-16 md:py-24 bg-[#FAFAF8] border-b border-neutral-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
-              Insider Safari Knowledge
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
-              Safari Planning Guides & Travel Tips
-            </h2>
-            <p className="mt-2 text-neutral-600 text-sm sm:text-base max-w-xl">
-              Practical guides penned by our senior safari guides to help you prepare for an unforgettable African expedition.
-            </p>
+        <ScrollReveal direction="left" distance={40}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
+                Insider Safari Knowledge
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
+                Safari Planning Guides & Travel Tips
+              </h2>
+              <p className="mt-2 text-neutral-600 text-sm sm:text-base max-w-xl">
+                Practical guides penned by our senior safari guides to help you prepare for an unforgettable African expedition.
+              </p>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {BLOG_POSTS.map((post) => (
-            <article
+          {BLOG_POSTS.map((post, idx) => (
+            <ScrollReveal
               key={post.id}
-              className="bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+              direction={idx % 2 === 0 ? 'left' : 'right'}
+              delay={Math.min((idx % 3) * 80, 240)}
+              distance={45}
+              className="h-full"
             >
-              <div>
-                <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">
-                    {post.category}
+              <article
+                className="bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group h-full"
+              >
+                <div>
+                  <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">
+                      {post.category}
+                    </div>
+                  </div>
+
+                  <div className="p-5">
+                    <div className="flex items-center gap-2 text-[11px] text-neutral-400 font-medium mb-2">
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-[#F7941D]" />
+                        <span>{post.readTime}</span>
+                      </span>
+                      <span aria-hidden="true">·</span>
+                      <span>{post.publishDate}</span>
+                    </div>
+
+                    <h3
+                      onClick={() => setSelectedPost(post)}
+                      className="text-base font-bold text-neutral-900 group-hover:text-[#1E7A2E] transition-colors cursor-pointer line-clamp-2"
+                    >
+                      {post.title}
+                    </h3>
+
+                    <p className="mt-2 text-xs text-neutral-600 line-clamp-3 leading-relaxed">
+                      {post.summary}
+                    </p>
                   </div>
                 </div>
 
-                <div className="p-5">
-                  <div className="flex items-center gap-2 text-[11px] text-neutral-400 font-medium mb-2">
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3 text-[#F7941D]" />
-                      <span>{post.readTime}</span>
-                    </span>
-                    <span aria-hidden="true">·</span>
-                    <span>{post.publishDate}</span>
-                  </div>
+                <div className="p-5 pt-0 border-t border-neutral-100 flex items-center justify-between">
+                  <span className="text-[11px] text-neutral-500 font-medium truncate max-w-[160px]">
+                    By {post.author.split(',')[0]}
+                  </span>
 
-                  <h3
+                  <button
                     onClick={() => setSelectedPost(post)}
-                    className="text-base font-bold text-neutral-900 group-hover:text-[#1E7A2E] transition-colors cursor-pointer line-clamp-2"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#1E7A2E] hover:text-[#0F5E1F] cursor-pointer"
                   >
-                    {post.title}
-                  </h3>
-
-                  <p className="mt-2 text-xs text-neutral-600 line-clamp-3 leading-relaxed">
-                    {post.summary}
-                  </p>
+                    <span>Read Guide</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
-              </div>
-
-              <div className="p-5 pt-0 border-t border-neutral-100 flex items-center justify-between">
-                <span className="text-[11px] text-neutral-500 font-medium truncate max-w-[160px]">
-                  By {post.author.split(',')[0]}
-                </span>
-
-                <button
-                  onClick={() => setSelectedPost(post)}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-[#1E7A2E] hover:text-[#0F5E1F] cursor-pointer"
-                >
-                  <span>Read Guide</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </article>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
       </div>

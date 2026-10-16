@@ -15,6 +15,7 @@ import {
   Play,
   Pause,
 } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 interface FeaturedToursProps {
   filterDestination?: string;
@@ -182,33 +183,35 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = ({
     <section id="tours" className="py-16 md:py-24 bg-[#FAFAF8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-neutral-200">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
-              Handcrafted African Itineraries
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
-              Featured Safari Packages
-            </h2>
-            <p className="mt-2 text-neutral-600 text-sm sm:text-base max-w-2xl">
-              Each package is 100% customizable to your exact dates, group size, and comfort preferences. Private 4x4 Land Cruiser with professional wildlife guide included.
-            </p>
-          </div>
+        <ScrollReveal direction="left" distance={40}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-neutral-200">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
+                Handcrafted African Itineraries
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
+                Featured Safari Packages
+              </h2>
+              <p className="mt-2 text-neutral-600 text-sm sm:text-base max-w-2xl">
+                Each package is 100% customizable to your exact dates, group size, and comfort preferences. Private 4x4 Land Cruiser with professional wildlife guide included.
+              </p>
+            </div>
 
-          <div className="mt-4 md:mt-0 flex items-center gap-2">
-            <span className="text-xs font-semibold text-neutral-500 whitespace-nowrap">Sort by:</span>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-white border border-neutral-200 rounded-lg px-3 py-1.5 text-xs font-medium text-neutral-700 focus:outline-none focus:ring-1 focus:ring-[#1E7A2E] cursor-pointer"
-            >
-              <option value="featured">Recommended</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="duration">Longest Duration</option>
-            </select>
+            <div className="mt-4 md:mt-0 flex items-center gap-2">
+              <span className="text-xs font-semibold text-neutral-500 whitespace-nowrap">Sort by:</span>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as any)}
+                className="bg-white border border-neutral-200 rounded-lg px-3 py-1.5 text-xs font-medium text-neutral-700 focus:outline-none focus:ring-1 focus:ring-[#1E7A2E] cursor-pointer"
+              >
+                <option value="featured">Recommended</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="duration">Longest Duration</option>
+              </select>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Filter Controls & Search */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
@@ -262,85 +265,92 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = ({
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {filteredTours.map((tour) => {
+            {filteredTours.map((tour, idx) => {
               const hasImgFailed = failedImages[tour.id];
 
               return (
-                <div
+                <ScrollReveal
                   key={tour.id}
-                  className="group bg-white rounded-2xl border border-neutral-200/90 overflow-hidden shadow-sm hover:shadow-md hover:border-[#1E7A2E]/40 transition-all duration-300 flex flex-col"
+                  direction={idx % 2 === 0 ? 'left' : 'right'}
+                  delay={Math.min((idx % 3) * 80, 240)}
+                  distance={45}
+                  className="h-full"
                 >
-                  {/* Image/Video Media Container */}
-                  <TourCardMedia
-                    tour={tour}
-                    hasImgFailed={hasImgFailed}
-                    onImageError={() => handleImageError(tour.id)}
-                  />
+                  <div
+                    className="group bg-white rounded-2xl border border-neutral-200/90 overflow-hidden shadow-sm hover:shadow-md hover:border-[#1E7A2E]/40 transition-all duration-300 flex flex-col h-full"
+                  >
+                    {/* Image/Video Media Container */}
+                    <TourCardMedia
+                      tour={tour}
+                      hasImgFailed={hasImgFailed}
+                      onImageError={() => handleImageError(tour.id)}
+                    />
 
-                  {/* Card Body */}
-                  <div className="p-5 flex-1 flex flex-col justify-between">
-                    <div>
-                      {/* Quiet Unboxed Metadata (Zero-pill discipline) */}
-                      <div className="flex items-center gap-1.5 text-xs text-neutral-500 font-medium mb-1.5">
-                        <span>{tour.destinations.join(', ')}</span>
-                        <span aria-hidden="true">·</span>
-                        <span>Max {tour.maxGroupSize} Guests</span>
-                      </div>
-
-                      <h3 className="text-lg font-bold text-neutral-900 group-hover:text-[#1E7A2E] transition-colors line-clamp-2">
-                        <Link to={`/tours/${tour.id}`}>{tour.title}</Link>
-                      </h3>
-
-                      <p className="mt-2 text-xs text-neutral-600 line-clamp-2 leading-relaxed">
-                        {tour.overview}
-                      </p>
-
-                      {/* Top Highlights List */}
-                      <ul className="mt-3.5 space-y-1.5 border-t border-neutral-100 pt-3">
-                        {tour.highlights.slice(0, 2).map((hl, i) => (
-                          <li key={i} className="flex items-start gap-2 text-xs text-neutral-700">
-                            <Check className="w-3.5 h-3.5 text-[#1E7A2E] shrink-0 mt-0.5" />
-                            <span className="line-clamp-1">{hl}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Price & Action Row */}
-                    <div className="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+                    {/* Card Body */}
+                    <div className="p-5 flex-1 flex flex-col justify-between">
                       <div>
-                        <span className="text-[10px] uppercase font-bold text-neutral-400 block tracking-wider">
-                          From per person
-                        </span>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="text-xl font-extrabold text-[#0F5E1F] tabular-nums">
-                            {formatPrice(tour.priceUSD)}
-                          </span>
-                          {tour.originalPriceUSD && (
-                            <span className="text-xs text-neutral-400 line-through tabular-nums">
-                              {formatPrice(tour.originalPriceUSD)}
-                            </span>
-                          )}
+                        {/* Quiet Unboxed Metadata (Zero-pill discipline) */}
+                        <div className="flex items-center gap-1.5 text-xs text-neutral-500 font-medium mb-1.5">
+                          <span>{tour.destinations.join(', ')}</span>
+                          <span aria-hidden="true">·</span>
+                          <span>Max {tour.maxGroupSize} Guests</span>
                         </div>
+
+                        <h3 className="text-lg font-bold text-neutral-900 group-hover:text-[#1E7A2E] transition-colors line-clamp-2">
+                          <Link to={`/tours/${tour.id}`}>{tour.title}</Link>
+                        </h3>
+
+                        <p className="mt-2 text-xs text-neutral-600 line-clamp-2 leading-relaxed">
+                          {tour.overview}
+                        </p>
+
+                        {/* Top Highlights List */}
+                        <ul className="mt-3.5 space-y-1.5 border-t border-neutral-100 pt-3">
+                          {tour.highlights.slice(0, 2).map((hl, i) => (
+                            <li key={i} className="flex items-start gap-2 text-xs text-neutral-700">
+                              <Check className="w-3.5 h-3.5 text-[#1E7A2E] shrink-0 mt-0.5" />
+                              <span className="line-clamp-1">{hl}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <Link
-                          to={`/tours/${tour.id}`}
-                          className="px-3 py-2 text-xs font-bold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-colors inline-block"
-                        >
-                          Itinerary
-                        </Link>
-                        <button
-                          onClick={() => openInquiry(tour.id)}
-                          className="px-3.5 py-2 text-xs font-bold text-white bg-[#1E7A2E] hover:bg-[#0F5E1F] rounded-lg transition-colors cursor-pointer shadow-sm"
-                        >
-                          Book Now
-                        </button>
+                      {/* Price & Action Row */}
+                      <div className="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+                        <div>
+                          <span className="text-[10px] uppercase font-bold text-neutral-400 block tracking-wider">
+                            From per person
+                          </span>
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="text-xl font-extrabold text-[#0F5E1F] tabular-nums">
+                              {formatPrice(tour.priceUSD)}
+                            </span>
+                            {tour.originalPriceUSD && (
+                              <span className="text-xs text-neutral-400 line-through tabular-nums">
+                                {formatPrice(tour.originalPriceUSD)}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <Link
+                            to={`/tours/${tour.id}`}
+                            className="px-3 py-2 text-xs font-bold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-colors inline-block"
+                          >
+                            Itinerary
+                          </Link>
+                          <button
+                            onClick={() => openInquiry(tour.id)}
+                            className="px-3.5 py-2 text-xs font-bold text-white bg-[#1E7A2E] hover:bg-[#0F5E1F] rounded-lg transition-colors cursor-pointer shadow-sm"
+                          >
+                            Book Now
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </ScrollReveal>
               );
             })}
           </div>
