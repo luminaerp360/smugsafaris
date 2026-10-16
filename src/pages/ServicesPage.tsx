@@ -200,6 +200,16 @@ export const ServicesPage: React.FC = () => {
                     <Icon className="w-6 h-6" />
                   </div>
 
+                  {srv.id === 'safari-land-cruisers' && (
+                    <div className="aspect-[16/9] rounded-2xl overflow-hidden mb-4 border border-stone-200">
+                      <img
+                        src="/images/fleet/cruiser-amboseli-kilimanjaro.jpg"
+                        alt="Smugsafaris Safari Land Cruiser"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+
                   <h3 className="text-lg font-extrabold text-stone-900 mb-1">
                     {srv.title}
                   </h3>

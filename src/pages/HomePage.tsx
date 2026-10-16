@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Hero } from '../components/Hero';
-import { StatsBar } from '../components/StatsBar';
 import { FeaturedTours } from '../components/FeaturedTours';
 import { WhyChooseUs } from '../components/WhyChooseUs';
 import { DestinationsSection } from '../components/DestinationsSection';
@@ -10,6 +9,7 @@ import { TravelServicesSection } from '../components/TravelServicesSection';
 import { TestimonialsSection } from '../components/TestimonialsSection';
 import { BlogSection } from '../components/BlogSection';
 import { FAQSection } from '../components/FAQSection';
+import { FleetSpotlight } from '../components/FleetSpotlight';
 import { useSafari } from '../context/SafariContext';
 import { Compass, Sparkles, ArrowRight, ShieldCheck, PhoneCall, Award, Users } from 'lucide-react';
 
@@ -40,10 +40,7 @@ export const HomePage: React.FC = () => {
       {/* 1. Hero with Safari Search */}
       <Hero onSearchFilter={handleHeroSearch} />
 
-      {/* 2. Trust Credentials & Accreditations */}
-      <StatsBar />
-
-      {/* 3. Featured Safaris Preview */}
+      {/* 2. Featured Safaris Preview */}
       <section className="relative">
         <FeaturedTours />
         <div className="bg-stone-50 pb-12 pt-2 text-center">
@@ -72,6 +69,9 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
       </section>
+
+      {/* 4.5. Our Signature 4x4 Safari Land Cruiser Fleet */}
+      <FleetSpotlight showTitle={true} className="bg-white border-b border-stone-200" />
 
       {/* 5. Top East Africa Destinations */}
       <section className="relative">

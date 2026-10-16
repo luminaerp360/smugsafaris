@@ -179,7 +179,7 @@ export const Footer: React.FC = () => {
                 <Link to="/reviews" className="hover:text-white transition-colors">Reviews & Ratings</Link>
               </li>
               <li>
-                <Link to="/gallery" className="hover:text-white transition-colors">Photo Gallery</Link>
+                <Link to="/gallery" className="hover:text-white transition-colors">Safari Cinema & Gallery</Link>
               </li>
               <li>
                 <Link to="/blog" className="hover:text-white transition-colors">Safari Guides & Blog</Link>

@@ -8,7 +8,7 @@ export const FloatingWhatsApp: React.FC = () => {
     <div className="fixed bottom-6 right-6 z-40 flex items-end flex-col gap-2">
       {/* Tooltip speech bubble */}
       {showTooltip && (
-        <div className="bg-white rounded-2xl p-3 shadow-xl border border-neutral-200 max-w-xs text-xs text-neutral-800 relative animate-fade-in flex items-start gap-2">
+        <div className="hidden sm:flex bg-white rounded-2xl p-3 shadow-xl border border-neutral-200 max-w-xs text-xs text-neutral-800 relative animate-fade-in items-start gap-2">
           <button
             onClick={() => setShowTooltip(false)}
             className="absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full bg-neutral-100 text-neutral-400 hover:text-neutral-700 flex items-center justify-center border border-neutral-200 cursor-pointer"

@@ -15,6 +15,7 @@ import {
   Compass,
   MapPin,
   Camera,
+  Film,
   HelpCircle,
   BookOpen,
   CheckCircle2,
@@ -33,9 +34,9 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 25);
+      setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -56,139 +57,114 @@ export const Navbar: React.FC = () => {
     };
   }, [mobileMenuOpen]);
 
-  const navLinks = [
+  const primaryNavLinks = [
     { label: 'Home', path: '/' },
-    { label: 'Tours & Safaris', path: '/tours', badge: 'Popular' },
+    { label: 'Safaris', path: '/tours' },
     { label: 'Destinations', path: '/destinations' },
-    { label: 'Why Us', path: '/why-us' },
-    { label: 'Services', path: '/services' },
-    { label: 'About', path: '/about' },
-    { label: 'Reviews', path: '/reviews', rating: '4.9★' },
-    { label: 'Blog', path: '/blog' },
-    { label: 'Contact', path: '/contact' },
+    { label: 'Gallery', path: '/gallery' },
+  ];
+
+  const aboutSubLinks = [
+    { label: 'About Us', path: '/about', desc: 'Our story & Eldoret operations', icon: Users },
+    { label: 'Why Choose Us', path: '/why-us', desc: '100% guarantee & 4x4 fleet', icon: ShieldCheck },
+    { label: 'Safari Services', path: '/services', desc: 'Private charters, transfers, lodges', icon: CheckCircle2 },
+    { label: 'Guest Reviews', path: '/reviews', desc: '4.9★ rating from 1,200+ guests', icon: Star, rating: '4.9★' },
+    { label: 'Safari Journal', path: '/blog', desc: 'Migration & wildlife guides', icon: BookOpen },
+    { label: 'Safari FAQs', path: '/faq', desc: 'Visas, seasons & packing tips', icon: HelpCircle },
   ];
 
   const mobileNavLinks = [
     { label: 'Home', path: '/', icon: Compass },
-    { label: 'Tours & Safaris', path: '/tours', icon: Sparkles, badge: 'Popular' },
+    { label: 'Safaris & Itineraries', path: '/tours', icon: Sparkles },
     { label: 'Destinations', path: '/destinations', icon: Globe },
-    { label: 'Why Choose Us', path: '/why-us', icon: ShieldCheck },
+    { label: 'Safari Gallery', path: '/gallery', icon: Film },
+    { label: 'Why Choose Us & Fleet', path: '/why-us', icon: ShieldCheck },
     { label: 'Safari Services', path: '/services', icon: CheckCircle2 },
-    { label: 'Photo Gallery', path: '/gallery', icon: Camera },
-    { label: 'Guest Reviews', path: '/reviews', icon: Star, rating: '4.9★' },
-    { label: 'Safari Journal', path: '/blog', icon: BookOpen },
+    { label: 'Guest Reviews', path: '/reviews', icon: Star },
     { label: 'About Us', path: '/about', icon: Users },
-    { label: 'Safari FAQs', path: '/faq', icon: HelpCircle },
+    { label: 'Safari Journal', path: '/blog', icon: BookOpen },
     { label: 'Contact Us', path: '/contact', icon: Phone },
   ];
 
   return (
     <>
-      <header className="sticky top-0 left-0 right-0 z-40">
-        {/* Tier 1: Luxury Safari Pre-Header / Top Utility Bar */}
-        <div
-          className={`bg-[#0B3813] text-emerald-100/90 text-[11px] sm:text-xs transition-all duration-300 border-b border-emerald-900/60 ${
-            isScrolled ? 'h-0 opacity-0 overflow-hidden py-0' : 'py-1.5 sm:py-2 opacity-100'
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            {/* Left: Direct Support & Live Status */}
-            <div className="flex items-center gap-4 sm:gap-6">
-              <div className="inline-flex items-center gap-1.5 text-emerald-200">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-                </span>
-                <span className="font-semibold tracking-wide hidden xs:inline">Safari Desk Online</span>
-              </div>
-
-              {/* Multi-region Phone Hotline */}
-              <div className="inline-flex items-center gap-2 text-xs">
-                <Phone className="w-3 h-3 text-[#FDB913] shrink-0" />
-                <a
-                  href="tel:+12569477516"
-                  className="hover:text-white transition-colors font-medium text-[11px]"
-                  title="Call US Desk"
-                >
-                  +1 (256) 947-7516
-                </a>
-                <span className="text-emerald-700">|</span>
-                <a
-                  href="tel:+254741938127"
-                  className="hover:text-white transition-colors font-medium text-[11px]"
-                  title="Call Kenya Desk"
-                >
-                  +254 741 938127
-                </a>
-                <span className="text-emerald-700">|</span>
-                <a
-                  href="tel:0769920741"
-                  className="hover:text-white transition-colors font-medium text-[11px]"
-                  title="Call Kenya Mobile"
-                >
-                  0769 920 741
-                </a>
-              </div>
-
-              <span className="hidden md:inline-block text-emerald-700">•</span>
-
-              <span className="hidden md:inline-flex items-center gap-1.5 text-emerald-200/80">
-                <Clock className="w-3 h-3 text-emerald-400" />
-                <span>24/7 Bespoke Concierge</span>
+      {/* Tier 1: Luxury Safari Top Utility Bar (Scrolls with page, hidden on mobile for clean viewport) */}
+      <div className="hidden sm:block bg-[#0B3813] text-emerald-100/90 text-[11px] py-1.5 border-b border-emerald-900/60 relative z-30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          {/* Left: Direct Support & Live Status */}
+          <div className="flex items-center gap-4 sm:gap-6">
+            <div className="inline-flex items-center gap-1.5 text-emerald-200">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
               </span>
+              <span className="font-semibold tracking-wide hidden xs:inline">Safari Desk Online</span>
             </div>
 
-            {/* Right: Credentials & Compact Currency Selector */}
-            <div className="flex items-center gap-3 sm:gap-5">
-              <div className="hidden lg:inline-flex items-center gap-1.5 text-emerald-200/90">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#FDB913]" />
-                <span className="font-semibold">KATO Bonded #482</span>
-              </div>
-
-              {/* Currency Selector Pill */}
-              <div className="relative inline-flex items-center">
-                <span className="text-[10px] text-emerald-300/80 mr-1.5 hidden sm:inline uppercase font-bold">
-                  Currency:
-                </span>
-                <div className="relative">
-                  <select
-                    value={currency}
-                    onChange={(e) => setCurrency(e.target.value as Currency)}
-                    className="appearance-none bg-emerald-950/80 hover:bg-emerald-900/90 text-white text-[11px] font-bold rounded-md pl-2 pr-5 py-0.5 border border-emerald-700/60 focus:outline-none focus:ring-1 focus:ring-[#FDB913] cursor-pointer transition-colors"
-                    aria-label="Select Currency"
-                  >
-                    <option value="USD">USD ($)</option>
-                    <option value="EUR">EUR (€)</option>
-                    <option value="GBP">GBP (£)</option>
-                    <option value="KES">KES (KSh)</option>
-                  </select>
-                  <ChevronDown className="w-3 h-3 text-emerald-300 absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                </div>
-              </div>
-
-              {/* Direct WhatsApp Quick Chat */}
+            {/* Multi-region Phone Hotline */}
+            <div className="inline-flex items-center gap-2 text-xs">
+              <Phone className="w-3 h-3 text-[#FDB913] shrink-0" />
               <a
-                href="https://wa.me/254741938127?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20inquire%20about%20a%20safari%20package."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-800/60 hover:bg-emerald-700/80 text-emerald-100 hover:text-white transition-colors"
+                href="tel:+12569477516"
+                className="hover:text-white transition-colors font-medium text-[11px]"
+                title="Call US Desk"
               >
-                <MessageCircle className="w-3 h-3 text-[#25D366] fill-[#25D366]" />
-                <span className="font-semibold">WhatsApp Desk</span>
+                +1 (256) 947-7516
+              </a>
+              <span className="text-emerald-700">|</span>
+              <a
+                href="tel:+254741938127"
+                className="hover:text-white transition-colors font-medium text-[11px]"
+                title="Call Kenya Desk"
+              >
+                +254 741 938127
+              </a>
+              <span className="text-emerald-700">|</span>
+              <a
+                href="tel:0769920741"
+                className="hover:text-white transition-colors font-medium text-[11px]"
+                title="Call Kenya Mobile"
+              >
+                0769 920 741
               </a>
             </div>
+
+            <span className="hidden md:inline-block text-emerald-700">•</span>
+
+            <span className="hidden md:inline-flex items-center gap-1.5 text-emerald-200/80">
+              <Clock className="w-3 h-3 text-emerald-400" />
+              <span>24/7 Bespoke Concierge</span>
+            </span>
+          </div>
+
+          {/* Right: Credentials & WhatsApp Desk */}
+          <div className="flex items-center gap-3 sm:gap-5">
+            <div className="hidden lg:inline-flex items-center gap-1.5 text-emerald-200/90">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#FDB913]" />
+              <span className="font-semibold">KATO Bonded #482</span>
+            </div>
+
+            {/* Direct WhatsApp Quick Chat */}
+            <a
+              href="https://wa.me/254741938127?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20inquire%20about%20a%20safari%20package."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-emerald-800/60 hover:bg-emerald-700/80 text-emerald-100 hover:text-white transition-colors font-semibold"
+            >
+              <MessageCircle className="w-3 h-3 text-[#25D366] fill-[#25D366]" />
+              <span>WhatsApp Desk</span>
+            </a>
           </div>
         </div>
+      </div>
 
-        {/* Tier 2: Main Sticky Navigation Header */}
-        <div
-          className={`transition-all duration-300 ${
-            isScrolled
-              ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-stone-200/90 py-2 sm:py-2.5'
-              : 'bg-white/95 backdrop-blur-sm border-b border-stone-200/60 py-3 sm:py-3.5'
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Tier 2: Main Sticky Navigation Header */}
+      <header
+        className={`sticky top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 transition-shadow duration-200 py-2 sm:py-2.5 ${
+          isScrolled ? 'shadow-md' : 'shadow-xs'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between gap-4">
               {/* Brand Logo Zone - Official, Pristine, Complete Uncut Logo */}
               <Link
@@ -199,45 +175,32 @@ export const Navbar: React.FC = () => {
                 <Logo
                   variant="full"
                   theme="light"
-                  size="md"
-                  className="h-11 sm:h-13 md:h-14 w-auto transform transition-transform duration-300 group-hover:scale-[1.03]"
+                  size="sm"
+                  className="h-8 sm:h-9 md:h-10 w-auto transform transition-transform duration-200 group-hover:scale-105"
                 />
               </Link>
 
               {/* Center Navigation Links (Desktop) */}
-              <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5">
-                {navLinks.map((link) => (
+              <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+                {primaryNavLinks.map((link) => (
                   <NavLink
                     key={link.path}
                     to={link.path}
                     end={link.path === '/'}
                     className={({ isActive }) =>
-                      `relative px-2.5 xl:px-3 py-1.5 text-xs xl:text-[13px] font-semibold rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer group ${
+                      `relative px-3 py-1.5 text-xs xl:text-[13px] font-semibold transition-colors duration-150 whitespace-nowrap cursor-pointer group ${
                         isActive
-                          ? 'text-[#1E7A2E] bg-emerald-50/90 font-bold shadow-xs'
-                          : 'text-stone-700 hover:text-[#1E7A2E] hover:bg-emerald-50/60'
+                          ? 'text-[#1E7A2E] font-bold'
+                          : 'text-stone-700 hover:text-[#1E7A2E]'
                       }`
                     }
                   >
                     {({ isActive }) => (
                       <>
                         <span>{link.label}</span>
-
-                        {/* Popular / Rating Mini Badges */}
-                        {link.badge && (
-                          <span className="ml-1.5 text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-[#0F5E1F] uppercase tracking-wider">
-                            {link.badge}
-                          </span>
-                        )}
-                        {link.rating && (
-                          <span className="ml-1.5 text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-amber-100/80 text-amber-800">
-                            {link.rating}
-                          </span>
-                        )}
-
                         {/* Active Underline indicator */}
                         <span
-                          className={`absolute bottom-0.5 left-3 right-3 h-0.5 bg-[#1E7A2E] rounded-full transition-transform duration-200 origin-center ${
+                          className={`absolute bottom-0 left-2 right-2 h-0.5 bg-[#1E7A2E] rounded-full transition-transform duration-200 origin-center ${
                             isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                           }`}
                         />
@@ -245,47 +208,114 @@ export const Navbar: React.FC = () => {
                     )}
                   </NavLink>
                 ))}
+
+                {/* About & Trust Dropdown Menu */}
+                <div className="relative group">
+                  <button
+                    className={`inline-flex items-center gap-1 px-3 py-1.5 text-xs xl:text-[13px] font-semibold transition-colors duration-150 whitespace-nowrap cursor-pointer ${
+                      ['/about', '/why-us', '/services', '/reviews', '/blog', '/faq'].some((p) =>
+                        location.pathname.startsWith(p)
+                      )
+                        ? 'text-[#1E7A2E] font-bold'
+                        : 'text-stone-700 hover:text-[#1E7A2E]'
+                    }`}
+                  >
+                    <span>About</span>
+                    <ChevronDown className="w-3.5 h-3.5 text-stone-400 group-hover:text-[#1E7A2E] transition-transform duration-200 group-hover:rotate-180" />
+                  </button>
+
+                  {/* Dropdown Menu Box */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                    <div className="w-64 bg-white/98 backdrop-blur-md rounded-2xl shadow-xl border border-stone-200/90 p-2 space-y-0.5">
+                      {aboutSubLinks.map((sub) => {
+                        const SubIcon = sub.icon;
+                        const isSubActive = location.pathname === sub.path;
+                        return (
+                          <Link
+                            key={sub.path}
+                            to={sub.path}
+                            className={`flex items-center gap-3 px-3 py-2 rounded-xl transition-colors ${
+                              isSubActive
+                                ? 'bg-emerald-50 text-[#1E7A2E]'
+                                : 'text-stone-700 hover:text-[#1E7A2E] hover:bg-emerald-50/70'
+                            }`}
+                          >
+                            <SubIcon
+                              className={`w-4 h-4 shrink-0 ${
+                                isSubActive ? 'text-[#1E7A2E]' : 'text-emerald-600/70'
+                              }`}
+                            />
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs font-bold leading-tight flex items-center justify-between">
+                                <span>{sub.label}</span>
+                                {sub.rating && (
+                                  <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-800 ml-1">
+                                    {sub.rating}
+                                  </span>
+                                )}
+                              </div>
+                              <div className="text-[10px] text-stone-400 truncate mt-0.5">
+                                {sub.desc}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Contact Nav Link */}
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) =>
+                    `relative px-3 py-1.5 text-xs xl:text-[13px] font-semibold transition-colors duration-150 whitespace-nowrap cursor-pointer group ${
+                      isActive
+                        ? 'text-[#1E7A2E] font-bold'
+                        : 'text-stone-700 hover:text-[#1E7A2E]'
+                    }`
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      <span>Contact</span>
+                      <span
+                        className={`absolute bottom-0 left-2 right-2 h-0.5 bg-[#1E7A2E] rounded-full transition-transform duration-200 origin-center ${
+                          isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                        }`}
+                      />
+                    </>
+                  )}
+                </NavLink>
               </nav>
 
               {/* Desktop Right Action Controls Zone */}
-              <div className="hidden lg:flex items-center gap-3">
-                {/* Compact Currency in Scrolled mode if top bar hidden */}
-                {isScrolled && (
-                  <div className="relative">
-                    <select
-                      value={currency}
-                      onChange={(e) => setCurrency(e.target.value as Currency)}
-                      className="appearance-none bg-stone-100 hover:bg-stone-200/80 text-[11px] font-bold text-stone-800 rounded-lg pl-2 pr-5 py-1.5 border border-stone-200 focus:outline-none focus:ring-1 focus:ring-[#1E7A2E] cursor-pointer transition-colors"
-                      aria-label="Select Currency"
-                    >
-                      <option value="USD">USD ($)</option>
-                      <option value="EUR">EUR (€)</option>
-                      <option value="GBP">GBP (£)</option>
-                      <option value="KES">KES (KSh)</option>
-                    </select>
-                    <ChevronDown className="w-3 h-3 text-stone-500 absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                  </div>
-                )}
+              <div className="hidden lg:flex items-center gap-2.5">
+                {/* Stable Currency Selector Pill */}
+                <div className="relative">
+                  <select
+                    value={currency}
+                    onChange={(e) => setCurrency(e.target.value as Currency)}
+                    className="appearance-none bg-stone-100 hover:bg-stone-200/80 text-[11px] font-bold text-stone-800 rounded-lg pl-2 pr-5 py-1.5 border border-stone-200 focus:outline-none focus:ring-1 focus:ring-[#1E7A2E] cursor-pointer transition-colors"
+                    aria-label="Select Currency"
+                  >
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                    <option value="KES">KES (KSh)</option>
+                  </select>
+                  <ChevronDown className="w-3 h-3 text-stone-500 absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                </div>
 
-                {/* WhatsApp Safari Expert Direct Link */}
-                <a
-                  href="https://wa.me/254741938127?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20inquire%20about%20a%20safari%20package."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden xl:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-[#0F5E1F] bg-emerald-50 hover:bg-emerald-100/90 rounded-xl transition-all duration-200 border border-emerald-200/80 shadow-xs hover:shadow"
-                  title="Direct WhatsApp Safari Expert"
-                >
-                  <MessageCircle className="w-4 h-4 text-[#25D366] fill-[#25D366]" />
-                  <span>Chat with Expert</span>
-                </a>
 
-                {/* Primary Action Button: "Plan Your Safari" */}
+
+                {/* Primary Action Button: "Plan Safari" */}
                 <button
                   onClick={() => openInquiry()}
-                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-[13px] font-extrabold text-white bg-gradient-to-r from-[#1E7A2E] via-[#166527] to-[#0F471A] hover:from-[#238B34] hover:via-[#1E7A2E] hover:to-[#125520] rounded-xl shadow-md hover:shadow-lg transition-all duration-200 whitespace-nowrap cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-white bg-gradient-to-r from-[#1E7A2E] to-[#0F5E1F] hover:from-[#238B34] hover:to-[#125520] rounded-lg shadow-sm hover:shadow transition-all whitespace-nowrap cursor-pointer active:scale-95"
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-[#FDB913] animate-pulse" />
-                  <span>Plan Your Safari</span>
+                  <Sparkles className="w-3 h-3 text-[#FDB913]" />
+                  <span>Plan Safari</span>
                 </button>
               </div>
 
@@ -346,7 +376,6 @@ export const Navbar: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
       </header>
 
       {/* Luxury Safari Mobile Drawer Navigation */}
@@ -366,39 +395,60 @@ export const Navbar: React.FC = () => {
         />
 
         {/* Drawer Panel: Sleek, Unified Dark Luxury Safari Architecture */}
+        {/* Drawer Panel: Sleek, Calming Luxury Safari Architecture */}
         <div
-          className={`absolute inset-y-0 right-0 w-full sm:w-[360px] max-w-[90vw] bg-[#0A160D] text-white shadow-2xl flex flex-col justify-between transform transition-transform duration-300 ease-out z-10 border-l border-white/10 overflow-hidden ${
+          className={`absolute inset-y-0 right-0 w-full sm:w-[350px] max-w-[88vw] bg-[#0A150D] text-white shadow-2xl flex flex-col justify-between transform transition-transform duration-300 ease-out z-10 border-l border-white/10 overflow-hidden ${
             mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
-          {/* Header */}
-          <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between shrink-0 bg-[#071309]">
+          {/* Header with Logo, Inline Currency, and Close */}
+          <div className="px-5 py-3.5 border-b border-white/10 flex items-center justify-between shrink-0 bg-[#061008]">
             <Link to="/" onClick={() => setMobileMenuOpen(false)} className="inline-block">
-              <Logo variant="full" theme="dark" size="sm" className="h-9 w-auto" />
+              <Logo variant="full" theme="dark" size="sm" className="h-8 w-auto" />
             </Link>
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-stone-300 hover:text-white flex items-center justify-center border border-white/15 transition-all cursor-pointer"
-              aria-label="Close menu"
-            >
-              <X className="w-4 h-4" />
-            </button>
+
+            <div className="flex items-center gap-2.5">
+              {/* Subtle Inline Currency Switcher */}
+              <div className="flex items-center bg-white/5 p-0.5 rounded-lg border border-white/10 text-[11px]">
+                {(['USD', 'EUR', 'GBP', 'KES'] as Currency[]).map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => setCurrency(c)}
+                    className={`px-1.5 py-0.5 font-bold rounded transition-colors cursor-pointer ${
+                      currency === c
+                        ? 'bg-[#1E7A2E] text-white shadow-xs'
+                        : 'text-stone-400 hover:text-white'
+                    }`}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-stone-300 hover:text-white flex items-center justify-center border border-white/15 transition-all cursor-pointer"
+                aria-label="Close menu"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
-          {/* Quick Sub-bar: Eldoret Operations & Status */}
-          <div className="px-5 py-2 bg-emerald-950/40 border-b border-white/5 flex items-center justify-between text-[11px] text-stone-300">
+          {/* Understated Status Strip */}
+          <div className="px-5 py-2 bg-emerald-950/20 border-b border-white/5 flex items-center justify-between text-[11px] text-stone-400">
             <div className="flex items-center gap-1.5">
-              <span className="relative flex h-2 w-2">
+              <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
               </span>
-              <span className="font-medium text-emerald-200">Eldoret Desk Online</span>
+              <span className="text-emerald-200/90 font-medium">Safari Desk Online</span>
             </div>
-            <span className="text-[#FDB913] font-semibold">KATO #482</span>
+            <span className="text-stone-400 font-medium">KATO Bonded #482</span>
           </div>
 
           {/* Clean Navigation Menu Items */}
-          <nav className="flex-1 overflow-y-auto py-3 px-3 space-y-1">
+          <nav className="flex-1 overflow-y-auto py-3 px-3 space-y-0.5">
             {mobileNavLinks.map((link) => (
               <NavLink
                 key={link.path}
@@ -406,10 +456,10 @@ export const Navbar: React.FC = () => {
                 end={link.path === '/'}
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
-                  `flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all duration-150 text-sm font-medium ${
+                  `flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all duration-150 text-[14px] ${
                     isActive
-                      ? 'bg-gradient-to-r from-emerald-900/60 to-emerald-950/40 text-white font-bold border-l-3 border-[#FDB913]'
-                      : 'text-stone-300 hover:text-white hover:bg-white/5'
+                      ? 'bg-emerald-900/40 text-emerald-200 font-semibold border-l-2 border-[#FDB913]'
+                      : 'text-stone-300 hover:text-white hover:bg-white/[0.04]'
                   }`
                 }
               >
@@ -418,107 +468,60 @@ export const Navbar: React.FC = () => {
                     <div className="flex items-center gap-3">
                       <link.icon
                         className={`w-4 h-4 transition-colors ${
-                          isActive ? 'text-[#FDB913]' : 'text-emerald-500/80'
+                          isActive ? 'text-[#FDB913]' : 'text-emerald-500/70'
                         }`}
                       />
                       <span>{link.label}</span>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      {link.badge && (
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#1E7A2E] text-white uppercase tracking-wider">
-                          {link.badge}
-                        </span>
-                      )}
-                      {link.rating && (
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-[#FDB913] border border-amber-500/30">
-                          {link.rating}
-                        </span>
-                      )}
-                      <ChevronRight
-                        className={`w-3.5 h-3.5 transition-transform ${
-                          isActive ? 'text-[#FDB913]' : 'text-stone-600'
-                        }`}
-                      />
-                    </div>
+                    <ChevronRight
+                      className={`w-3.5 h-3.5 transition-transform ${
+                        isActive ? 'text-[#FDB913]' : 'text-stone-600'
+                      }`}
+                    />
                   </>
                 )}
               </NavLink>
             ))}
           </nav>
 
-          {/* Minimalist Segmented Currency Switcher */}
-          <div className="px-5 py-3 border-t border-white/10 bg-[#071309] shrink-0 flex items-center justify-between">
-            <span className="text-xs uppercase font-bold tracking-wider text-stone-400">
-              Currency
-            </span>
-            <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10">
-              {(['USD', 'EUR', 'GBP', 'KES'] as Currency[]).map((c) => (
-                <button
-                  key={c}
-                  onClick={() => setCurrency(c)}
-                  className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-colors cursor-pointer ${
-                    currency === c
-                      ? 'bg-[#1E7A2E] text-white shadow-xs'
-                      : 'text-stone-400 hover:text-white'
-                  }`}
-                >
-                  {c}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Footer Actions */}
-          <div className="p-4 border-t border-white/10 bg-[#050E07] shrink-0 space-y-2.5">
+          {/* Refined, Uncluttered Footer Actions */}
+          <div className="p-4 border-t border-white/10 bg-[#061008] shrink-0 space-y-2.5">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 openInquiry();
               }}
-              className="w-full py-3 px-4 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-[#1E7A2E] via-[#166527] to-[#0F471A] hover:from-[#238B34] hover:to-[#125520] rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+              className="w-full py-3 px-4 text-xs sm:text-sm font-extrabold text-stone-900 bg-gradient-to-r from-[#FDB913] to-[#F7941D] hover:from-[#ffc42e] hover:to-[#fa9e2a] rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
             >
-              <Sparkles className="w-4 h-4 text-[#FDB913]" />
+              <Sparkles className="w-4 h-4 text-stone-900" />
               <span>Plan Your Bespoke Safari</span>
             </button>
 
+            {/* Streamlined Direct Contact Options */}
             <div className="grid grid-cols-2 gap-2">
               <a
                 href="https://wa.me/254741938127?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20inquire%20about%20a%20safari%20package."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1.5 py-2 px-2 text-[11px] font-bold text-emerald-300 bg-emerald-950/60 hover:bg-emerald-900/80 rounded-xl transition-colors border border-emerald-800/60"
+                className="flex items-center justify-center gap-2 py-2.5 px-3 text-xs font-semibold text-emerald-300 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10"
               >
                 <MessageCircle className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
                 <span>WhatsApp</span>
               </a>
 
               <a
-                href="tel:0769920741"
-                className="flex items-center justify-center gap-1.5 py-2 px-2 text-[11px] font-bold text-stone-300 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10"
-              >
-                <Phone className="w-3.5 h-3.5 text-stone-400" />
-                <span>0769 920 741</span>
-              </a>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 mt-2">
-              <a
                 href="tel:+254741938127"
-                className="flex items-center justify-center gap-1.5 py-2 px-2 text-[11px] font-bold text-stone-300 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10"
-              >
-                <Phone className="w-3.5 h-3.5 text-stone-400" />
-                <span>+254 741 938127</span>
-              </a>
-
-              <a
-                href="tel:+12569477516"
-                className="flex items-center justify-center gap-1.5 py-2 px-2 text-[11px] font-bold text-stone-300 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10"
+                className="flex items-center justify-center gap-2 py-2.5 px-3 text-xs font-semibold text-stone-200 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10"
               >
                 <Phone className="w-3.5 h-3.5 text-[#FDB913]" />
-                <span>+1 (256) 947-7516</span>
+                <span>Call Desk</span>
               </a>
             </div>
+
+            <p className="text-center text-[10px] text-stone-500 pt-0.5">
+              Eldoret, Kenya • 24/7 Safari Concierge
+            </p>
           </div>
         </div>
       </div>

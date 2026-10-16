@@ -18,6 +18,7 @@ import {
   Heart,
   ArrowRight,
 } from 'lucide-react';
+import { FleetSpotlight } from '../components/FleetSpotlight';
 
 export const WhyUsPage: React.FC = () => {
   const { openInquiry } = useSafari();
@@ -218,36 +219,7 @@ export const WhyUsPage: React.FC = () => {
         </div>
 
         {/* 3. The 4x4 Safari Land Cruiser Fleet */}
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-stone-200/80 shadow-sm mb-16">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold text-[#1E7A2E] uppercase tracking-wider">
-              Rugged Comfort on the Savannah
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 mt-1">
-              Inside Our Customized Safari Land Cruisers
-            </h2>
-            <p className="text-xs sm:text-sm text-stone-500 mt-2">
-              Engineered specifically for rough East African roads, river crossings, and optimal wildlife photography.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {fleetFeatures.map((f, i) => {
-              const Icon = f.icon;
-              return (
-                <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-stone-50 border border-stone-100">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-100/80 text-[#0F5E1F] flex items-center justify-center shrink-0">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-stone-900 mb-1">{f.title}</h4>
-                    <p className="text-xs text-stone-600 leading-relaxed">{f.desc}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <FleetSpotlight showTitle={true} className="!py-0 mb-16" />
 
         {/* 4. Comparison Table: Smugsafaris vs Other Operators */}
         <div className="bg-white rounded-3xl p-6 sm:p-10 border border-stone-200/80 shadow-sm mb-16 overflow-hidden">

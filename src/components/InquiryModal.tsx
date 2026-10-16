@@ -16,6 +16,7 @@ export const InquiryModal: React.FC = () => {
   const [tier, setTier] = useState('Mid-Range Comfort');
   const [specialRequests, setSpecialRequests] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [refCode, setRefCode] = useState('');
 
   useEffect(() => {
@@ -29,11 +30,49 @@ export const InquiryModal: React.FC = () => {
 
   if (!isInquiryOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const generatedRef = `SMUG-${Math.floor(100000 + Math.random() * 900000)}`;
-    setRefCode(generatedRef);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    let generatedRef = `SMUG-${Math.floor(100000 + Math.random() * 900000)}`;
+
+    let tourTitle = 'Custom Tailor-Made Safari';
+    if (selectedTour === 'hotel-booking') tourTitle = 'Hotel, Lodge & Resort Reservation';
+    else if (selectedTour === 'airport-transfer') tourTitle = 'Airport VIP Transfer & Chauffeur';
+    else if (selectedTour === 'corporate-retreat') tourTitle = 'Corporate Retreat / Conference';
+    else if (selectedTour !== 'custom') {
+      tourTitle = TOURS_DATA.find((t) => t.id === selectedTour)?.title || 'Safari Inquiry';
+    }
+
+    try {
+      const res = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName,
+          email,
+          phone,
+          travelDate,
+          adults: parseInt(adults, 10) || 2,
+          children: parseInt(children, 10) || 0,
+          tier,
+          tourId: selectedTour,
+          tourTitle,
+          specialRequests,
+        }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.reference) {
+          generatedRef = data.reference;
+        }
+      }
+    } catch (err) {
+      console.warn('Booking API offline, proceeding with local reference:', err);
+    } finally {
+      setIsSubmitting(false);
+      setRefCode(generatedRef);
+      setIsSubmitted(true);
+    }
   };
 
   const getWhatsAppLink = () => {
@@ -289,10 +328,11 @@ export const InquiryModal: React.FC = () => {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-4 text-xs font-bold text-white bg-gradient-to-r from-[#1E7A2E] to-[#0F5E1F] hover:from-[#238b34] hover:to-[#136b23] rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer transform active:scale-95"
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 px-4 text-xs font-bold text-white bg-gradient-to-r from-[#1E7A2E] to-[#0F5E1F] hover:from-[#238b34] hover:to-[#136b23] disabled:opacity-60 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer transform active:scale-95"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Request Custom Safari Proposal</span>
+                  <span>{isSubmitting ? 'Sending Request…' : 'Request Custom Safari Proposal'}</span>
                 </button>
               </div>
             </form>

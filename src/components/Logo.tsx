@@ -18,10 +18,10 @@ export const Logo: React.FC<LogoProps> = ({
 
   // Height mappings for proportional scaling (aspect ratio is ~1.59:1)
   const sizeMap = {
-    sm: 'h-10 sm:h-11',
-    md: 'h-12 sm:h-14',
-    lg: 'h-16 sm:h-20',
-    xl: 'h-24 sm:h-28',
+    sm: 'h-8 sm:h-9',
+    md: 'h-9 sm:h-10 md:h-11',
+    lg: 'h-14 sm:h-16',
+    xl: 'h-20 sm:h-24',
   };
 
   // Pure transparent logo with zero black background

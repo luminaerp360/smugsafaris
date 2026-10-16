@@ -79,6 +79,35 @@ export const AboutSection: React.FC = () => {
             </p>
           </div>
 
+          {/* Fleet Photo Showcase */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="relative aspect-[16/10] rounded-xl overflow-hidden group border border-neutral-200">
+              <img
+                src="/images/fleet/cruiser-amboseli-kilimanjaro.jpg"
+                alt="Smugsafaris Land Cruiser at Amboseli with Mt. Kilimanjaro"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-3 right-3 text-white">
+                <span className="text-[10px] font-extrabold text-amber-300 uppercase tracking-wider block">Amboseli Ecosystem</span>
+                <span className="text-xs sm:text-sm font-bold block">Dual-Spare Cruiser with Elephant Herd & Mt. Kilimanjaro</span>
+              </div>
+            </div>
+
+            <div className="relative aspect-[16/10] rounded-xl overflow-hidden group border border-neutral-200">
+              <img
+                src="/images/fleet/cruiser-maasai-mara-lion.jpg"
+                alt="Smugsafaris Land Cruiser with Male Lion in Maasai Mara"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-3 right-3 text-white">
+                <span className="text-[10px] font-extrabold text-amber-300 uppercase tracking-wider block">Maasai Mara</span>
+                <span className="text-xs sm:text-sm font-bold block">Pop-Up Roof 360° Viewing with Morning Lion Encounter</span>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
             <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-200 text-center">
               <span className="font-bold text-neutral-800 block">360° Pop-Up Roof</span>

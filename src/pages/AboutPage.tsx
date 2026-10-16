@@ -14,6 +14,7 @@ import {
   ArrowRight,
   CheckCircle2,
 } from 'lucide-react';
+import { FleetSpotlight } from '../components/FleetSpotlight';
 
 export const AboutPage: React.FC = () => {
   const { openInquiry } = useSafari();
@@ -67,10 +68,10 @@ export const AboutPage: React.FC = () => {
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-stone-900">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-stone-900 border border-stone-200">
               <img
-                src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1000&q=80"
-                alt="Smugsafaris in the Maasai Mara"
+                src="/images/fleet/cruiser-amboseli-kilimanjaro.jpg"
+                alt="Smugsafaris Custom 4x4 Land Cruiser at Amboseli with Mt. Kilimanjaro"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -106,6 +107,9 @@ export const AboutPage: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* 3.5. Purpose-Built Safari Fleet Showcase */}
+        <FleetSpotlight showTitle={true} className="!py-0 mb-16" />
 
         {/* 4. Leadership & Expert Guides */}
         <div className="mb-16">

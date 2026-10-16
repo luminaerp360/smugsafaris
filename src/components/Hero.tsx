@@ -174,7 +174,7 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
   return (
     <section
       id="home"
-      className="relative isolate bg-[#122415] overflow-hidden pt-4 sm:pt-8 md:pt-12 pb-8 sm:pb-12 md:pb-16 border-b border-[#25462A]"
+      className="relative isolate bg-[#122415] overflow-hidden pt-3 sm:pt-5 md:pt-6 pb-4 sm:pb-6 md:pb-7 border-b border-[#25462A]"
     >
       {/* Background Layer 1: Solid Dark Forest Green */}
       <div className="absolute inset-0 bg-[#122415] pointer-events-none" />
@@ -199,17 +199,17 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
 
       {/* Foreground Content Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-white">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-center">
           {/* Left Column: Headlines & Call to Actions */}
-          <div className="lg:col-span-7 space-y-3 sm:space-y-5">
+          <div className="lg:col-span-7 space-y-3 sm:space-y-4 py-2 sm:py-4">
             {/* Pill Badge */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] sm:text-xs font-semibold text-emerald-200">
-              <Sparkles className="w-3.5 h-3.5 text-[#FDB913]" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] sm:text-xs font-semibold text-emerald-200">
+              <Sparkles className="w-3 h-3 text-[#FDB913]" />
               <span>Tailor-Made Kenya & Tanzania Private Safaris</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15]">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-extrabold tracking-tight leading-[1.18]">
               Explore Africa’s Wild Soul in{' '}
               <span className="bg-gradient-to-r from-[#FDB913] via-[#F7941D] to-[#E8720C] bg-clip-text text-transparent">
                 Private Luxury 4x4
@@ -217,74 +217,74 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
             </h1>
 
             {/* Sub-headline */}
-            <p className="text-xs sm:text-base md:text-lg text-emerald-100/90 max-w-2xl leading-relaxed font-normal">
+            <p className="text-xs sm:text-sm md:text-[15px] text-emerald-100/90 max-w-xl leading-relaxed font-normal">
               Experience the Great Migration in Maasai Mara, giant bull elephants under Kilimanjaro’s snows, and pure luxury tented camps with native East African naturalist guides.
             </p>
 
             {/* Primary Action Buttons */}
-            <div className="flex flex-row items-center gap-2.5 sm:gap-4 pt-1 sm:pt-2">
+            <div className="flex flex-row items-center gap-2.5 sm:gap-3 pt-1">
               <button
                 onClick={() => openInquiry()}
-                className="px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl bg-gradient-to-r from-[#1E7A2E] to-[#0F471A] hover:from-[#238B34] hover:to-[#166527] text-white text-xs sm:text-sm font-extrabold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center gap-1.5 sm:gap-2 shrink-0"
+                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#1E7A2E] to-[#0F471A] hover:from-[#238B34] hover:to-[#166527] text-white text-xs sm:text-sm font-extrabold shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center gap-1.5 shrink-0"
               >
                 <span>Plan Your Safari</span>
-                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
               <Link
                 to="/tours"
-                className="px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white text-xs sm:text-sm font-bold transition-colors cursor-pointer shrink-0"
+                className="px-4 sm:px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white text-xs sm:text-sm font-bold transition-colors cursor-pointer shrink-0"
               >
-                Browse All Itineraries
+                Browse Itineraries
               </Link>
             </div>
 
             {/* Trust Badges Bar */}
-            <div className="pt-2.5 sm:pt-4 border-t border-white/15 flex items-center justify-between sm:justify-start gap-3 sm:gap-6 text-[10px] sm:text-xs text-neutral-300">
+            <div className="pt-2 sm:pt-3 border-t border-white/15 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[10px] sm:text-[11px] text-neutral-300">
               <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#7CC142]" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#7CC142]" />
                 <span>KATO Bonded #482</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FDB913]" />
+                <Award className="w-3.5 h-3.5 text-[#FDB913]" />
                 <span>KPSGA Naturalists</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#7CC142]" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#7CC142]" />
                 <span>AMREF Flying Doctors</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Hero Safari Showcase Card with Moving Video Carousel */}
-          <div className="lg:col-span-5">
+          {/* Right Column: Hero Safari Showcase Card with Moving Video Carousel (Desktop only to keep mobile uncluttered) */}
+          <div className="hidden lg:block lg:col-span-5">
             <div
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
-              className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-xl border border-white/20 p-3.5 sm:p-6 shadow-2xl overflow-hidden group"
+              className="relative rounded-2xl bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-xl border border-white/20 p-4 shadow-xl overflow-hidden group"
             >
               {/* Top Card Bar with Clean Emblem */}
-              <div className="flex items-center justify-between pb-2.5 sm:pb-4 border-b border-white/15">
-                <div className="flex items-center gap-2.5 sm:gap-3">
-                  <Logo variant="icon" theme="dark" className="w-9 h-9 sm:w-11 sm:h-11" />
+              <div className="flex items-center justify-between pb-2 sm:pb-2.5 border-b border-white/15">
+                <div className="flex items-center gap-2 sm:gap-2.5">
+                  <Logo variant="icon" theme="dark" className="w-8 h-8 sm:w-9 sm:h-9" />
                   <div>
-                    <span className="text-[9px] sm:text-[10px] uppercase font-bold text-emerald-300 tracking-wider block">
+                    <span className="text-[9px] uppercase font-bold text-emerald-300 tracking-wider block">
                       Direct Tour Operator
                     </span>
-                    <h3 className="text-sm sm:text-base font-extrabold text-white leading-none mt-0.5">
+                    <h3 className="text-xs sm:text-sm font-extrabold text-white leading-none mt-0.5">
                       Smugsafaris Expeditions
                     </h3>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1 bg-amber-400/20 border border-amber-400/40 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold text-amber-300">
-                  <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400" />
+                <div className="flex items-center gap-1 bg-amber-400/20 border border-amber-400/40 px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold text-amber-300">
+                  <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                   <span>4.9 / 5.0</span>
                 </div>
               </div>
 
               {/* Dynamic Carousel Visual Window */}
-              <div className="my-3 sm:my-5 space-y-2 sm:space-y-3">
+              <div className="my-2.5 sm:my-3 space-y-2">
                 <div className="relative aspect-[16/9] rounded-xl overflow-hidden shadow-inner border border-white/10 bg-stone-900 group/image">
                   {/* Sliding/Fading Videos */}
                   {CAROUSEL_SLIDES.map((slide, idx) => (
@@ -347,8 +347,8 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
                   </button>
 
                   {/* Bottom Text Overlay */}
-                  <div className="absolute bottom-2.5 left-2.5 right-2.5 text-white z-20">
-                    <span className="text-[9px] sm:text-[10px] font-extrabold uppercase text-[#FDB913] tracking-wide block mb-0.5">
+                  <div className="absolute bottom-2 left-2.5 right-2.5 text-white z-20">
+                    <span className="text-[9px] font-extrabold uppercase text-[#FDB913] tracking-wide block mb-0.5">
                       {currentSlide.badge}
                     </span>
                     <Link
@@ -380,40 +380,40 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
                 </div>
 
                 {/* Specs Tags matching active slide */}
-                <div className="grid grid-cols-2 gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
-                  <div className="bg-white/5 border border-white/10 p-1.5 sm:p-2.5 rounded-xl flex items-center gap-1.5 sm:gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#7CC142] shrink-0" />
+                <div className="grid grid-cols-2 gap-1.5 text-[10px] sm:text-[11px]">
+                  <div className="bg-white/5 border border-white/10 px-2 py-1 sm:py-1.5 rounded-lg flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3 h-3 text-[#7CC142] shrink-0" />
                     <span className="text-neutral-200 truncate">{currentSlide.tags[0]}</span>
                   </div>
-                  <div className="bg-white/5 border border-white/10 p-1.5 sm:p-2.5 rounded-xl flex items-center gap-1.5 sm:gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#7CC142] shrink-0" />
+                  <div className="bg-white/5 border border-white/10 px-2 py-1 sm:py-1.5 rounded-lg flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3 h-3 text-[#7CC142] shrink-0" />
                     <span className="text-neutral-200 truncate">{currentSlide.tags[1]}</span>
                   </div>
                 </div>
               </div>
 
               {/* Price & Action Row (Dynamically synced to slide) */}
-              <div className="pt-2.5 sm:pt-4 border-t border-white/15 flex items-center justify-between">
+              <div className="pt-2 sm:pt-2.5 border-t border-white/15 flex items-center justify-between">
                 <div>
-                  <span className="text-[9px] sm:text-[10px] font-medium text-neutral-400 block uppercase tracking-wider">
+                  <span className="text-[9px] font-medium text-neutral-400 block uppercase tracking-wider">
                     From per person
                   </span>
-                  <span className="text-lg sm:text-2xl font-extrabold text-[#FDB913] tabular-nums">
+                  <span className="text-base sm:text-xl font-extrabold text-[#FDB913] tabular-nums">
                     {formatPrice(currentSlide.priceUSD)}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1.5 sm:gap-2">
+                <div className="flex items-center gap-1.5">
                   <Link
                     to={`/tours/${currentSlide.id}`}
-                    className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-[11px] sm:text-xs font-bold transition-colors"
+                    className="px-2.5 py-1 sm:py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-bold transition-colors"
                   >
                     Itinerary
                   </Link>
 
                   <button
                     onClick={() => openInquiry(currentSlide.id)}
-                    className="px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-xl bg-[#1E7A2E] hover:bg-[#238b34] text-white text-[11px] sm:text-xs font-bold shadow-md transition-colors cursor-pointer"
+                    className="px-3 py-1 sm:py-1.5 rounded-lg bg-[#1E7A2E] hover:bg-[#238b34] text-white text-[11px] font-bold shadow-xs transition-colors cursor-pointer"
                   >
                     Inquire
                   </button>
@@ -423,10 +423,10 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
           </div>
         </div>
 
-        {/* Quick Safari Finder / Search Filter Widget (Compact 2x2 on mobile, 4-col on desktop) */}
-        <div className="mt-5 sm:mt-8 lg:mt-10 bg-white rounded-2xl shadow-xl border border-neutral-200 p-3 sm:p-5 text-neutral-800">
-          <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#1E7A2E] mb-2 sm:mb-3 flex items-center gap-1.5">
-            <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#F7941D]" />
+        {/* Quick Safari Finder / Search Filter Widget */}
+        <div className="mt-3.5 sm:mt-5 lg:mt-6 bg-white rounded-xl sm:rounded-2xl shadow-lg border border-neutral-200 p-2.5 sm:p-3.5 text-neutral-800">
+          <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#1E7A2E] mb-1.5 sm:mb-2 flex items-center gap-1.5">
+            <Compass className="w-3.5 h-3.5 text-[#F7941D]" />
             <span>Quick Safari Finder — Find Your East Africa Tour</span>
           </div>
 

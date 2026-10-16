@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smugsafaris Admin</title>
+    <link rel="icon" href="/favicon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- LOGIN -->
+    <div id="login-view" class="login-wrap hidden">
+      <form id="login-form" class="login-card">
+        <div class="login-brand">
+          <span class="logo-dot"></span>
+          <div>
+            <h1>Smugsafaris</h1>
+            <p>Operations Control Panel</p>
+          </div>
+        </div>
+        <label>Email<input id="login-email" type="email" required autocomplete="username" /></label>
+        <label>Password<input id="login-password" type="password" required autocomplete="current-password" /></label>
+        <p id="login-error" class="error hidden"></p>
+        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+      </form>
+    </div>
+
+    <!-- APP -->
+    <div id="app-view" class="app hidden">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="logo-dot"></span>
+          <div>
+            <strong>Smugsafaris</strong>
+            <small>Admin</small>
+          </div>
+        </div>
+        <nav id="nav">
+          <button data-tab="overview" class="active">Overview</button>
+          <button data-tab="bookings">Bookings <span id="nav-new-badge" class="badge hidden">0</span></button>
+          <button data-tab="tours">Tours &amp; Pricing</button>
+          <button data-tab="destinations">Destinations</button>
+          <button data-tab="videos">Videos &amp; Media</button>
+          <button data-tab="settings">Settings</button>
+        </nav>
+        <div class="sidebar-foot">
+          <div id="whoami" class="whoami"></div>
+          <button id="logout" class="btn btn-ghost">Sign out</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <h2 id="page-title">Overview</h2>
+          <div id="topbar-actions"></div>
+        </header>
+        <section id="content" class="content"></section>
+      </main>
+    </div>
+
+    <!-- MODAL -->
+    <div id="modal-root" class="modal-root hidden">
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal" id="modal-box"></div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
