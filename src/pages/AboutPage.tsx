@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { COMPANY_STATS, TEAM_MEMBERS } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
 import {
@@ -21,6 +22,12 @@ export const AboutPage: React.FC = () => {
 
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
+      <SeoHead
+        title="About Us | Smugsafaris Tours & Travel Eldoret Kenya"
+        description="Learn about Smugsafaris Tours & Travel, our journey from Eldoret Kenya, our conservation initiatives, certified naturalist guides, and commitment to sustainable wildlife tourism."
+        canonicalPath="/about"
+        keywords="About Smugsafaris, Eldoret tour company, Kenya safari operator, local safari experts, conservation tourism Kenya, East Africa safari company story"
+      />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#FDB913_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { REVIEWS_DATA } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
 import {
@@ -23,8 +24,39 @@ export const ReviewsPage: React.FC = () => {
     return true;
   });
 
+  const reviewsSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TravelAgency',
+    name: 'Smugsafaris Tours & Travel',
+    url: 'https://smugsafari.co.ke',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '128',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    review: REVIEWS_DATA.map((r) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: r.author },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: r.rating.toString(),
+        bestRating: '5',
+      },
+      reviewBody: r.comment,
+    })),
+  };
+
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
+      <SeoHead
+        title="Traveler Reviews & Testimonials | Smugsafaris Kenya Safaris"
+        description="Read 4.9/5 verified reviews and testimonials from photographers, families, and honeymooners who explored Kenya and Tanzania safaris with Smugsafaris."
+        canonicalPath="/reviews"
+        keywords="Smugsafaris reviews, Kenya safari reviews, authentic safari testimonials, TripAdvisor Kenya safari, best safari guide ratings Kenya"
+        schema={reviewsSchema}
+      />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#FDB913_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />

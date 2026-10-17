@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import {
   MapPin,
   Phone,
@@ -35,8 +36,37 @@ export const ContactPage: React.FC = () => {
     setSubmitted(true);
   };
 
+  const contactSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact Smugsafaris Tours & Travel',
+    url: 'https://smugsafari.co.ke/contact',
+    description: 'Contact our safari specialists in Eldoret, Kenya to craft your custom tailor-made African safari vacation.',
+    mainEntity: {
+      '@type': 'TravelAgency',
+      name: 'Smugsafaris Tours & Travel',
+      telephone: '+254-769-920-741',
+      email: 'info@smugsafaris.co.ke',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Eldoret Town',
+        addressLocality: 'Eldoret',
+        addressRegion: 'Uasin Gishu County',
+        postalCode: '30100',
+        addressCountry: 'KE',
+      },
+    },
+  };
+
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
+      <SeoHead
+        title="Contact Us & Plan Your Safari | Smugsafaris Tours & Travel Kenya"
+        description="Get in touch with Smugsafaris in Eldoret, Kenya. Call +254 769 920 741, WhatsApp +254 741 938 127, or email info@smugsafaris.co.ke for instant customized safari quotes."
+        canonicalPath="/contact"
+        keywords="Contact Smugsafaris, Kenya safari booking, Eldoret safari agency contact, tailor made safari quote Kenya, WhatsApp safari inquiry Kenya"
+        schema={contactSchema}
+      />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#FDB913_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- 1. Homepage -->
+  <url>
+    <loc>https://smugsafari.co.ke/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://smugsafari.co.ke/images/fleet/cruiser-amboseli-kilimanjaro.jpg</image:loc>
+      <image:title>Smugsafaris 4x4 Safari Land Cruiser with Mt. Kilimanjaro View</image:title>
+      <image:caption>Authentic luxury African safari tours across Kenya and East Africa</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 2. Safari Tours Index -->
+  <url>
+    <loc>https://smugsafari.co.ke/tours</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 3. Tour Packages -->
+  <url>
+    <loc>https://smugsafari.co.ke/tours/classic-kenya-big-five</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>7-Day Classic Kenya Big Five Safari</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/tours/maasai-mara-great-migration</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>4-Day Maasai Mara Great Migration Spectacle</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/tours/amboseli-tsavo-kilimanjaro</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>6-Day Amboseli and Tsavo Kilimanjaro Views Safari</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/tours/kenya-tanzania-serengeti-odyssey</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>10-Day Kenya and Tanzania Serengeti Odyssey</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/tours/luxury-flying-safari-mara-samburu</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>8-Day Luxury Flying Safari Maasai Mara and Samburu</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/tours/bush-and-beach-mara-zanzibar</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>9-Day Bush and Beach Maasai Mara and Zanzibar Holiday</image:title>
+    </image:image>
+  </url>
+
+  <!-- 4. Destinations -->
+  <url>
+    <loc>https://smugsafari.co.ke/destinations</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 5. Key Content & Trust Pages -->
+  <url>
+    <loc>https://smugsafari.co.ke/why-us</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/services</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/about</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/reviews</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/gallery</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- 6. Blog & Safari Planning Guides -->
+  <url>
+    <loc>https://smugsafari.co.ke/blog</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/blog/packing-list-east-africa</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/blog/great-migration-timing</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/blog/kenya-vs-tanzania-safari</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- 7. Support & Contact -->
+  <url>
+    <loc>https://smugsafari.co.ke/faq</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://smugsafari.co.ke/contact</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+</urlset>

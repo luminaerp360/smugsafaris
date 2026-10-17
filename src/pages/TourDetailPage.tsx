@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { TOURS_DATA, TourPackage } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
 import {
@@ -81,8 +82,44 @@ export const TourDetailPage: React.FC = () => {
 
   const relatedTours = TOURS_DATA.filter((t) => t.id !== tour.id).slice(0, 3);
 
+  const tourSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: tour.title,
+    description: tour.overview,
+    touristType: tour.style,
+    image: tour.heroImage,
+    offers: {
+      '@type': 'Offer',
+      price: tour.priceUSD,
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: `https://smugsafari.co.ke/tours/${tour.id}`,
+      validFrom: '2026-01-01',
+    },
+    provider: {
+      '@type': 'TravelAgency',
+      name: 'Smugsafaris Tours & Travel',
+      url: 'https://smugsafari.co.ke',
+      telephone: '+254-769-920-741',
+    },
+    itinerary: tour.itinerary.map((item) => ({
+      '@type': 'Day',
+      name: `Day ${item.day}: ${item.title}`,
+      description: item.description,
+    })),
+  };
+
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
+      <SeoHead
+        title={tour.title}
+        description={`${tour.tagline}. ${tour.overview.slice(0, 150)}...`}
+        canonicalPath={`/tours/${tour.id}`}
+        ogImage={tour.heroImage}
+        keywords={`${tour.title}, ${tour.destinations.join(', ')} safari, ${tour.style}, Kenya wildlife tour, 4x4 Land Cruiser`}
+        schema={tourSchema}
+      />
       {/* 1. Breadcrumb Bar */}
       <div className="bg-white border-b border-stone-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">

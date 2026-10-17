@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { DESTINATIONS_DATA, Destination, TOURS_DATA } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
 import {
@@ -41,6 +42,12 @@ export const DestinationsPage: React.FC = () => {
 
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
+      <SeoHead
+        title="East Africa Safari Destinations | Maasai Mara, Amboseli, Serengeti"
+        description="Explore iconic safari destinations across Kenya and Tanzania. Discover wildlife hotspots: Maasai Mara, Amboseli, Serengeti, Lake Nakuru, Samburu, and Zanzibar."
+        canonicalPath="/destinations"
+        keywords="Kenya safari destinations, Maasai Mara National Reserve, Amboseli National Park, Serengeti National Park, Lake Nakuru flamingos, Samburu wildlife, East Africa safari map"
+      />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#FDB913_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />

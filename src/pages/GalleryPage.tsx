@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { useSafari } from '../context/SafariContext';
 import {
   Camera,
@@ -79,6 +80,12 @@ export const GalleryPage: React.FC = () => {
 
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-20">
+      <SeoHead
+        title="Kenya Safari Wildlife Videos & 4x4 Land Cruiser Photos | Smugsafaris"
+        description="Experience the African wild in 4K video and high-resolution photography: lion roars, Great Migration river crossings, Amboseli elephants, and custom 4x4 Land Cruisers."
+        canonicalPath="/gallery"
+        keywords="Kenya safari videos, wildlife photography Kenya, Maasai Mara lion videos, Amboseli elephant pictures, Safari Land Cruiser fleet photos, African safari cinema"
+      />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 sm:py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#FDB913_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />

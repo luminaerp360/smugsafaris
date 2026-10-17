@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { Hero } from '../components/Hero';
 import { FeaturedTours } from '../components/FeaturedTours';
 import { WhyChooseUs } from '../components/WhyChooseUs';
@@ -37,6 +38,10 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="space-y-0">
+      <SeoHead
+        canonicalPath="/"
+        description="Book unforgettable African safari tours and wildlife holidays in Kenya and East Africa. Maasai Mara, Amboseli, Serengeti, Kilimanjaro, and tailor-made safaris with certified local guides."
+      />
       {/* 1. Hero with Safari Search */}
       <Hero onSearchFilter={handleHeroSearch} />
 

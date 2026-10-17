@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { useSafari } from '../context/SafariContext';
 import {
   ShieldCheck,
@@ -148,6 +149,12 @@ export const WhyUsPage: React.FC = () => {
 
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
+      <SeoHead
+        title="Why Choose Smugsafaris | KATO Bonded Kenya Safari Operator"
+        description="Experience the Smugsafaris difference: custom heavy-duty 4x4 Land Cruisers, certified KPSGA naturalist guides, KATO Bond Scheme #482 protection, and AMREF Flying Doctors medevac."
+        canonicalPath="/why-us"
+        keywords="KATO bonded tour operator, best Kenya safari company, custom safari Land Cruiser, KPSGA certified safari guides, AMREF flying doctors tourist insurance, trusted African safari specialist"
+      />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#FDB913_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />

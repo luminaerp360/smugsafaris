@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { SERVICES_DATA } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
 import {
@@ -71,6 +72,12 @@ export const ServicesPage: React.FC = () => {
 
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
+      <SeoHead
+        title="Safari & Travel Services Kenya | 4x4 Land Cruiser Hire, Hotels & Bush Flights"
+        description="Comprehensive safari & corporate travel services in Kenya: direct contracted rates for luxury safari lodges & beach resorts, 4x4 Land Cruiser hire with pop-up roof, airport VIP transfers, and scenic bush flights."
+        canonicalPath="/services"
+        keywords="safari vehicle hire Kenya, 4x4 Land Cruiser rental with driver, Kenya safari lodge booking, bush flights Wilson Airport, airport VIP transfer Nairobi, MICE corporate retreats Kenya"
+      />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#FDB913_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />

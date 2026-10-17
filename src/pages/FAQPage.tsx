@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { FAQS_DATA } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
 import {
@@ -37,8 +38,28 @@ export const FAQPage: React.FC = () => {
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS_DATA.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
+      <SeoHead
+        title="Safari FAQ | Frequently Asked Questions About Kenya Safaris"
+        description="Find expert answers to common Kenya safari questions: best time for Great Migration, luggage packing for 4x4 Land Cruisers, malaria & yellow fever, visa requirements, and tipping guidelines."
+        canonicalPath="/faq"
+        keywords="Kenya safari FAQ, safari questions and answers, Great Migration timing Kenya, what to pack for safari, Kenya eVisa questions, AMREF flying doctors emergency cover"
+        schema={faqSchema}
+      />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#FDB913_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />

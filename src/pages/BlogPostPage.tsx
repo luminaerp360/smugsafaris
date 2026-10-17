@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { BLOG_POSTS, TOURS_DATA } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
 import {
@@ -40,8 +41,42 @@ export const BlogPostPage: React.FC = () => {
 
   const featuredTours = TOURS_DATA.slice(0, 2);
 
+  const blogSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.summary,
+    image: post.image,
+    datePublished: post.publishDate,
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Smugsafaris Tours & Travel',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://smugsafari.co.ke/logo.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://smugsafari.co.ke/blog/${post.slug}`,
+    },
+  };
+
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
+      <SeoHead
+        title={post.title}
+        description={post.summary}
+        canonicalPath={`/blog/${post.slug}`}
+        ogImage={post.image}
+        ogType="article"
+        keywords={`${post.title}, ${post.category}, East Africa safari planning, Kenya wildlife guide, Smugsafaris blog`}
+        schema={blogSchema}
+      />
       {/* 1. Breadcrumb Bar */}
       <div className="bg-white border-b border-stone-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">

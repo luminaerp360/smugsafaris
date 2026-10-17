@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { BLOG_POSTS, BlogPost } from '../data/safariData';
 import {
   BookOpen,
@@ -21,6 +22,12 @@ export const BlogPage: React.FC = () => {
 
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
+      <SeoHead
+        title="East Africa Safari Travel Guides & Planning Insights | Smugsafaris"
+        description="Insider safari advice written by certified Kenyan naturalist guides: Great Migration calendars, East Africa packing checklists, and Kenya vs Tanzania safari planning."
+        canonicalPath="/blog"
+        keywords="Kenya safari blog, Great Migration timing, safari packing list Kenya, Kenya vs Tanzania safari, African safari tips, Maasai Mara travel advice"
+      />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#FDB913_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />

@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { SeoHead } from '../components/SeoHead';
 import { TOURS_DATA, TourPackage } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
 import { SafariCostEstimator } from '../components/SafariCostEstimator';
@@ -131,6 +132,12 @@ export const ToursPage: React.FC = () => {
 
   return (
     <div className="bg-[#FAF9F5] min-h-screen">
+      <SeoHead
+        title="African Safari Packages & Tours in Kenya | Smugsafaris"
+        description="Discover handcrafted Kenya safari packages. Big Five wildlife tours in Maasai Mara, Amboseli Kilimanjaro views, Serengeti, private 4x4 Land Cruisers, and luxury camps."
+        canonicalPath="/tours"
+        keywords="Kenya safari packages, Maasai Mara safari, Amboseli safari, Serengeti tours, private safari Land Cruiser, Kenya wildlife holidays, budget camping safari, luxury tented camp"
+      />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#FDB913_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
