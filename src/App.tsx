@@ -23,6 +23,8 @@ import { BlogPage } from './pages/BlogPage';
 import { BlogPostPage } from './pages/BlogPostPage';
 import { FAQPage } from './pages/FAQPage';
 import { ContactPage } from './pages/ContactPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsPage } from './pages/TermsPage';
 
 function AppLayout() {
   return (
@@ -48,6 +50,9 @@ function AppLayout() {
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/booking-terms" element={<TermsPage />} />
 
           {/* Fallback Catch-All */}
           <Route path="*" element={<Navigate to="/" replace />} />

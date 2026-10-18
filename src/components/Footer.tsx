@@ -190,6 +190,12 @@ export const Footer: React.FC = () => {
               <li>
                 <Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link>
               </li>
+              <li>
+                <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-white transition-colors">Booking Terms & Conditions</Link>
+              </li>
             </ul>
           </div>
 
@@ -209,11 +215,11 @@ export const Footer: React.FC = () => {
                   <a href="tel:+12569477516" className="hover:text-white transition-colors">
                     +1 (256) 947-7516 <span className="text-[10px] text-neutral-400">(USA)</span>
                   </a>
-                  <a href="tel:+254741938127" className="hover:text-white transition-colors">
-                    +254 741 938127 <span className="text-[10px] text-neutral-400">(Kenya)</span>
+                  <a href="tel:0769920741" className="hover:text-white transition-colors">
+                    +254 769 920 741 <span className="text-[10px] text-neutral-400">(Kenya Desk)</span>
                   </a>
                   <a href="tel:0769920741" className="hover:text-white transition-colors">
-                    0769 920 741 <span className="text-[10px] text-neutral-400">(Kenya)</span>
+                    0769 920 741 <span className="text-[10px] text-neutral-400">(Kenya Mobile)</span>
                   </a>
                 </div>
               </li>
@@ -234,9 +240,14 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Tagline */}
-        <div className="mt-12 pt-8 border-t border-[#1C3A22] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
+        {/* Bottom Bar: Copyright & Legal Links */}
+        <div className="mt-12 pt-8 border-t border-[#1C3A22] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
           <p>© {new Date().getFullYear()} Smugsafaris Tours & Travel. All rights reserved.</p>
+          <div className="flex items-center gap-3 text-neutral-400">
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <span>•</span>
+            <Link to="/terms" className="hover:text-white transition-colors">Booking Terms & Conditions</Link>
+          </div>
           <p className="italic font-medium text-neutral-300">
             Explore • Discover • Experience
           </p>
