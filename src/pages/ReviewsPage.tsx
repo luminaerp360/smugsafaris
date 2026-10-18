@@ -28,7 +28,7 @@ export const ReviewsPage: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'TravelAgency',
     name: 'Smugsafaris Tours & Travel',
-    url: 'https://smugsafari.co.ke',
+    url: 'https://www.smugsafaris.co.ke',
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',

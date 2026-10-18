@@ -106,13 +106,13 @@ export const TourDetailPage: React.FC = () => {
       price: tour.priceUSD,
       priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
-      url: `https://smugsafari.co.ke/tours/${tour.id}`,
+      url: `https://www.smugsafaris.co.ke/tours/${tour.id}`,
       validFrom: '2026-01-01',
     },
     provider: {
       '@type': 'TravelAgency',
       name: 'Smugsafaris Tours & Travel',
-      url: 'https://smugsafari.co.ke',
+      url: 'https://www.smugsafaris.co.ke',
       telephone: '+254-769-920-741',
     },
     itinerary: tour.itinerary.map((item) => ({

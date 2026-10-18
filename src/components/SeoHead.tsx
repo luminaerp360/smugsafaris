@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export const SITE_URL = 'https://smugsafari.co.ke';
+export const SITE_URL = 'https://www.smugsafaris.co.ke';
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/images/fleet/cruiser-amboseli-kilimanjaro.jpg`;
 export const SITE_NAME = 'Smugsafaris Tours & Travel';
 

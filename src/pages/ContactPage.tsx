@@ -40,7 +40,7 @@ export const ContactPage: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: 'Contact Smugsafaris Tours & Travel',
-    url: 'https://smugsafari.co.ke/contact',
+    url: 'https://www.smugsafaris.co.ke/contact',
     description: 'Contact our safari specialists in Eldoret, Kenya to craft your custom tailor-made African safari vacation.',
     mainEntity: {
       '@type': 'TravelAgency',

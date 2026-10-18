@@ -57,12 +57,12 @@ export const BlogPostPage: React.FC = () => {
       name: 'Smugsafaris Tours & Travel',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://smugsafari.co.ke/logo.png',
+        url: 'https://www.smugsafaris.co.ke/logo.png',
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://smugsafari.co.ke/blog/${post.slug}`,
+      '@id': `https://www.smugsafaris.co.ke/blog/${post.slug}`,
     },
   };
 

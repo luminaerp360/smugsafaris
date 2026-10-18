@@ -1,9 +1,9 @@
 # Robots.txt for Smugsafaris Tours & Travel
-# Official Domain: https://smugsafari.co.ke
+# Official Domain: https://www.smugsafaris.co.ke
 
 User-agent: *
 Allow: /
 
 # Host & Sitemap specification
-Host: https://smugsafari.co.ke
-Sitemap: https://smugsafari.co.ke/sitemap.xml
+Host: https://www.smugsafaris.co.ke
+Sitemap: https://www.smugsafaris.co.ke/sitemap.xml
