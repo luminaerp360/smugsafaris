@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, MessageCircle, Send, Check } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, MessageCircle, Send, Check, Loader2 } from 'lucide-react';
+import { submitContactNotification } from '../utils/web3forms';
 
 export const ContactSection: React.FC = () => {
   const [name, setName] = useState('');
@@ -7,18 +8,33 @@ export const ContactSection: React.FC = () => {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [sent, setSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !message) return;
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      setName('');
-      setEmail('');
-      setSubject('');
-      setMessage('');
-    }, 4000);
+    setIsSubmitting(true);
+
+    try {
+      await submitContactNotification({
+        fullName: name,
+        email,
+        subject: subject || 'Homepage Quick Message',
+        message,
+      });
+    } catch (err) {
+      console.warn('ContactSection notification error:', err);
+    } finally {
+      setIsSubmitting(false);
+      setSent(true);
+      setTimeout(() => {
+        setSent(false);
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+      }, 5000);
+    }
   };
 
   return (
@@ -194,10 +210,20 @@ export const ContactSection: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-4 text-xs font-bold text-white bg-[#1E7A2E] hover:bg-[#0F5E1F] rounded-xl shadow-sm transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 px-4 text-xs font-bold text-white bg-[#1E7A2E] hover:bg-[#0F5E1F] disabled:opacity-60 rounded-xl shadow-sm transition-colors flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>Send Message to Safari Desk</span>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending Message…</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>Send Message to Safari Desk</span>
+                      </>
+                    )}
                   </button>
                 </form>
               )}

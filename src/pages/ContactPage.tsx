@@ -12,7 +12,10 @@ import {
   CheckCircle2,
   ChevronRight,
   Sparkles,
+  Loader2,
 } from 'lucide-react';
+import { submitContactNotification } from '../utils/web3forms';
+import { trackInquirySubmission } from '../utils/gtm';
 
 export const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -30,10 +33,42 @@ export const ContactPage: React.FC = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      await submitContactNotification({
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        country: formData.country,
+        destination: formData.destination,
+        travelStyle: formData.travelStyle,
+        adults: formData.adults,
+        children: formData.children,
+        tier: formData.tier,
+        travelDates: formData.travelDates,
+        message: formData.message || 'Custom Safari Inquiry via Contact Page',
+      });
+    } catch (err) {
+      console.warn('Contact notification error:', err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+
+      // Track conversion in GTM
+      trackInquirySubmission({
+        tourTitle: `${formData.destination} (${formData.travelStyle})`,
+        tourId: 'contact-page-inquiry',
+        tier: formData.tier,
+        adults: formData.adults,
+        children: formData.children,
+        travelDate: formData.travelDates || 'Flexible',
+      });
+    }
   };
 
   const contactSchema = {
@@ -436,10 +471,20 @@ export const ContactPage: React.FC = () => {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-6 text-sm font-extrabold text-white bg-gradient-to-r from-[#1E7A2E] via-[#166527] to-[#0F471A] hover:from-[#238B34] hover:via-[#1E7A2E] hover:to-[#125520] rounded-xl shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 px-6 text-sm font-extrabold text-white bg-gradient-to-r from-[#1E7A2E] via-[#166527] to-[#0F471A] hover:from-[#238B34] hover:via-[#1E7A2E] hover:to-[#125520] disabled:opacity-60 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
                   >
-                    <Sparkles className="w-4 h-4 text-[#FDB913]" />
-                    <span>Send Safari Inquiry & Request Quote</span>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending Safari Inquiry…</span>
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-4 h-4 text-[#FDB913]" />
+                        <span>Send Safari Inquiry & Request Quote</span>
+                      </>
+                    )}
                   </button>
 
                   <p className="text-[11px] text-stone-400 text-center">

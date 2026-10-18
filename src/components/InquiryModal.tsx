@@ -3,6 +3,7 @@ import { useSafari } from '../context/SafariContext';
 import { TOURS_DATA } from '../data/safariData';
 import { X, Check, MessageCircle, Sparkles, ShieldCheck, Calendar, Users, Mail, Phone, User, Send } from 'lucide-react';
 import { trackInquirySubmission } from '../utils/gtm';
+import { submitBookingNotification } from '../utils/web3forms';
 
 export const InquiryModal: React.FC = () => {
   const { isInquiryOpen, closeInquiry, inquiryTourId } = useSafari();
@@ -34,7 +35,7 @@ export const InquiryModal: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    let generatedRef = `SMUG-${Math.floor(100000 + Math.random() * 900000)}`;
+    const generatedRef = `SMUG-${Math.floor(100000 + Math.random() * 900000)}`;
 
     let tourTitle = 'Custom Tailor-Made Safari';
     if (selectedTour === 'hotel-booking') tourTitle = 'Hotel, Lodge & Resort Reservation';
@@ -45,30 +46,22 @@ export const InquiryModal: React.FC = () => {
     }
 
     try {
-      const res = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName,
-          email,
-          phone,
-          travelDate,
-          adults: parseInt(adults, 10) || 2,
-          children: parseInt(children, 10) || 0,
-          tier,
-          tourId: selectedTour,
-          tourTitle,
-          specialRequests,
-        }),
+      // Send email notification to kiprotichkirui301@gmail.com via Web3Forms
+      await submitBookingNotification({
+        reference: generatedRef,
+        fullName,
+        email,
+        phone,
+        tourTitle,
+        tourId: selectedTour,
+        travelDate,
+        adults: parseInt(adults, 10) || 2,
+        children: parseInt(children, 10) || 0,
+        tier,
+        specialRequests,
       });
-      if (res.ok) {
-        const data = await res.json();
-        if (data?.reference) {
-          generatedRef = data.reference;
-        }
-      }
     } catch (err) {
-      console.warn('Booking API offline, proceeding with local reference:', err);
+      console.warn('Booking notification dispatch error, proceeding:', err);
     } finally {
       setIsSubmitting(false);
       setRefCode(generatedRef);

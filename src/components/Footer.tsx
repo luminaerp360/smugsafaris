@@ -2,21 +2,32 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 import { useSafari } from '../context/SafariContext';
-import { MessageCircle, Mail, Phone, MapPin, Check, ShieldCheck, Heart, Sparkles, ArrowRight } from 'lucide-react';
+import { MessageCircle, Mail, Phone, MapPin, Check, ShieldCheck, Heart, Sparkles, ArrowRight, Loader2 } from 'lucide-react';
+import { submitNewsletterNotification } from '../utils/web3forms';
 
 export const Footer: React.FC = () => {
   const { openInquiry } = useSafari();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSent, setNewsletterSent] = useState(false);
+  const [isSubscribing, setIsSubscribing] = useState(false);
 
-  const handleNewsletter = (e: React.FormEvent) => {
+  const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail) return;
-    setNewsletterSent(true);
-    setTimeout(() => {
-      setNewsletterSent(false);
-      setNewsletterEmail('');
-    }, 3500);
+    setIsSubscribing(true);
+
+    try {
+      await submitNewsletterNotification(newsletterEmail);
+    } catch (err) {
+      console.warn('Newsletter submission error:', err);
+    } finally {
+      setIsSubscribing(false);
+      setNewsletterSent(true);
+      setTimeout(() => {
+        setNewsletterSent(false);
+        setNewsletterEmail('');
+      }, 4000);
+    }
   };
 
   return (
@@ -55,9 +66,17 @@ export const Footer: React.FC = () => {
                   />
                   <button
                     type="submit"
-                    className="px-4 py-2.5 text-xs font-bold text-white bg-gradient-to-r from-[#F7941D] to-[#E8720C] hover:from-[#f99f34] hover:to-[#f07b15] rounded-xl whitespace-nowrap cursor-pointer transition-colors"
+                    disabled={isSubscribing}
+                    className="px-4 py-2.5 text-xs font-bold text-white bg-gradient-to-r from-[#F7941D] to-[#E8720C] hover:from-[#f99f34] hover:to-[#f07b15] disabled:opacity-60 rounded-xl whitespace-nowrap cursor-pointer transition-colors flex items-center gap-1.5"
                   >
-                    Subscribe
+                    {isSubscribing ? (
+                      <>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        <span>Joining…</span>
+                      </>
+                    ) : (
+                      <span>Subscribe</span>
+                    )}
                   </button>
                 </form>
               )}
