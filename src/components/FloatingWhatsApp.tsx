@@ -1,5 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Sparkles, ShieldCheck, CheckCheck } from 'lucide-react';
+import {
+  MessageCircle,
+  X,
+  Send,
+  ShieldCheck,
+  CheckCheck,
+  Binoculars,
+  Mountain,
+  Compass,
+  Building2,
+  CalendarCheck,
+} from 'lucide-react';
 import { trackWhatsAppClick } from '../utils/gtm';
 
 const WHATSAPP_NUMBER = '254769920741';
@@ -8,7 +19,9 @@ const DISPLAY_NUMBER = '+254 769 920 741';
 interface QuickPrompt {
   id: string;
   label: string;
-  icon: string;
+  icon: React.ComponentType<{ className?: string }>;
+  iconColor: string;
+  bgColor: string;
   message: string;
 }
 
@@ -16,31 +29,41 @@ const QUICK_PROMPTS: QuickPrompt[] = [
   {
     id: 'mara',
     label: 'Maasai Mara Migration',
-    icon: '🦁',
+    icon: Binoculars,
+    iconColor: 'text-amber-600',
+    bgColor: 'bg-amber-50 group-hover:bg-amber-100',
     message: 'Hello Smugsafaris! I am interested in the Maasai Mara Great Migration safari. Could you share available dates and packages?',
   },
   {
     id: 'amboseli',
     label: 'Amboseli Kilimanjaro',
-    icon: '🏔️',
+    icon: Mountain,
+    iconColor: 'text-emerald-700',
+    bgColor: 'bg-emerald-50 group-hover:bg-emerald-100',
     message: 'Hi Smugsafaris! I would love details and pricing for an Amboseli safari with Mt. Kilimanjaro views.',
   },
   {
     id: 'tailor',
     label: 'Custom Tailor-Made Safari',
-    icon: '🚙',
+    icon: Compass,
+    iconColor: 'text-blue-600',
+    bgColor: 'bg-blue-50 group-hover:bg-blue-100',
     message: 'Jambo! I would like to plan a custom tailor-made safari package for my group. Could you help me with an itinerary?',
   },
   {
     id: 'transfer',
     label: 'Lodge & Airport Transfer',
-    icon: '🏨',
+    icon: Building2,
+    iconColor: 'text-teal-700',
+    bgColor: 'bg-teal-50 group-hover:bg-teal-100',
     message: 'Hello! I need assistance with hotel/lodge reservations and airport VIP transfers in Kenya.',
   },
   {
     id: 'general',
     label: 'Current 2026/2027 Rates',
-    icon: '✨',
+    icon: CalendarCheck,
+    iconColor: 'text-stone-700',
+    bgColor: 'bg-stone-100 group-hover:bg-stone-200',
     message: 'Hello Smugsafaris desk! Could you please share your latest safari packages and seasonal pricing?',
   },
 ];
@@ -91,7 +114,7 @@ export const FloatingWhatsApp: React.FC = () => {
         >
           {/* Header */}
           <div className="bg-gradient-to-r from-[#0F5E1F] via-[#166527] to-[#075E54] text-white p-4 relative flex items-center gap-3">
-            {/* Smugsafari Logo Avatar with glowing online status */}
+            {/* Smugsafari Logo Avatar with online status */}
             <div className="relative shrink-0">
               <div className="w-12 h-12 rounded-2xl bg-white/95 p-1 flex items-center justify-center shadow-md ring-2 ring-white/30 overflow-hidden">
                 <img
@@ -145,7 +168,7 @@ export const FloatingWhatsApp: React.FC = () => {
           </div>
 
           {/* Chat Conversation Body */}
-          <div className="p-4 bg-[#ECE5DD]/30 overflow-y-auto space-y-3.5 flex-1 max-h-[340px]">
+          <div className="p-4 bg-[#ECE5DD]/30 overflow-y-auto space-y-3 flex-1 max-h-[340px]">
             {/* Timestamp */}
             <div className="flex justify-center">
               <span className="px-2.5 py-0.5 rounded-full bg-white/90 shadow-2xs text-[10px] text-stone-500 font-medium uppercase tracking-wider">
@@ -160,7 +183,7 @@ export const FloatingWhatsApp: React.FC = () => {
               </div>
               <div className="bg-white rounded-2xl rounded-tl-xs p-3 shadow-sm border border-stone-200/80 max-w-[85%] text-xs text-stone-800 space-y-1">
                 <p className="font-semibold text-emerald-800 text-[11px]">
-                  Jambo from Kenya! 👋
+                  Jambo from Kenya!
                 </p>
                 <p className="leading-relaxed">
                   Welcome to Smugsafaris. How can our safari team assist your adventure today?
@@ -174,29 +197,35 @@ export const FloatingWhatsApp: React.FC = () => {
 
             {/* Quick Interactive Prompt Chips */}
             <div className="space-y-1.5 pt-1">
-              <div className="flex items-center gap-1 text-[11px] font-bold text-stone-600 px-1">
-                <Sparkles className="w-3 h-3 text-[#FDB913]" />
-                <span>Tap a prompt to chat immediately:</span>
-              </div>
+              <p className="text-[11px] font-bold text-stone-600 px-1">
+                Select an inquiry to chat directly:
+              </p>
               <div className="flex flex-col gap-1.5">
-                {QUICK_PROMPTS.map((prompt) => (
-                  <button
-                    key={prompt.id}
-                    onClick={() => handleOpenWhatsApp(prompt.message, prompt.id)}
-                    className="group w-full text-left p-2.5 rounded-xl bg-white hover:bg-emerald-50 border border-stone-200 hover:border-emerald-300 transition-all shadow-2xs hover:shadow-xs flex items-center justify-between gap-2 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="text-base shrink-0">{prompt.icon}</span>
-                      <span className="text-xs font-semibold text-stone-800 group-hover:text-emerald-900 truncate">
-                        {prompt.label}
+                {QUICK_PROMPTS.map((prompt) => {
+                  const Icon = prompt.icon;
+                  return (
+                    <button
+                      key={prompt.id}
+                      onClick={() => handleOpenWhatsApp(prompt.message, prompt.id)}
+                      className="group w-full text-left p-2.5 rounded-xl bg-white hover:bg-emerald-50 border border-stone-200 hover:border-emerald-300 transition-all shadow-2xs hover:shadow-xs flex items-center justify-between gap-2 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div
+                          className={`w-7 h-7 rounded-lg ${prompt.bgColor} flex items-center justify-center shrink-0 transition-colors`}
+                        >
+                          <Icon className={`w-4 h-4 ${prompt.iconColor}`} />
+                        </div>
+                        <span className="text-xs font-semibold text-stone-800 group-hover:text-emerald-900 truncate">
+                          {prompt.label}
+                        </span>
+                      </div>
+                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 group-hover:bg-emerald-100 px-2 py-0.5 rounded-full shrink-0 flex items-center gap-1">
+                        <span>Chat</span>
+                        <Send className="w-2.5 h-2.5" />
                       </span>
-                    </div>
-                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 group-hover:bg-emerald-100 px-2 py-0.5 rounded-full shrink-0 flex items-center gap-1">
-                      <span>Chat</span>
-                      <Send className="w-2.5 h-2.5" />
-                    </span>
-                  </button>
-                ))}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -226,19 +255,18 @@ export const FloatingWhatsApp: React.FC = () => {
         </div>
       )}
 
-      {/* Floating Trigger Button with Tooltip */}
+      {/* Floating Trigger Button with Clean Pill */}
       <div className="flex items-center gap-2.5">
-        {/* Animated Greeting Bubble (when closed) */}
+        {/* Compact Greeting Pill (when closed) */}
         {!isOpen && showTooltip && (
-          <div className="hidden sm:flex bg-white rounded-2xl p-3 shadow-xl border border-stone-200 max-w-xs text-xs text-stone-800 relative animate-fade-in items-start gap-2.5">
-            <button
-              onClick={() => setShowTooltip(false)}
-              className="absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full bg-stone-100 text-stone-400 hover:text-stone-700 flex items-center justify-center border border-stone-200 cursor-pointer"
-              aria-label="Dismiss message"
-            >
-              <X className="w-3 h-3" />
-            </button>
-            <div className="w-8 h-8 rounded-xl bg-[#FAF9F5] border border-stone-200 p-0.5 shrink-0 overflow-hidden flex items-center justify-center">
+          <div
+            onClick={() => {
+              setIsOpen(true);
+              trackWhatsAppClick('interactive_widget_opened');
+            }}
+            className="hidden sm:flex bg-white rounded-full pl-2 pr-3 py-1.5 shadow-lg border border-stone-200 text-xs text-stone-800 items-center gap-2 cursor-pointer hover:shadow-xl hover:border-emerald-300 transition-all group animate-fade-in"
+          >
+            <div className="w-6 h-6 rounded-full bg-emerald-50 p-0.5 shrink-0 overflow-hidden flex items-center justify-center">
               <img
                 src="/logo-emblem-transparent.png"
                 alt="Smugsafaris"
@@ -248,14 +276,19 @@ export const FloatingWhatsApp: React.FC = () => {
                 }}
               />
             </div>
-            <div>
-              <span className="font-bold text-[#0F5E1F] block text-xs">
-                Need Safari Advice?
-              </span>
-              <p className="text-[11px] text-stone-600 mt-0.5 leading-snug">
-                Chat live with our Eldoret desk on WhatsApp for instant dates & rates!
-              </p>
-            </div>
+            <span className="font-bold text-[#0F5E1F] text-xs group-hover:text-emerald-700 transition-colors">
+              Need Safari Advice?
+            </span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowTooltip(false);
+              }}
+              className="w-4 h-4 rounded-full text-stone-400 hover:text-stone-700 hover:bg-stone-100 flex items-center justify-center transition-colors ml-0.5"
+              aria-label="Dismiss message"
+            >
+              <X className="w-3 h-3" />
+            </button>
           </div>
         )}
 
