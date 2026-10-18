@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { SeoHead } from '../components/SeoHead';
 import { TOURS_DATA, TourPackage } from '../data/safariData';
 import { useSafari } from '../context/SafariContext';
+import { trackTourDetailView } from '../utils/gtm';
 import {
   Clock,
   MapPin,
@@ -38,6 +39,17 @@ export const TourDetailPage: React.FC = () => {
   const [showVideo, setShowVideo] = useState<boolean>(false);
   const [expandedDays, setExpandedDays] = useState<Record<number, boolean>>({ 1: true });
   const [copiedLink, setCopiedLink] = useState(false);
+
+  useEffect(() => {
+    if (tour) {
+      trackTourDetailView({
+        id: tour.id,
+        title: tour.title,
+        destination: tour.destination,
+        priceFrom: tour.priceFrom,
+      });
+    }
+  }, [tour?.id]);
 
   if (!tour) {
     return (

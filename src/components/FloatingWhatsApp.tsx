@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, X } from 'lucide-react';
+import { trackWhatsAppClick } from '../utils/gtm';
 
 export const FloatingWhatsApp: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(true);
@@ -30,6 +31,7 @@ export const FloatingWhatsApp: React.FC = () => {
         href="https://wa.me/254741938127?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20plan%20a%20safari%20trip."
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackWhatsAppClick('floating_button')}
         className="w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 group relative"
         aria-label="Chat with Smugsafaris on WhatsApp"
       >

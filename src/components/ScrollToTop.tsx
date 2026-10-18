@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { trackGTMPageView } from '../utils/gtm';
 
 export function ScrollToTop() {
   const { pathname, search, hash } = useLocation();
@@ -18,6 +19,9 @@ export function ScrollToTop() {
       left: 0,
       behavior: 'instant' as ScrollBehavior,
     });
+
+    // Send virtual pageview to Google Tag Manager dataLayer
+    trackGTMPageView(pathname + (search || ''), document.title);
   }, [pathname, search, hash]);
 
   return null;

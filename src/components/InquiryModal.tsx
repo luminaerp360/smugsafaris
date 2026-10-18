@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSafari } from '../context/SafariContext';
 import { TOURS_DATA } from '../data/safariData';
 import { X, Check, MessageCircle, Sparkles, ShieldCheck, Calendar, Users, Mail, Phone, User, Send } from 'lucide-react';
+import { trackInquirySubmission } from '../utils/gtm';
 
 export const InquiryModal: React.FC = () => {
   const { isInquiryOpen, closeInquiry, inquiryTourId } = useSafari();
@@ -72,6 +73,17 @@ export const InquiryModal: React.FC = () => {
       setIsSubmitting(false);
       setRefCode(generatedRef);
       setIsSubmitted(true);
+
+      // Track safari booking inquiry in Google Tag Manager
+      trackInquirySubmission({
+        tourTitle,
+        tourId: selectedTour,
+        tier,
+        adults: parseInt(adults, 10) || 2,
+        children: parseInt(children, 10) || 0,
+        travelDate,
+        reference: generatedRef,
+      });
     }
   };
 
