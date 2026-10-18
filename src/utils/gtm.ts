@@ -6,6 +6,7 @@
 declare global {
   interface Window {
     dataLayer: Record<string, any>[];
+    gtag?: (...args: any[]) => void;
   }
 }
 
@@ -28,6 +29,15 @@ export function trackGTMPageView(path: string, title?: string): void {
     page_title: title || document.title,
     page_location: window.location.href,
   });
+
+  // Also notify Google Analytics 4 directly if gtag is present
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('config', 'G-TLYLGRZYC3', {
+      page_path: path,
+      page_title: title || document.title,
+      page_location: window.location.href,
+    });
+  }
 }
 
 /**
@@ -38,6 +48,10 @@ export function trackGTMEvent(eventName: string, params: Record<string, any> = {
     event: eventName,
     ...params,
   });
+
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', eventName, params);
+  }
 }
 
 /**
