@@ -163,12 +163,12 @@ export const ContactPage: React.FC = () => {
                   <div>
                     <h4 className="font-bold text-stone-900">Instant WhatsApp Desk</h4>
                     <a
-                      href="https://wa.me/254741938127"
+                      href="https://wa.me/254769920741"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#1E7A2E] font-bold block hover:underline mt-0.5"
                     >
-                      +254 741 938127
+                      +254 769 920 741
                     </a>
                     <span className="text-[11px] text-stone-400">Average response time: &lt; 15 mins</span>
                   </div>

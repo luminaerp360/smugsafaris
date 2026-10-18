@@ -146,7 +146,7 @@ export const Navbar: React.FC = () => {
 
             {/* Direct WhatsApp Quick Chat */}
             <a
-              href="https://wa.me/254741938127?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20inquire%20about%20a%20safari%20package."
+              href="https://wa.me/254769920741?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20inquire%20about%20a%20safari%20package."
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-emerald-800/60 hover:bg-emerald-700/80 text-emerald-100 hover:text-white transition-colors font-semibold"
@@ -323,7 +323,7 @@ export const Navbar: React.FC = () => {
               <div className="flex lg:hidden items-center gap-1.5 sm:gap-2">
                 {/* WhatsApp Quick Chat Icon */}
                 <a
-                  href="https://wa.me/254741938127?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20inquire%20about%20a%20safari%20package."
+                  href="https://wa.me/254769920741?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20inquire%20about%20a%20safari%20package."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200/80 transition-all shadow-xs active:scale-95"
@@ -501,7 +501,7 @@ export const Navbar: React.FC = () => {
             {/* Streamlined Direct Contact Options */}
             <div className="grid grid-cols-2 gap-2">
               <a
-                href="https://wa.me/254741938127?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20inquire%20about%20a%20safari%20package."
+                href="https://wa.me/254769920741?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20inquire%20about%20a%20safari%20package."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 py-2.5 px-3 text-xs font-semibold text-emerald-300 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10"

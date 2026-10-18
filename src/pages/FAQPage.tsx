@@ -182,7 +182,7 @@ export const FAQPage: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href="https://wa.me/254741938127?text=Hello%20Smugsafaris!%20I%20have%20a%20question%20regarding%20a%20safari%20package."
+              href="https://wa.me/254769920741?text=Hello%20Smugsafaris!%20I%20have%20a%20question%20regarding%20a%20safari%20package."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-6 py-3 text-xs font-bold text-stone-900 bg-[#FDB913] hover:bg-[#ffc42e] rounded-xl flex items-center justify-center gap-2 shadow-md transition-all"

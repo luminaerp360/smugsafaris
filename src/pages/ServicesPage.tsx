@@ -273,7 +273,7 @@ export const ServicesPage: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
             <a
-              href="https://wa.me/254741938127"
+              href="https://wa.me/254769920741"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-6 py-3 text-xs font-bold text-stone-900 bg-[#FDB913] hover:bg-[#ffc42e] rounded-xl text-center shadow-md transition-all"

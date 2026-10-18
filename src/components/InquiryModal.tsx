@@ -97,7 +97,7 @@ export const InquiryModal: React.FC = () => {
     }
 
     const text = `Hello Smugsafaris! My name is ${fullName || 'Guest'}. Ref: ${refCode}. I would like to inquire about: ${tourTitle}, arriving around ${travelDate || 'flexible dates'} for ${adults} adults and ${children} children. Tier: ${tier}.`;
-    return `https://wa.me/254741938127?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/254769920741?text=${encodeURIComponent(text)}`;
   };
 
   return (

@@ -501,7 +501,7 @@ export const TourDetailPage: React.FC = () => {
                 </button>
 
                 <a
-                  href={`https://wa.me/254741938127?text=${encodeURIComponent(
+                  href={`https://wa.me/254769920741?text=${encodeURIComponent(
                     `Hello Smugsafaris! I am interested in booking the "${tour.title}" (${tour.duration}). Could you share availability and custom pricing?`
                   )}`}
                   target="_blank"

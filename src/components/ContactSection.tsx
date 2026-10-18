@@ -104,13 +104,13 @@ export const ContactSection: React.FC = () => {
             {/* Instant WhatsApp Action */}
             <div className="mt-8 pt-6 border-t border-neutral-200">
               <a
-                href="https://wa.me/254741938127?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20discuss%20a%20safari%20itinerary."
+                href="https://wa.me/254769920741?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20discuss%20a%20safari%20itinerary."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition-colors cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
-                <span>Chat Directly on WhatsApp (+254 741 938127)</span>
+                <span>Chat Directly on WhatsApp (+254 769 920 741)</span>
               </a>
             </div>
           </div>
