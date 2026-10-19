@@ -45,8 +45,7 @@ export const TourDetailPage: React.FC = () => {
       trackTourDetailView({
         id: tour.id,
         title: tour.title,
-        destination: tour.destination,
-        priceFrom: tour.priceFrom,
+        destination: tour.destinations?.[0],
       });
     }
   }, [tour?.id]);

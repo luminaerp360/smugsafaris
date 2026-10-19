@@ -60,6 +60,7 @@ export const ContactPage: React.FC = () => {
       setSubmitted(true);
 
       // Track conversion in GTM
+      const contactRef = `SMUG-CT-${Math.floor(100000 + Math.random() * 900000)}`;
       trackInquirySubmission({
         tourTitle: `${formData.destination} (${formData.travelStyle})`,
         tourId: 'contact-page-inquiry',
@@ -67,6 +68,7 @@ export const ContactPage: React.FC = () => {
         adults: formData.adults,
         children: formData.children,
         travelDate: formData.travelDates || 'Flexible',
+        reference: contactRef,
       });
     }
   };

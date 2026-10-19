@@ -7,6 +7,7 @@ import {
   MessageCircle,
   Menu,
   X,
+  ChevronDown,
   ChevronRight,
   Sparkles,
   ShieldCheck,
