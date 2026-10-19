@@ -13,10 +13,11 @@ import {
   AlertCircle,
   Play,
   Camera,
+  MessageCircle,
 } from 'lucide-react';
 
 export const TourDetailModal: React.FC = () => {
-  const { selectedTour, closeTourDetail, formatPrice, openInquiry } = useSafari();
+  const { selectedTour, closeTourDetail, openInquiry } = useSafari();
   const [activeDayAccordion, setActiveDayAccordion] = useState<number | null>(1);
   const [activePhoto, setActivePhoto] = useState<number>(0);
   const [showVideo, setShowVideo] = useState<boolean>(false);
@@ -248,34 +249,40 @@ export const TourDetailModal: React.FC = () => {
           <div className="pt-6 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">
-                Starting from per person
+                Expedition Package Pricing
               </span>
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl sm:text-3xl font-extrabold text-[#0F5E1F] tabular-nums">
-                  {formatPrice(selectedTour.priceUSD)}
+                <span className="text-xl sm:text-2xl font-extrabold text-[#0F5E1F]">
+                  Available on Request
                 </span>
-                {selectedTour.originalPriceUSD && (
-                  <span className="text-xs text-neutral-400 line-through tabular-nums">
-                    {formatPrice(selectedTour.originalPriceUSD)}
-                  </span>
-                )}
-                <span className="text-xs text-neutral-500">USD base / all park fees incl.</span>
               </div>
+              <span className="text-xs text-neutral-500">All park fees, private 4x4 cruiser & full board included</span>
             </div>
 
-            <div className="flex items-center gap-3 w-full sm:w-auto">
+            <div className="flex items-center gap-2.5 w-full sm:w-auto">
               <button
                 onClick={closeTourDetail}
-                className="flex-1 sm:flex-initial px-4 py-3 text-xs font-bold text-neutral-600 hover:bg-neutral-100 rounded-xl transition-colors cursor-pointer"
+                className="px-3 py-2.5 text-xs font-bold text-neutral-600 hover:bg-neutral-100 rounded-xl transition-colors cursor-pointer"
               >
                 Close
               </button>
+              <a
+                href={`https://wa.me/254769920741?text=${encodeURIComponent(
+                  `Hello Smugsafaris! I would like to request custom pricing and availability for "${selectedTour.title}" (${selectedTour.duration}).`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 sm:flex-initial px-4 py-2.5 text-xs font-bold text-white bg-[#25D366] hover:bg-[#20ba59] rounded-xl transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+              >
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span>WhatsApp</span>
+              </a>
               <button
                 onClick={handleBookNow}
-                className="flex-1 sm:flex-initial px-6 py-3 text-xs font-bold text-white bg-gradient-to-r from-[#F7941D] to-[#E8720C] hover:from-[#f99f34] hover:to-[#f07b15] rounded-xl shadow-md transition-all cursor-pointer flex items-center justify-center gap-2 transform active:scale-95"
+                className="flex-1 sm:flex-initial px-5 py-2.5 text-xs font-bold text-white bg-gradient-to-r from-[#1E7A2E] to-[#0F471A] hover:from-[#238B34] hover:to-[#166527] rounded-xl shadow-md transition-all cursor-pointer flex items-center justify-center gap-2 transform active:scale-95"
               >
-                <Sparkles className="w-4 h-4 text-amber-100" />
-                <span>Book This Safari</span>
+                <Sparkles className="w-4 h-4 text-[#FDB913]" />
+                <span>Submit Form</span>
               </button>
             </div>
           </div>

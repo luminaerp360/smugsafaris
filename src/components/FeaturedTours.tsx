@@ -14,6 +14,7 @@ import {
   SlidersHorizontal,
   Play,
   Pause,
+  MessageCircle,
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
@@ -116,10 +117,10 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = ({
   filterStyle = 'all',
   filterDuration = 'all',
 }) => {
-  const { formatPrice, openTourDetail, openInquiry } = useSafari();
+  const { openTourDetail, openInquiry } = useSafari();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'duration'>('featured');
+  const [sortBy, setSortBy] = useState<'featured' | 'duration' | 'duration-asc'>('featured');
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   const categories = [
@@ -168,9 +169,8 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = ({
       }
       return true;
     }).sort((a, b) => {
-      if (sortBy === 'price-asc') return a.priceUSD - b.priceUSD;
-      if (sortBy === 'price-desc') return b.priceUSD - a.priceUSD;
       if (sortBy === 'duration') return b.durationDays - a.durationDays;
+      if (sortBy === 'duration-asc') return a.durationDays - b.durationDays;
       return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
     });
   }, [selectedCategory, filterDestination, filterStyle, filterDuration, searchQuery, sortBy]);
@@ -205,9 +205,8 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = ({
                 className="bg-white border border-neutral-200 rounded-lg px-3 py-1.5 text-xs font-medium text-neutral-700 focus:outline-none focus:ring-1 focus:ring-[#1E7A2E] cursor-pointer"
               >
                 <option value="featured">Recommended</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
                 <option value="duration">Longest Duration</option>
+                <option value="duration-asc">Shortest Duration</option>
               </select>
             </div>
           </div>
@@ -316,36 +315,41 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = ({
                       </div>
 
                       {/* Price & Action Row */}
-                      <div className="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+                      <div className="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between gap-2">
                         <div>
                           <span className="text-[10px] uppercase font-bold text-neutral-400 block tracking-wider">
-                            From per person
+                            Pricing
                           </span>
-                          <div className="flex items-baseline gap-1.5">
-                            <span className="text-xl font-extrabold text-[#0F5E1F] tabular-nums">
-                              {formatPrice(tour.priceUSD)}
-                            </span>
-                            {tour.originalPriceUSD && (
-                              <span className="text-xs text-neutral-400 line-through tabular-nums">
-                                {formatPrice(tour.originalPriceUSD)}
-                              </span>
-                            )}
-                          </div>
+                          <span className="inline-block text-xs font-extrabold text-[#1E7A2E] bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60 mt-0.5">
+                            On Request
+                          </span>
                         </div>
 
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5 sm:gap-2">
+                          <a
+                            href={`https://wa.me/254769920741?text=${encodeURIComponent(
+                              `Hello Smugsafaris! I am interested in the "${tour.title}" (${tour.duration}). Could you please share the custom quote and availability?`
+                            )}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 text-[#25D366] bg-emerald-50 hover:bg-[#25D366] hover:text-white rounded-lg border border-emerald-200 transition-colors"
+                            title="Chat on WhatsApp"
+                            aria-label="Request quote on WhatsApp"
+                          >
+                            <MessageCircle className="w-4 h-4 fill-current" />
+                          </a>
+                          <button
+                            onClick={() => openInquiry(tour.id)}
+                            className="px-3 py-2 text-xs font-bold text-white bg-[#1E7A2E] hover:bg-[#0F5E1F] rounded-lg transition-colors cursor-pointer shadow-sm"
+                          >
+                            Inquire
+                          </button>
                           <Link
                             to={`/tours/${tour.id}`}
-                            className="px-3 py-2 text-xs font-bold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-colors inline-block"
+                            className="px-2.5 py-2 text-xs font-bold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-colors inline-block"
                           >
                             Itinerary
                           </Link>
-                          <button
-                            onClick={() => openInquiry(tour.id)}
-                            className="px-3.5 py-2 text-xs font-bold text-white bg-[#1E7A2E] hover:bg-[#0F5E1F] rounded-lg transition-colors cursor-pointer shadow-sm"
-                          >
-                            Book Now
-                          </button>
                         </div>
                       </div>
                     </div>

@@ -32,7 +32,7 @@ import {
 export const TourDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { formatPrice, openInquiry } = useSafari();
+  const { openInquiry } = useSafari();
 
   const tour = TOURS_DATA.find((t) => t.id === id);
   const [activeImage, setActiveImage] = useState<string | null>(null);
@@ -472,45 +472,39 @@ export const TourDetailPage: React.FC = () => {
           <div className="lg:col-span-1 sticky top-24 space-y-4">
             <div className="bg-white rounded-2xl p-6 border-2 border-emerald-600/30 shadow-lg">
               <span className="text-[11px] font-bold text-stone-400 uppercase tracking-wider block mb-1">
-                Expedition Starting Price
+                Safari Package Pricing
               </span>
 
-              <div className="flex items-baseline gap-2 mb-1">
-                <span className="text-3xl font-black text-stone-900">
-                  {formatPrice(tour.priceUSD)}
+              <div className="mb-4">
+                <span className="text-2xl sm:text-3xl font-black text-[#1E7A2E]">
+                  Price On Request
                 </span>
-                <span className="text-xs text-stone-500 font-semibold">/ person</span>
-                {tour.originalPriceUSD && (
-                  <span className="text-xs text-stone-400 line-through ml-auto">
-                    {formatPrice(tour.originalPriceUSD)}
-                  </span>
-                )}
+                <p className="text-xs text-stone-600 mt-1 leading-relaxed">
+                  Tailored quotes customized to your group size, travel season, lodge category & private safari preferences.
+                </p>
               </div>
-              <p className="text-[11px] text-stone-500 mb-5">
-                *Based on double occupancy. Custom dates & private departures available year-round.
-              </p>
 
               {/* Action Buttons */}
               <div className="space-y-2.5">
-                <button
-                  onClick={() => openInquiry(tour.id)}
-                  className="w-full py-3.5 px-4 text-sm font-extrabold text-white bg-gradient-to-r from-[#1E7A2E] to-[#0F471A] hover:from-[#238B34] hover:to-[#166527] rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
-                >
-                  <Sparkles className="w-4 h-4 text-[#FDB913]" />
-                  <span>Inquire / Book This Tour</span>
-                </button>
-
                 <a
                   href={`https://wa.me/254769920741?text=${encodeURIComponent(
                     `Hello Smugsafaris! I am interested in booking the "${tour.title}" (${tour.duration}). Could you share availability and custom pricing?`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 px-4 text-xs font-bold text-[#0F5E1F] bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-colors border border-emerald-200 flex items-center justify-center gap-2"
+                  className="w-full py-3.5 px-4 text-xs font-bold text-white bg-[#25D366] hover:bg-[#20ba59] rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
                 >
-                  <MessageCircle className="w-4 h-4 text-[#25D366] fill-[#25D366]" />
-                  <span>WhatsApp Safari Specialist</span>
+                  <MessageCircle className="w-4 h-4 fill-white" />
+                  <span>Request Quote on WhatsApp</span>
                 </a>
+
+                <button
+                  onClick={() => openInquiry(tour.id)}
+                  className="w-full py-3.5 px-4 text-sm font-extrabold text-white bg-gradient-to-r from-[#1E7A2E] to-[#0F471A] hover:from-[#238B34] hover:to-[#166527] rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
+                >
+                  <Sparkles className="w-4 h-4 text-[#FDB913]" />
+                  <span>Submit Safari Inquiry Form</span>
+                </button>
 
                 <div className="grid grid-cols-2 gap-2">
                   <a
@@ -610,8 +604,8 @@ export const TourDetailPage: React.FC = () => {
                     </p>
                   </div>
                   <div className="flex items-center justify-between pt-2 border-t border-stone-100">
-                    <span className="text-xs font-extrabold text-stone-900">
-                      {formatPrice(rt.priceUSD)}
+                    <span className="text-xs font-bold text-[#1E7A2E]">
+                      On Request
                     </span>
                     <Link
                       to={`/tours/${rt.id}`}

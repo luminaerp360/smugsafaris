@@ -15,6 +15,7 @@ import {
   ChevronRight,
   Play,
   Pause,
+  MessageCircle,
 } from 'lucide-react';
 import { Logo } from './Logo';
 
@@ -97,7 +98,7 @@ const CAROUSEL_SLIDES: CarouselSlide[] = [
 ];
 
 export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
-  const { openInquiry, scrollToSection, formatPrice } = useSafari();
+  const { openInquiry, scrollToSection } = useSafari();
   const [selectedDestination, setSelectedDestination] = useState('all');
   const [selectedStyle, setSelectedStyle] = useState('all');
   const [selectedDuration, setSelectedDuration] = useState('all');
@@ -427,20 +428,26 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
               <div className="pt-2 sm:pt-2.5 border-t border-white/15 flex items-center justify-between">
                 <div>
                   <span className="text-[9px] font-medium text-neutral-400 block uppercase tracking-wider">
-                    From per person
+                    Pricing
                   </span>
-                  <span className="text-base sm:text-xl font-extrabold text-[#FDB913] tabular-nums">
-                    {formatPrice(currentSlide.priceUSD)}
+                  <span className="text-xs sm:text-sm font-extrabold text-[#FDB913]">
+                    On Request
                   </span>
                 </div>
 
                 <div className="flex items-center gap-1.5">
-                  <Link
-                    to={`/tours/${currentSlide.id}`}
-                    className="px-2.5 py-1 sm:py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-bold transition-colors"
+                  <a
+                    href={`https://wa.me/254769920741?text=${encodeURIComponent(
+                      `Hello Smugsafaris! I would like to request pricing for "${currentSlide.title}" (${currentSlide.subtitle}).`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1 sm:p-1.5 rounded-lg bg-[#25D366]/20 hover:bg-[#25D366] text-[#25D366] hover:text-white transition-colors"
+                    title="Inquire on WhatsApp"
+                    aria-label="Inquire on WhatsApp"
                   >
-                    Itinerary
-                  </Link>
+                    <MessageCircle className="w-3.5 h-3.5 fill-current" />
+                  </a>
 
                   <button
                     onClick={() => openInquiry(currentSlide.id)}
@@ -448,6 +455,13 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
                   >
                     Inquire
                   </button>
+
+                  <Link
+                    to={`/tours/${currentSlide.id}`}
+                    className="px-2.5 py-1 sm:py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-bold transition-colors"
+                  >
+                    Itinerary
+                  </Link>
                 </div>
               </div>
             </div>

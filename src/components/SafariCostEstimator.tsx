@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { useSafari } from '../context/SafariContext';
-import { Calculator, Check, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Calculator, Check, Sparkles, ShieldCheck, MessageCircle } from 'lucide-react';
 
 export const SafariCostEstimator: React.FC = () => {
-  const { formatPrice, openInquiry } = useSafari();
+  const { openInquiry } = useSafari();
 
   const [days, setDays] = useState<number>(7);
   const [tier, setTier] = useState<'mid-range' | 'luxury' | 'budget'>('mid-range');
@@ -19,28 +19,6 @@ export const SafariCostEstimator: React.FC = () => {
     luxury: { baseDaily: 420, label: '5-Star Luxury Tented Camps & Reserves' },
   };
 
-  const calculatedTotal = useMemo(() => {
-    const dailyRate = tierCostMap[tier].baseDaily;
-    const adultCost = adults * dailyRate * days;
-    const childCost = children * (dailyRate * 0.65) * days; // 35% discount for kids
-
-    let addOns = 0;
-    if (balloonSafari) {
-      addOns += 450 * (adults + children);
-    }
-    if (culturalVisit) {
-      addOns += 30 * (adults + children);
-    }
-
-    const total = adultCost + childCost + addOns;
-    const perPerson = total / Math.max(1, adults + children);
-
-    return {
-      total,
-      perPerson: Math.round(perPerson),
-    };
-  }, [days, tier, adults, children, balloonSafari, culturalVisit]);
-
   const handleBookEstimate = () => {
     openInquiry();
   };
@@ -54,13 +32,13 @@ export const SafariCostEstimator: React.FC = () => {
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/60 border border-emerald-700/60 text-xs font-semibold text-emerald-300 mb-4">
                 <Calculator className="w-3.5 h-3.5 text-[#FDB913]" />
-                <span>Interactive Safari Calculator</span>
+                <span>Interactive Safari Planner</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Plan Your Safari Budget in Seconds
+                Plan Your Custom Safari Itinerary
               </h2>
               <p className="mt-2 text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-xl">
-                Estimate private safari costs across Kenya & Tanzania including dedicated 4x4 cruiser, wildlife guide, park fees, and full-board lodging.
+                Configure your preferred duration, comfort tier, and travelers. Request a custom quote instantly on WhatsApp or submit the inquiry form.
               </p>
 
               <div className="mt-8 space-y-6">
@@ -172,41 +150,40 @@ export const SafariCostEstimator: React.FC = () => {
                         type="checkbox"
                         checked={balloonSafari}
                         onChange={(e) => setBalloonSafari(e.target.checked)}
-                        className="rounded accent-[#F7941D]"
+                        className="rounded accent-[#1E7A2E]"
                       />
-                      <span>Hot Air Balloon ($450 pp)</span>
+                      <span>Hot Air Balloon (Sunrise Flight)</span>
                     </label>
                     <label className="flex items-center gap-2.5 p-2 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer border border-white/10">
                       <input
                         type="checkbox"
                         checked={culturalVisit}
                         onChange={(e) => setCulturalVisit(e.target.checked)}
-                        className="rounded accent-[#F7941D]"
+                        className="rounded accent-[#1E7A2E]"
                       />
-                      <span>Maasai Cultural Village ($30 pp)</span>
+                      <span>Maasai Cultural Village Visit</span>
                     </label>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Estimated Price Summary Card */}
+            {/* Right Column: Custom Quote on Request Summary Card */}
             <div className="lg:col-span-5">
               <div className="bg-white rounded-2xl p-6 sm:p-7 text-neutral-800 shadow-xl border border-neutral-200 flex flex-col justify-between">
                 <div>
                   <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#1E7A2E] block">
-                    Indicative Cost Estimate
+                    Custom Safari Quote
                   </span>
                   
                   <div className="mt-3 pb-4 border-b border-neutral-200">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-3xl sm:text-4xl font-extrabold text-[#0F5E1F] tabular-nums">
-                        {formatPrice(calculatedTotal.total)}
+                      <span className="text-2xl sm:text-3xl font-extrabold text-[#0F5E1F]">
+                        Quote on Request
                       </span>
-                      <span className="text-xs text-neutral-500 font-medium">total group</span>
                     </div>
-                    <p className="text-xs text-neutral-500 mt-1">
-                      Approx. <span className="font-bold text-neutral-700">{formatPrice(calculatedTotal.perPerson)}</span> per person for {adults + children} travelers
+                    <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
+                      Personalized proposal for {days} days ({tierCostMap[tier].label}) with {adults + children} traveler{adults + children > 1 ? 's' : ''}.
                     </p>
                   </div>
 
@@ -234,15 +211,43 @@ export const SafariCostEstimator: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-neutral-100">
+                <div className="pt-4 border-t border-neutral-100 space-y-2.5">
+                  <a
+                    href={`https://wa.me/254769920741?text=${encodeURIComponent(
+                      `Hello Smugsafaris! I am planning a custom ${days}-day safari (${tierCostMap[tier].label}) for ${adults} adult(s)${
+                        children > 0 ? ` and ${children} child(ren)` : ''
+                      }.${
+                        [
+                          balloonSafari ? 'Hot Air Balloon Safari' : null,
+                          culturalVisit ? 'Maasai Cultural Village Visit' : null,
+                        ]
+                          .filter(Boolean)
+                          .join(', ')
+                          ? ` Add-ons: ${[
+                              balloonSafari ? 'Hot Air Balloon Safari' : null,
+                              culturalVisit ? 'Maasai Cultural Village Visit' : null,
+                            ]
+                              .filter(Boolean)
+                              .join(', ')}.`
+                          : ''
+                      } Could you please share a tailored quote?`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 px-4 text-xs font-bold text-white bg-[#25D366] hover:bg-[#20ba59] rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-white" />
+                    <span>Request Quote on WhatsApp</span>
+                  </a>
+
                   <button
                     onClick={handleBookEstimate}
-                    className="w-full py-3.5 px-4 text-xs font-bold text-white bg-gradient-to-r from-[#F7941D] to-[#E8720C] hover:from-[#f99f34] hover:to-[#f07b15] rounded-xl shadow-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer transform active:scale-95"
+                    className="w-full py-3 px-4 text-xs font-bold text-[#0F5E1F] bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer border border-emerald-200"
                   >
-                    <Sparkles className="w-4 h-4 text-amber-100" />
-                    <span>Request Detailed Proposal & Quote</span>
+                    <Sparkles className="w-4 h-4 text-[#FDB913]" />
+                    <span>Submit Inquiry Form</span>
                   </button>
-                  <p className="text-[10px] text-center text-neutral-400 mt-2">
+                  <p className="text-[10px] text-center text-neutral-400 mt-1">
                     No payment required now. Custom itinerary finalized with our experts.
                   </p>
                 </div>

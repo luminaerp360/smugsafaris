@@ -17,7 +17,7 @@ import {
 
 export const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { openInquiry, formatPrice } = useSafari();
+  const { openInquiry } = useSafari();
 
   const post = BLOG_POSTS.find((p) => p.slug === slug);
 
@@ -186,8 +186,8 @@ export const BlogPostPage: React.FC = () => {
                   <h4 className="text-xs sm:text-sm font-extrabold text-stone-900 truncate mb-1">
                     {t.title}
                   </h4>
-                  <span className="text-xs font-bold text-stone-900 block mb-2">
-                    From {formatPrice(t.priceUSD)}
+                  <span className="text-xs font-bold text-[#1E7A2E] block mb-2">
+                    Price on Request
                   </span>
                   <Link
                     to={`/tours/${t.id}`}

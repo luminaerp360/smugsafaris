@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Logo } from './Logo';
-import { useSafari, Currency } from '../context/SafariContext';
+import { useSafari } from '../context/SafariContext';
 import {
   Phone,
   MessageCircle,
   Menu,
   X,
-  ChevronDown,
   ChevronRight,
   Sparkles,
   ShieldCheck,
@@ -27,7 +26,7 @@ import {
 } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
-  const { currency, setCurrency, openInquiry } = useSafari();
+  const { openInquiry } = useSafari();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -291,21 +290,16 @@ export const Navbar: React.FC = () => {
 
               {/* Desktop Right Action Controls Zone */}
               <div className="hidden lg:flex items-center gap-2.5">
-                {/* Stable Currency Selector Pill */}
-                <div className="relative">
-                  <select
-                    value={currency}
-                    onChange={(e) => setCurrency(e.target.value as Currency)}
-                    className="appearance-none bg-stone-100 hover:bg-stone-200/80 text-[11px] font-bold text-stone-800 rounded-lg pl-2 pr-5 py-1.5 border border-stone-200 focus:outline-none focus:ring-1 focus:ring-[#1E7A2E] cursor-pointer transition-colors"
-                    aria-label="Select Currency"
-                  >
-                    <option value="USD">USD ($)</option>
-                    <option value="EUR">EUR (€)</option>
-                    <option value="GBP">GBP (£)</option>
-                    <option value="KES">KES (KSh)</option>
-                  </select>
-                  <ChevronDown className="w-3 h-3 text-stone-500 absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                </div>
+                <a
+                  href="https://wa.me/254769920741?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20request%20a%20custom%20safari%20quote."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#1E7A2E] bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors border border-emerald-200/60"
+                  aria-label="WhatsApp Us"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366]" />
+                  <span>WhatsApp</span>
+                </a>
 
 
 
@@ -407,23 +401,16 @@ export const Navbar: React.FC = () => {
               <Logo variant="full" theme="dark" size="sm" className="h-8 w-auto" />
             </Link>
 
-            <div className="flex items-center gap-2.5">
-              {/* Subtle Inline Currency Switcher */}
-              <div className="flex items-center bg-white/5 p-0.5 rounded-lg border border-white/10 text-[11px]">
-                {(['USD', 'EUR', 'GBP', 'KES'] as Currency[]).map((c) => (
-                  <button
-                    key={c}
-                    onClick={() => setCurrency(c)}
-                    className={`px-1.5 py-0.5 font-bold rounded transition-colors cursor-pointer ${
-                      currency === c
-                        ? 'bg-[#1E7A2E] text-white shadow-xs'
-                        : 'text-stone-400 hover:text-white'
-                    }`}
-                  >
-                    {c}
-                  </button>
-                ))}
-              </div>
+            <div className="flex items-center gap-2">
+              <a
+                href="https://wa.me/254769920741?text=Hello%20Smugsafaris!%20I%20would%20like%20to%20inquire%20about%20a%20safari%20package."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 rounded-lg bg-[#25D366]/20 text-[#25D366] flex items-center justify-center border border-[#25D366]/30"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="w-4 h-4 fill-current" />
+              </a>
 
               <button
                 onClick={() => setMobileMenuOpen(false)}

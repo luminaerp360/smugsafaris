@@ -18,18 +18,19 @@ import {
   ChevronRight,
   Filter,
   X,
+  MessageCircle,
 } from 'lucide-react';
 
 export const ToursPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { formatPrice, openInquiry } = useSafari();
+  const { openInquiry } = useSafari();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDestination, setSelectedDestination] = useState<string>('all');
   const [selectedStyle, setSelectedStyle] = useState<string>('all');
   const [selectedDuration, setSelectedDuration] = useState<string>('all');
   const [selectedTier, setSelectedTier] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'duration'>('featured');
+  const [sortBy, setSortBy] = useState<'featured' | 'duration' | 'duration-asc'>('featured');
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   // Sync from URL search params on mount
@@ -103,9 +104,8 @@ export const ToursPage: React.FC = () => {
 
       return true;
     }).sort((a, b) => {
-      if (sortBy === 'price-asc') return a.priceUSD - b.priceUSD;
-      if (sortBy === 'price-desc') return b.priceUSD - a.priceUSD;
       if (sortBy === 'duration') return b.durationDays - a.durationDays;
+      if (sortBy === 'duration-asc') return a.durationDays - b.durationDays;
       return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
     });
   }, [selectedDestination, selectedStyle, selectedDuration, selectedTier, searchQuery, sortBy]);
@@ -261,9 +261,8 @@ export const ToursPage: React.FC = () => {
                 className="px-2.5 py-1.5 bg-stone-100 hover:bg-stone-200/80 rounded-lg text-xs font-semibold text-stone-700 border-none focus:outline-none cursor-pointer"
               >
                 <option value="featured">Featured First</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-                <option value="duration">Duration (Days)</option>
+                <option value="duration">Duration: Long to Short</option>
+                <option value="duration-asc">Duration: Short to Long</option>
               </select>
             </div>
           </div>
@@ -375,33 +374,38 @@ export const ToursPage: React.FC = () => {
                     </div>
 
                     {/* Bottom Pricing & Actions */}
-                    <div className="pt-3 border-t border-stone-100 flex items-center justify-between gap-3">
+                    <div className="pt-3 border-t border-stone-100 flex items-center justify-between gap-2">
                       <div>
                         <span className="text-[10px] text-stone-400 uppercase font-bold block">
-                          From (Per Person)
+                          Pricing
                         </span>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="text-lg font-black text-stone-900">
-                            {formatPrice(tour.priceUSD)}
-                          </span>
-                          {tour.originalPriceUSD && (
-                            <span className="text-[11px] text-stone-400 line-through">
-                              {formatPrice(tour.originalPriceUSD)}
-                            </span>
-                          )}
-                        </div>
+                        <span className="inline-block text-xs font-extrabold text-[#1E7A2E] bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60 mt-0.5">
+                          On Request
+                        </span>
                       </div>
 
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <a
+                          href={`https://wa.me/254769920741?text=${encodeURIComponent(
+                            `Hello Smugsafaris! I would like to request pricing and details for "${tour.title}" (${tour.duration}).`
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 text-[#25D366] bg-emerald-50 hover:bg-[#25D366] hover:text-white rounded-xl border border-emerald-200 transition-colors"
+                          title="Request on WhatsApp"
+                          aria-label="Request quote on WhatsApp"
+                        >
+                          <MessageCircle className="w-4 h-4 fill-current" />
+                        </a>
                         <button
                           onClick={() => openInquiry(tour.id)}
-                          className="px-3 py-2 text-xs font-bold text-[#0F5E1F] bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-colors cursor-pointer"
+                          className="px-3 py-2 text-xs font-bold text-[#0F5E1F] bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-colors cursor-pointer border border-emerald-200/60"
                         >
                           Inquire
                         </button>
                         <Link
                           to={`/tours/${tour.id}`}
-                          className="px-3.5 py-2 text-xs font-bold text-white bg-gradient-to-r from-[#1E7A2E] to-[#0F471A] hover:from-[#238B34] hover:to-[#166527] rounded-xl shadow-xs hover:shadow transition-all inline-flex items-center gap-1"
+                          className="px-3 py-2 text-xs font-bold text-white bg-gradient-to-r from-[#1E7A2E] to-[#0F471A] hover:from-[#238B34] hover:to-[#166527] rounded-xl shadow-xs hover:shadow transition-all inline-flex items-center gap-1"
                         >
                           <span>Itinerary</span>
                           <ArrowRight className="w-3 h-3" />
