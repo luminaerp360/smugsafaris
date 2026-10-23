@@ -5,20 +5,46 @@
   <!-- 1. Homepage -->
   <url>
     <loc>https://www.smugsafaris.co.ke/</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.smugsafaris.co.ke/images/fleet/cruiser-amboseli-kilimanjaro.jpg</image:loc>
       <image:title>Smugsafaris 4x4 Safari Land Cruiser with Mt. Kilimanjaro View</image:title>
-      <image:caption>Authentic luxury African safari tours across Kenya and East Africa</image:caption>
+      <image:caption>Premier tours and travel company in Eldoret Kenya - Luxury African safari tours across Kenya and East Africa</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Dedicated Tours & Travel Companies in Kenya Hub -->
+  <url>
+    <loc>https://www.smugsafaris.co.ke/tours-and-travel-companies-in-kenya</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.99</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>Best Tours and Travel Companies in Kenya - Smugsafaris</image:title>
+      <image:caption>Top licensed tours and travel company in Kenya offering bespoke 4x4 African safaris and wildlife tours</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Dedicated Eldoret Tours & Travel Hub -->
+  <url>
+    <loc>https://www.smugsafaris.co.ke/tours-and-travel-companies-in-eldoret</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.98</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>Tours and Travel Companies in Eldoret, Kenya - Smugsafaris</image:title>
+      <image:caption>Premier tours and travel company in Eldoret offering bespoke African safaris and North Rift excursions</image:caption>
     </image:image>
   </url>
 
   <!-- 2. Safari Tours Index -->
   <url>
     <loc>https://www.smugsafaris.co.ke/tours</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>

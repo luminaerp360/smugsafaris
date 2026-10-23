@@ -158,6 +158,14 @@ export const Footer: React.FC = () => {
                   10-Day Bush & Beach: Mara + Zanzibar
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/tours-and-travel-companies-in-eldoret"
+                  className="hover:text-white transition-colors cursor-pointer text-left block text-[#FDB913] font-medium"
+                >
+                  Eldoret & North Rift Safaris
+                </Link>
+              </li>
               <li className="pt-1">
                 <Link
                   to="/tours"
@@ -178,6 +186,12 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-xs text-neutral-300">
               <li>
                 <Link to="/" className="hover:text-white transition-colors">Home</Link>
+              </li>
+              <li>
+                <Link to="/tours-and-travel-companies-in-kenya" className="hover:text-white transition-colors text-amber-300 font-semibold">Tours & Travel in Kenya</Link>
+              </li>
+              <li>
+                <Link to="/tours-and-travel-companies-in-eldoret" className="hover:text-white transition-colors text-emerald-300 font-medium">Eldoret Tours & Travel Hub</Link>
               </li>
               <li>
                 <Link to="/tours" className="hover:text-white transition-colors">Tours & Safaris</Link>

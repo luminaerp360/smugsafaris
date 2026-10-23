@@ -25,6 +25,8 @@ import { FAQPage } from './pages/FAQPage';
 import { ContactPage } from './pages/ContactPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
+import { EldoretToursPage } from './pages/EldoretToursPage';
+import { KenyaToursPage } from './pages/KenyaToursPage';
 
 function AppLayout() {
   return (
@@ -50,6 +52,12 @@ function AppLayout() {
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/tours-and-travel-companies-in-eldoret" element={<EldoretToursPage />} />
+          <Route path="/eldoret-tours-and-travel" element={<EldoretToursPage />} />
+          <Route path="/eldoret-safaris" element={<EldoretToursPage />} />
+          <Route path="/tours-and-travel-companies-in-kenya" element={<KenyaToursPage />} />
+          <Route path="/kenya-tours-and-travel" element={<KenyaToursPage />} />
+          <Route path="/best-tour-companies-in-kenya" element={<KenyaToursPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/booking-terms" element={<TermsPage />} />

@@ -1,20 +1,13 @@
-import React, { useState, useMemo, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { TOURS_DATA, TourPackage } from '../data/safariData';
+import React, { useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSafari } from '../context/SafariContext';
 import {
-  Clock,
-  MapPin,
-  Users,
+  ArrowUpRight,
   Compass,
   ArrowRight,
   Sparkles,
-  Check,
-  Search,
-  SlidersHorizontal,
-  Play,
-  Pause,
-  MessageCircle,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
@@ -24,364 +17,299 @@ interface FeaturedToursProps {
   filterDuration?: string;
 }
 
-const TourCardMedia: React.FC<{
-  tour: TourPackage;
-  hasImgFailed: boolean;
-  onImageError: () => void;
-}> = ({ tour, hasImgFailed, onImageError }) => {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
+interface KenyaTripCard {
+  id: string;
+  tourId: string;
+  name: string;
+  region: string;
+  description: string;
+  image: string;
+  badge?: string;
+}
 
-  const togglePlay = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    if (!videoRef.current) return;
-    if (isPlaying) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      videoRef.current.play().catch(() => {});
-      setIsPlaying(true);
+const KENYA_TRIPS_SHOWCASE: KenyaTripCard[] = [
+  {
+    id: 'maasai-mara',
+    tourId: 'maasai-mara-great-migration',
+    name: 'Maasai Mara',
+    region: 'Southwestern Kenya',
+    description: 'World-renowned wildebeest migration, dramatic Mara River crossings, and boundless golden savannah skies filled with Africa’s greatest predators.',
+    image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80',
+    badge: 'World Wonder',
+  },
+  {
+    id: 'mount-kenya',
+    tourId: 'classic-kenya-big-five',
+    name: 'Mount Kenya',
+    region: 'Central Highlands',
+    description: 'Crisp highland air, lush green bamboo forests, and dramatic jagged alpine peaks offer a refreshing and peaceful wilderness retreat away from the city.',
+    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80',
+    badge: 'Highland Peak',
+  },
+  {
+    id: 'amboseli-kilimanjaro',
+    tourId: 'amboseli-tsavo-kilimanjaro',
+    name: 'Amboseli',
+    region: 'Southern Kenya',
+    description: 'Iconic free-ranging giant elephant herds grazing peacefully against the towering snow-capped summit of Mount Kilimanjaro in Amboseli’s emerald swamps.',
+    image: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=800&q=80',
+    badge: 'Kilimanjaro View',
+  },
+  {
+    id: 'samburu',
+    tourId: 'luxury-flying-safari-mara-samburu',
+    name: 'Samburu',
+    region: 'Northern Frontier',
+    description: 'Dramatic semi-arid landscapes and a rich local heritage serve as the backdrop for encountering unique wildlife in the rugged north, including Grevy’s zebras.',
+    image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=800&q=80',
+    badge: 'Special Five',
+  },
+  {
+    id: 'watamu-malindi',
+    tourId: 'bush-and-beach-mara-zanzibar',
+    name: 'Watamu Malindi',
+    region: 'Kenyan Coast',
+    description: 'Ancient Swahili ruins, vibrant marine parks, and sun-drenched white sands shape the ultimate North Coast tropical beach and reef holiday.',
+    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+    badge: 'Beach & Reef',
+  },
+  {
+    id: 'nakuru',
+    tourId: 'classic-kenya-big-five',
+    name: 'Nakuru',
+    region: 'Great Rift Valley',
+    description: 'A renowned black and white rhino sanctuary, diverse birdlife, and stunning Great Rift Valley scenery offer a remarkable setting for a weekend safari.',
+    image: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=800&q=80',
+    badge: 'Rhino Sanctuary',
+  },
+  {
+    id: 'tsavo',
+    tourId: 'amboseli-tsavo-kilimanjaro',
+    name: 'Tsavo',
+    region: 'Southeastern Kenya',
+    description: 'Legendary red-dusted elephants, vast savannah expanses, volcanic lava flows, and the crystal-clear underwater hippo pools of Mzima Springs.',
+    image: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=800&q=80',
+    badge: 'Red Elephants',
+  },
+  {
+    id: 'kerio-valley',
+    tourId: 'classic-kenya-big-five',
+    name: 'Kerio Valley',
+    region: 'North Rift Escarpment',
+    description: 'Breathtaking Great Rift Valley viewpoints, Torok waterfall hiking trails, and wild elephant tracking in the untouched Rimoi Game Reserve.',
+    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80',
+    badge: 'North Rift',
+  },
+];
+
+export const FeaturedTours: React.FC<FeaturedToursProps> = () => {
+  const navigate = useNavigate();
+  const { openInquiry } = useSafari();
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -340, behavior: 'smooth' });
     }
   };
 
-  return (
-    <div className="relative aspect-[16/10] overflow-hidden bg-[#182F1D]">
-      {tour.video ? (
-        <video
-          ref={videoRef}
-          src={tour.video}
-          poster={tour.heroImage}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-        />
-      ) : !hasImgFailed ? (
-        <img
-          src={tour.heroImage}
-          alt={tour.title}
-          referrerPolicy="no-referrer"
-          onError={onImageError}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-      ) : (
-        <div className="w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-[#182F1D] to-[#2D5A34] text-white text-center">
-          <Compass className="w-10 h-10 text-[#7CC142] mb-2" />
-          <span className="text-sm font-bold">{tour.title}</span>
-        </div>
-      )}
-
-      {/* Gradient Scrim for contrast */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
-
-      {/* Best Seller badge top-left */}
-      {tour.bestSeller && (
-        <div className="absolute top-3 left-3 bg-gradient-to-r from-[#F7941D] to-[#E8720C] text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm z-10">
-          Best Seller
-        </div>
-      )}
-
-      {/* Video Play/Pause Control top-right */}
-      {tour.video && (
-        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
-          <button
-            onClick={togglePlay}
-            className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-transform active:scale-90 cursor-pointer"
-            title={isPlaying ? 'Pause preview' : 'Play preview'}
-          >
-            {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 ml-0.5" />}
-          </button>
-        </div>
-      )}
-
-      {/* Overlay Duration & Style */}
-      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white font-medium z-10">
-        <span className="flex items-center gap-1.5 drop-shadow-md">
-          <Clock className="w-3.5 h-3.5 text-[#FDB913]" />
-          <span>{tour.duration}</span>
-        </span>
-        <span className="bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded text-[11px] font-semibold text-neutral-200">
-          {tour.style}
-        </span>
-      </div>
-    </div>
-  );
-};
-
-export const FeaturedTours: React.FC<FeaturedToursProps> = ({
-  filterDestination = 'all',
-  filterStyle = 'all',
-  filterDuration = 'all',
-}) => {
-  const { openTourDetail, openInquiry } = useSafari();
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [sortBy, setSortBy] = useState<'featured' | 'duration' | 'duration-asc'>('featured');
-  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
-
-  const categories = [
-    { id: 'all', label: 'All Safaris' },
-    { id: 'Wildlife & Big Five', label: 'Big Five & Wildlife' },
-    { id: 'Great Migration', label: 'Great Migration' },
-    { id: 'Bush & Beach', label: 'Bush & Beach' },
-    { id: 'Luxury Flying Safari', label: 'Flying Safaris' },
-  ];
-
-  const filteredTours = useMemo(() => {
-    return TOURS_DATA.filter((tour) => {
-      // Category filter
-      if (selectedCategory !== 'all' && tour.style !== selectedCategory) {
-        return false;
-      }
-      // Hero destination filter
-      if (filterDestination !== 'all') {
-        const matchesDest = tour.destinations.some((d) =>
-          d.toLowerCase().includes(filterDestination.toLowerCase())
-        );
-        if (!matchesDest) return false;
-      }
-      // Hero style filter
-      if (filterStyle !== 'all' && tour.style !== filterStyle) {
-        return false;
-      }
-      // Hero duration filter
-      if (filterDuration === 'short' && (tour.durationDays < 3 || tour.durationDays > 4)) {
-        return false;
-      }
-      if (filterDuration === 'medium' && (tour.durationDays < 5 || tour.durationDays > 7)) {
-        return false;
-      }
-      if (filterDuration === 'extended' && tour.durationDays < 8) {
-        return false;
-      }
-      // Search text
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        const matchesText =
-          tour.title.toLowerCase().includes(q) ||
-          tour.tagline.toLowerCase().includes(q) ||
-          tour.destinations.some((d) => d.toLowerCase().includes(q));
-        if (!matchesText) return false;
-      }
-      return true;
-    }).sort((a, b) => {
-      if (sortBy === 'duration') return b.durationDays - a.durationDays;
-      if (sortBy === 'duration-asc') return a.durationDays - b.durationDays;
-      return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
-    });
-  }, [selectedCategory, filterDestination, filterStyle, filterDuration, searchQuery, sortBy]);
-
-  const handleImageError = (tourId: string) => {
-    setFailedImages((prev) => ({ ...prev, [tourId]: true }));
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 340, behavior: 'smooth' });
+    }
   };
 
+  // Duplicate the array to ensure perfectly continuous, infinite, jitter-free scrolling
+  const marqueeItems = [...KENYA_TRIPS_SHOWCASE, ...KENYA_TRIPS_SHOWCASE];
+
   return (
-    <section id="tours" className="py-16 md:py-24 bg-[#FAFAF8]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <ScrollReveal direction="left" distance={40}>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-neutral-200">
+    <section
+      id="tours"
+      className="relative py-16 md:py-24 bg-[#FAF5EB] overflow-hidden border-b border-[#EADFCB]"
+    >
+      {/* Decorative Savanna Background Illustrations & Contours */}
+      <div className="absolute inset-0 pointer-events-none opacity-45 overflow-hidden">
+        {/* Soft Sun Glow */}
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-amber-200/50 via-amber-100/20 to-transparent rounded-full blur-3xl" />
+
+        {/* Savannah Hills & Acacia Tree Landscape SVG Outline */}
+        <svg
+          viewBox="0 0 1440 600"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full object-cover text-[#E3D3BE]"
+        >
+          <path
+            d="M-50,420 Q180,310 380,390 T800,340 T1200,390 T1500,330 L1500,600 L-50,600 Z"
+            fill="currentColor"
+            opacity="0.18"
+          />
+          <path
+            d="M-50,490 Q220,430 520,480 T1050,440 T1500,470 L1500,600 L-50,600 Z"
+            fill="currentColor"
+            opacity="0.25"
+          />
+          <g opacity="0.25" transform="translate(60, 260) scale(0.65)">
+            <path
+              d="M120,240 C110,180 90,130 115,80 C125,50 145,30 180,20 C140,22 100,35 70,55 C40,40 10,45 -10,65 C-30,45 -60,45 -80,60 C-110,50 -140,65 -150,90 C-120,95 -90,95 -70,110 C-90,125 -100,150 -90,175 C-60,165 -30,160 -10,170 C10,160 40,160 60,175 C70,195 85,220 90,240 Z"
+              fill="currentColor"
+            />
+            <path
+              d="M100,240 Q105,180 110,140 Q115,100 130,80 M105,140 Q90,110 70,95 M110,120 Q125,95 150,85"
+              stroke="currentColor"
+              strokeWidth="6"
+              strokeLinecap="round"
+            />
+          </g>
+          <g opacity="0.2" transform="translate(1320, 290) scale(0.55)">
+            <path
+              d="M120,240 C110,180 90,130 115,80 C125,50 145,30 180,20 C140,22 100,35 70,55 C40,40 10,45 -10,65 C-30,45 -60,45 -80,60 C-110,50 -140,65 -150,90 C-120,95 -90,95 -70,110 C-90,125 -100,150 -90,175 C-60,165 -30,160 -10,170 C10,160 40,160 60,175 C70,195 85,220 90,240 Z"
+              fill="currentColor"
+            />
+            <path
+              d="M100,240 Q105,180 110,140 Q115,100 130,80 M105,140 Q90,110 70,95"
+              stroke="currentColor"
+              strokeWidth="6"
+              strokeLinecap="round"
+            />
+          </g>
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header with Left/Right Nav Arrows */}
+        <ScrollReveal direction="up" distance={30}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
-                Handcrafted African Itineraries
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
-                Featured Safari Packages
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-[#E5D7C2] text-xs font-bold text-[#0F5E1F] shadow-sm mb-2">
+                <Sparkles className="w-3.5 h-3.5 text-[#F7941D]" />
+                <span>Handcrafted Kenya Safaris</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1A1A1A] tracking-tight leading-tight">
+                Top Destinations & Trips in Kenya
               </h2>
-              <p className="mt-2 text-neutral-600 text-sm sm:text-base max-w-2xl">
-                Each package is 100% customizable to your exact dates, group size, and comfort preferences. Private 4x4 Land Cruiser with professional wildlife guide included.
+
+              <p className="mt-2 text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-2xl">
+                Swipe or let the safari cards glide. Click any destination to explore tailor-made private 4x4 itineraries.
               </p>
             </div>
 
-            <div className="mt-4 md:mt-0 flex items-center gap-2">
-              <span className="text-xs font-semibold text-neutral-500 whitespace-nowrap">Sort by:</span>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as any)}
-                className="bg-white border border-neutral-200 rounded-lg px-3 py-1.5 text-xs font-medium text-neutral-700 focus:outline-none focus:ring-1 focus:ring-[#1E7A2E] cursor-pointer"
+            {/* Manual Navigation Controls */}
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={scrollLeft}
+                className="w-10 h-10 rounded-full bg-white hover:bg-[#0F5E1F] hover:text-white text-neutral-700 border border-[#E5D7C2] flex items-center justify-center shadow-sm transition-all cursor-pointer active:scale-95"
+                title="Scroll previous"
+                aria-label="Previous destination"
               >
-                <option value="featured">Recommended</option>
-                <option value="duration">Longest Duration</option>
-                <option value="duration-asc">Shortest Duration</option>
-              </select>
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={scrollRight}
+                className="w-10 h-10 rounded-full bg-white hover:bg-[#0F5E1F] hover:text-white text-neutral-700 border border-[#E5D7C2] flex items-center justify-center shadow-sm transition-all cursor-pointer active:scale-95"
+                title="Scroll next"
+                aria-label="Next destination"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
           </div>
         </ScrollReveal>
+      </div>
 
-        {/* Filter Controls & Search */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-          {/* Category Tabs (Segmented Control per Section 1.A of constitution) */}
-          <div className="flex items-center gap-1.5 p-1 bg-neutral-200/70 rounded-xl overflow-x-auto scrollbar-none">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-1.5 text-xs font-bold rounded-lg whitespace-nowrap transition-all duration-150 cursor-pointer ${
-                  selectedCategory === cat.id
-                    ? 'bg-white text-[#0F5E1F] shadow-sm'
-                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-white/40'
-                }`}
+      {/* Single Moving Row Carousel (Infinite Marquee + Manual Scroll Container) */}
+      <div className="relative w-full overflow-hidden py-4">
+        {/* Left & Right Subtle Soft Fade Masks */}
+        <div className="absolute top-0 bottom-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-[#FAF5EB] to-transparent z-20 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-[#FAF5EB] to-transparent z-20 pointer-events-none" />
+
+        <div
+          ref={scrollContainerRef}
+          className="overflow-x-auto scrollbar-none scroll-smooth"
+        >
+          {/* Continuous Moving Row */}
+          <div className="animate-marquee-infinite flex gap-6 sm:gap-8 px-4 sm:px-8">
+            {marqueeItems.map((trip, idx) => (
+              <div
+                key={`${trip.id}-${idx}`}
+                onClick={() => navigate(`/tours/${trip.tourId}`)}
+                className="w-[280px] sm:w-[320px] shrink-0 bg-white rounded-t-[145px] rounded-b-[38px] shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_45px_rgba(15,94,31,0.16)] hover:-translate-y-2.5 transition-all duration-300 border border-[#EFE5D6] overflow-hidden flex flex-col items-center text-center group cursor-pointer"
               >
-                {cat.label}
-              </button>
+                {/* 1. Arched Dome Top Image Container */}
+                <div className="w-full h-56 sm:h-64 overflow-hidden relative rounded-t-[145px] bg-stone-200">
+                  <img
+                    src={trip.image}
+                    alt={`${trip.name} - Kenya Trip`}
+                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                    loading="lazy"
+                  />
+
+                  {/* Subtle Top Vignette */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
+
+                  {/* Top Badge */}
+                  {trip.badge && (
+                    <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-[10px] font-extrabold uppercase tracking-wider px-3 py-0.5 rounded-full border border-white/25 shadow-md">
+                      {trip.badge}
+                    </div>
+                  )}
+
+                  {/* Realistic Torn Paper Bottom Edge (Exact Bonfire Style) */}
+                  <svg
+                    viewBox="0 0 500 45"
+                    preserveAspectRatio="none"
+                    className="absolute -bottom-1 left-0 w-full h-8 text-white fill-current pointer-events-none z-10"
+                  >
+                    <path d="M0,45 L0,18 C15,26 28,14 45,22 C62,29 74,16 90,23 C108,30 119,15 136,19 C153,24 164,12 181,21 C198,30 209,16 226,19 C243,23 254,11 271,18 C288,24 299,15 316,24 C333,33 344,14 361,18 C378,22 389,14 406,23 C423,32 434,13 451,19 C468,26 484,16 500,21 L500,45 Z" />
+                  </svg>
+                </div>
+
+                {/* 2. Card Content Body (No Prices) */}
+                <div className="p-5 pt-3 pb-7 flex-1 flex flex-col items-center justify-between w-full">
+                  <div className="space-y-2">
+                    {/* Destination Title (Bold Forest Green) */}
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-[#0F5E1F] group-hover:text-[#1E7A2E] transition-colors tracking-tight">
+                      {trip.name}
+                    </h3>
+
+                    {/* Description (Clean, Readable Typography) */}
+                    <p className="text-xs sm:text-[13px] text-neutral-600 leading-relaxed max-w-[260px] mx-auto line-clamp-3">
+                      {trip.description}
+                    </p>
+                  </div>
+
+                  {/* 3. Orange Circular Action Button (Exact Bonfire Style) */}
+                  <div className="mt-5">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openInquiry(trip.tourId);
+                      }}
+                      className="w-11 h-11 rounded-full bg-gradient-to-tr from-[#F7941D] to-[#FF9E2C] hover:from-[#f07b15] hover:to-[#f99f34] text-white flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                      title={`Book ${trip.name} Safari`}
+                      aria-label={`Inquire about ${trip.name}`}
+                    >
+                      <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
-
-          {/* Quick Keyword Search */}
-          <div className="relative w-full md:w-64">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search Mara, Amboseli..."
-              className="w-full bg-white border border-neutral-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-[#1E7A2E]"
-            />
-            <Search className="w-3.5 h-3.5 text-neutral-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
-          </div>
         </div>
+      </div>
 
-        {/* Tours Grid */}
-        {filteredTours.length === 0 ? (
-          <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center max-w-md mx-auto">
-            <Compass className="w-10 h-10 text-neutral-400 mx-auto mb-3" />
-            <h3 className="text-base font-bold text-neutral-800">No safaris match your filter</h3>
-            <p className="text-xs text-neutral-500 mt-1">
-              Try adjusting your destination or style search, or contact our safari planners for a tailor-made route.
-            </p>
-            <button
-              onClick={() => {
-                setSelectedCategory('all');
-                setSearchQuery('');
-              }}
-              className="mt-4 px-4 py-2 text-xs font-bold text-white bg-[#1E7A2E] rounded-lg"
-            >
-              Reset Filters
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {filteredTours.map((tour, idx) => {
-              const hasImgFailed = failedImages[tour.id];
-
-              return (
-                <ScrollReveal
-                  key={tour.id}
-                  direction={idx % 2 === 0 ? 'left' : 'right'}
-                  delay={Math.min((idx % 3) * 80, 240)}
-                  distance={45}
-                  className="h-full"
-                >
-                  <div
-                    className="group bg-white rounded-2xl border border-neutral-200/90 overflow-hidden shadow-sm hover:shadow-md hover:border-[#1E7A2E]/40 transition-all duration-300 flex flex-col h-full"
-                  >
-                    {/* Image/Video Media Container */}
-                    <TourCardMedia
-                      tour={tour}
-                      hasImgFailed={hasImgFailed}
-                      onImageError={() => handleImageError(tour.id)}
-                    />
-
-                    {/* Card Body */}
-                    <div className="p-5 flex-1 flex flex-col justify-between">
-                      <div>
-                        {/* Quiet Unboxed Metadata (Zero-pill discipline) */}
-                        <div className="flex items-center gap-1.5 text-xs text-neutral-500 font-medium mb-1.5">
-                          <span>{tour.destinations.join(', ')}</span>
-                          <span aria-hidden="true">·</span>
-                          <span>Max {tour.maxGroupSize} Guests</span>
-                        </div>
-
-                        <h3 className="text-lg font-bold text-neutral-900 group-hover:text-[#1E7A2E] transition-colors line-clamp-2">
-                          <Link to={`/tours/${tour.id}`}>{tour.title}</Link>
-                        </h3>
-
-                        <p className="mt-2 text-xs text-neutral-600 line-clamp-2 leading-relaxed">
-                          {tour.overview}
-                        </p>
-
-                        {/* Top Highlights List */}
-                        <ul className="mt-3.5 space-y-1.5 border-t border-neutral-100 pt-3">
-                          {tour.highlights.slice(0, 2).map((hl, i) => (
-                            <li key={i} className="flex items-start gap-2 text-xs text-neutral-700">
-                              <Check className="w-3.5 h-3.5 text-[#1E7A2E] shrink-0 mt-0.5" />
-                              <span className="line-clamp-1">{hl}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Price & Action Row */}
-                      <div className="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between gap-2">
-                        <div>
-                          <span className="text-[10px] uppercase font-bold text-neutral-400 block tracking-wider">
-                            Pricing
-                          </span>
-                          <span className="inline-block text-xs font-extrabold text-[#1E7A2E] bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60 mt-0.5">
-                            On Request
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-1.5 sm:gap-2">
-                          <a
-                            href={`https://wa.me/254769920741?text=${encodeURIComponent(
-                              `Hello Smugsafaris! I am interested in the "${tour.title}" (${tour.duration}). Could you please share the custom quote and availability?`
-                            )}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 text-[#25D366] bg-emerald-50 hover:bg-[#25D366] hover:text-white rounded-lg border border-emerald-200 transition-colors"
-                            title="Chat on WhatsApp"
-                            aria-label="Request quote on WhatsApp"
-                          >
-                            <MessageCircle className="w-4 h-4 fill-current" />
-                          </a>
-                          <button
-                            onClick={() => openInquiry(tour.id)}
-                            className="px-3 py-2 text-xs font-bold text-white bg-[#1E7A2E] hover:bg-[#0F5E1F] rounded-lg transition-colors cursor-pointer shadow-sm"
-                          >
-                            Inquire
-                          </button>
-                          <Link
-                            to={`/tours/${tour.id}`}
-                            className="px-2.5 py-2 text-xs font-bold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-colors inline-block"
-                          >
-                            Itinerary
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
-        )}
-
-        {/* Custom Safari Tailor-Made Banner */}
-        <div className="mt-12 bg-gradient-to-r from-[#182F1D] to-[#254B2D] rounded-2xl p-6 sm:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-[#3A6B43]">
-          <div>
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#FDB913] uppercase tracking-wider mb-2">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Looking for Something Unique?</span>
-            </div>
-            <h3 className="text-xl sm:text-2xl font-extrabold text-white">
-              We Tailor-Make Safaris to Your Exact Dreams
-            </h3>
-            <p className="mt-1 text-sm text-neutral-300 max-w-xl">
-              Tell us your travel dates, wish-list animals, and budget. Our senior safari architects in Eldoret will craft a custom day-by-day proposal within 24 hours.
-            </p>
-          </div>
-
-          <button
-            onClick={() => openInquiry()}
-            className="shrink-0 px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-[#F7941D] to-[#E8720C] hover:from-[#f99f34] hover:to-[#f07b15] rounded-xl shadow-md transition-all duration-200 cursor-pointer transform active:scale-95"
-          >
-            Request Custom Safari Proposal
-          </button>
-        </div>
+      {/* Bottom CTA Button */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-10 text-center">
+        <Link
+          to="/tours"
+          className="inline-flex items-center gap-2 px-8 py-3.5 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-[#1E7A2E] to-[#0F471A] hover:from-[#238B34] hover:to-[#166527] rounded-full shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+        >
+          <Compass className="w-4 h-4 text-[#FDB913]" />
+          <span>Explore All Safari Packages & Itineraries</span>
+          <ArrowRight className="w-4 h-4 ml-1" />
+        </Link>
       </div>
     </section>
   );

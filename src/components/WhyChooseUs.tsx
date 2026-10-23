@@ -1,107 +1,101 @@
 import React from 'react';
-import { Award, Compass, HeartHandshake, ShieldCheck, Headphones, TreePine, CheckCircle2 } from 'lucide-react';
+import { Award, Compass, HeartHandshake, ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { ScrollReveal } from './ScrollReveal';
 
 export const WhyChooseUs: React.FC = () => {
   const pillars = [
     {
       num: '01',
-      title: 'Certified Native Naturalist Guides',
-      desc: 'Our guides are licensed by the Kenya Professional Safari Guides Association (KPSGA Silver and Gold). Born and raised in the wilderness, they possess legendary tracking instincts and deep knowledge of animal behavior.',
+      title: 'Native Naturalist Guides',
+      desc: 'Licensed KPSGA Silver & Gold trackers with lifelong bush instincts and wildlife mastery.',
       icon: Award,
-      proof: 'Over 500+ successful big cat tracks annually',
+      proof: 'Generational tracking experts',
     },
     {
       num: '02',
-      title: 'Custom 4x4 Safari Land Cruisers',
-      desc: 'Purpose-built for East African terrain with 360-degree pop-up photography roofs, high-frequency radios, onboard coolers for cold drinks, and USB charging ports at every seat. Guaranteed window seat for all.',
+      title: 'Custom 4x4 Land Cruisers',
+      desc: 'Heavy-duty 4x4s with 360° pop-up roofs, onboard coolers, USB ports, and guaranteed window seats.',
       icon: Compass,
-      proof: 'Full mechanical inspection before every departure',
+      proof: '100% custom safari fleet',
     },
     {
       num: '03',
-      title: '100% Tailor-Made Private Flexibility',
-      desc: 'Never get rushed on a game drive. Because your safari vehicle and guide are private, you decide how long to watch a lion pride hunt or pause for the golden hour sunset.',
+      title: '100% Private Flexibility',
+      desc: 'Your private vehicle and guide. Linger as long as you wish at every predator sighting with zero rush.',
       icon: HeartHandshake,
-      proof: 'Zero cookie-cutter group compromises',
+      proof: 'Zero shared group compromises',
     },
     {
       num: '04',
-      title: 'Direct Operator & Best Value Guarantee',
-      desc: 'Based directly in Eldoret, Kenya, you deal straight with the source. No foreign intermediaries, no hidden fees, and transparent pricing with all park conservation levies included.',
+      title: 'Direct Operator & Local Impact',
+      desc: 'Eldoret HQ operations with direct pricing (no broker markups) and direct support for indigenous conservancies.',
       icon: ShieldCheck,
-      proof: 'Up to 25% better value than overseas brokers',
-    },
-    {
-      num: '05',
-      title: '24/7 Concierge & AMREF Medevac',
-      desc: 'From airport greeting at Jomo Kenyatta International to your final flight, our operations team monitors your journey 24/7. Every guest is backed by AMREF Flying Doctors emergency aero-medical coverage.',
-      icon: Headphones,
-      proof: 'Immediate emergency bush airstrip response',
-    },
-    {
-      num: '06',
-      title: 'Sustainable Tourism & Community Impact',
-      desc: 'We partner directly with community-owned conservancies in the Mara and Samburu ecosystems, providing school bursaries, clean water initiatives, and fair wages for local indigenous families.',
-      icon: TreePine,
-      proof: '10% of company proceeds support conservancies',
+      proof: 'Best value & community backed',
     },
   ];
 
   return (
-    <section id="why-us" className="py-16 md:py-24 bg-white border-b border-neutral-200">
+    <section id="why-us" className="py-8 sm:py-10 bg-white border-b border-neutral-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <ScrollReveal direction="left" distance={40}>
-          <div className="max-w-2xl mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#1E7A2E]">
-              The Smugsafaris Difference
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A1A1A] tracking-tight mt-1">
-              Why Discerning Travelers Choose Us
-            </h2>
-            <p className="mt-3 text-neutral-600 text-sm sm:text-base leading-relaxed">
-              Planning a safari is a once-in-a-lifetime investment. Here is how our native expertise, private fleet, and ethical values safeguard your African journey.
-            </p>
+        {/* Section Header with inline CTA */}
+        <ScrollReveal direction="left" distance={25}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-3">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#1E7A2E] bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200/60 inline-block mb-1.5">
+                The Smugsafaris Difference
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A1A1A] tracking-tight">
+                Why Discerning Travelers Choose Us
+              </h2>
+              <p className="mt-1 text-neutral-600 text-xs sm:text-sm max-w-2xl leading-relaxed">
+                Native trackers, private custom 4x4 fleet, and transparent local rates safeguarding your African journey.
+              </p>
+            </div>
+            <Link
+              to="/why-us"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-[#1E7A2E] bg-emerald-50 hover:bg-emerald-100 rounded-xl transition-all border border-emerald-200/80 shrink-0 self-start md:self-auto hover:translate-x-0.5"
+            >
+              <span>Explore All Standards</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </ScrollReveal>
 
-        {/* 6 Pillars Bento-Style Asymmetric Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* Compact 4-Pillar Symmetrical Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {pillars.map((pillar, idx) => {
             const Icon = pillar.icon;
             return (
               <ScrollReveal
                 key={pillar.num}
-                direction={idx % 2 === 0 ? 'left' : 'right'}
-                delay={Math.min((idx % 3) * 80, 240)}
-                distance={45}
+                direction="up"
+                delay={Math.min(idx * 60, 180)}
+                distance={20}
                 className="h-full"
               >
-                <div
-                  className="p-6 rounded-2xl bg-[#FAFAF8] border border-neutral-200 hover:border-[#1E7A2E]/50 transition-all duration-300 flex flex-col justify-between group shadow-xs hover:shadow-sm h-full"
-                >
+                <div className="p-4 sm:p-5 rounded-2xl bg-[#FAFAF8] border border-neutral-200 hover:border-[#1E7A2E]/50 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-between group h-full">
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-100/70 text-[#1E7A2E] flex items-center justify-center group-hover:bg-[#1E7A2E] group-hover:text-white transition-colors duration-200">
-                        <Icon className="w-5 h-5" />
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="w-8 h-8 rounded-lg bg-emerald-100/70 text-[#1E7A2E] flex items-center justify-center group-hover:bg-[#1E7A2E] group-hover:text-white transition-colors duration-200">
+                        <Icon className="w-4 h-4" />
                       </div>
-                      <span className="text-xs font-mono font-bold text-neutral-400">
+                      <span className="text-[11px] font-mono font-bold text-neutral-400">
                         {pillar.num}
                       </span>
                     </div>
 
-                    <h3 className="text-base font-bold text-neutral-900 group-hover:text-[#1E7A2E] transition-colors">
+                    <h3 className="text-sm font-bold text-neutral-900 group-hover:text-[#1E7A2E] transition-colors leading-snug">
                       {pillar.title}
                     </h3>
-                    <p className="mt-2 text-xs text-neutral-600 leading-relaxed">
+                    <p className="mt-1.5 text-xs text-neutral-600 leading-relaxed">
                       {pillar.desc}
                     </p>
                   </div>
 
-                  <div className="mt-5 pt-3.5 border-t border-neutral-200/80 flex items-center gap-1.5 text-[11px] font-semibold text-[#0F5E1F]">
+                  <div className="mt-4 pt-2.5 border-t border-neutral-200/70 flex items-center gap-1.5 text-[11px] font-semibold text-[#0F5E1F]">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#1E7A2E] shrink-0" />
-                    <span>{pillar.proof}</span>
+                    <span className="truncate">{pillar.proof}</span>
                   </div>
                 </div>
               </ScrollReveal>

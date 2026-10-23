@@ -11,6 +11,7 @@ import { TestimonialsSection } from '../components/TestimonialsSection';
 import { BlogSection } from '../components/BlogSection';
 import { FAQSection } from '../components/FAQSection';
 import { FleetSpotlight } from '../components/FleetSpotlight';
+import { EldoretFeatureSection } from '../components/EldoretFeatureSection';
 import { useSafari } from '../context/SafariContext';
 import { Compass, Sparkles, ArrowRight, ShieldCheck, PhoneCall, Award, Users } from 'lucide-react';
 
@@ -39,41 +40,19 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-0">
       <SeoHead
+        title="Leading Tours and Travel Company in Kenya | Smugsafaris"
         canonicalPath="/"
-        description="Book unforgettable African safari tours and wildlife holidays in Kenya and East Africa. Maasai Mara, Amboseli, Serengeti, Kilimanjaro, and tailor-made safaris with certified local guides."
+        description="Smugsafaris is one of the leading licensed tours and travel companies in Kenya (KATO Bonded #482). Bespoke African wildlife safaris, Maasai Mara & Amboseli tours, 4x4 Land Cruiser car hire & North Rift travel."
+        keywords="tours and travel companies in kenya, tour companies in kenya, best tour operators in kenya, travel agents in kenya, kenya safari companies, tours and travel companies in eldoret, safari packages kenya, smugsafaris kenya, 4x4 car hire kenya"
       />
       {/* 1. Hero with Safari Search */}
       <Hero onSearchFilter={handleHeroSearch} />
 
       {/* 2. Featured Safaris Preview */}
-      <section className="relative">
-        <FeaturedTours />
-        <div className="bg-stone-50 pb-12 pt-2 text-center">
-          <Link
-            to="/tours"
-            className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-[#1E7A2E] to-[#0F471A] hover:from-[#238B34] hover:to-[#166527] rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
-          >
-            <Compass className="w-4 h-4 text-[#FDB913]" />
-            <span>Explore All Safari Packages & Itineraries</span>
-            <ArrowRight className="w-4 h-4 ml-1" />
-          </Link>
-        </div>
-      </section>
+      <FeaturedTours />
 
       {/* 4. Why Choose Us Pillar Highlights */}
-      <section className="relative">
-        <WhyChooseUs />
-        <div className="bg-stone-50 pb-12 text-center">
-          <Link
-            to="/why-us"
-            className="inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-bold text-[#0F5E1F] bg-emerald-100/70 hover:bg-emerald-100 rounded-xl transition-colors border border-emerald-200"
-          >
-            <ShieldCheck className="w-4 h-4 text-[#1E7A2E]" />
-            <span>Learn More About Our 6 Pillars & Custom 4x4 Fleet</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-      </section>
+      <WhyChooseUs />
 
       {/* 4.5. Our Signature 4x4 Safari Land Cruiser Fleet */}
       <FleetSpotlight showTitle={true} className="bg-white border-b border-stone-200" />
@@ -91,6 +70,9 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
       </section>
+
+      {/* 5.5. Eldoret Tours & Travel Hub Feature */}
+      <EldoretFeatureSection />
 
       {/* 6. Interactive Safari Cost Estimator */}
       <SafariCostEstimator />

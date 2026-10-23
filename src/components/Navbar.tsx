@@ -65,6 +65,8 @@ export const Navbar: React.FC = () => {
   ];
 
   const aboutSubLinks = [
+    { label: 'Tours & Travel in Kenya', path: '/tours-and-travel-companies-in-kenya', desc: 'Bespoke 4x4 safaris & national circuits', icon: Globe },
+    { label: 'Eldoret Tours & Travel', path: '/tours-and-travel-companies-in-eldoret', desc: 'North Rift safaris & 4x4 car hire', icon: MapPin },
     { label: 'About Us', path: '/about', desc: 'Our story & Eldoret operations', icon: Users },
     { label: 'Why Choose Us', path: '/why-us', desc: '100% guarantee & 4x4 fleet', icon: ShieldCheck },
     { label: 'Safari Services', path: '/services', desc: 'Private charters, transfers, lodges', icon: CheckCircle2 },
@@ -76,6 +78,8 @@ export const Navbar: React.FC = () => {
   const mobileNavLinks = [
     { label: 'Home', path: '/', icon: Compass },
     { label: 'Safaris & Itineraries', path: '/tours', icon: Sparkles },
+    { label: 'Tours & Travel in Kenya', path: '/tours-and-travel-companies-in-kenya', icon: Globe },
+    { label: 'Eldoret Tours & Travel', path: '/tours-and-travel-companies-in-eldoret', icon: MapPin },
     { label: 'Destinations', path: '/destinations', icon: Globe },
     { label: 'Safari Gallery', path: '/gallery', icon: Film },
     { label: 'Why Choose Us & Fleet', path: '/why-us', icon: ShieldCheck },
