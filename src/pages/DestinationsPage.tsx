@@ -12,6 +12,7 @@ import {
   Compass,
   CheckCircle2,
   Search,
+  Play,
 } from 'lucide-react';
 
 export const DestinationsPage: React.FC = () => {
@@ -19,6 +20,7 @@ export const DestinationsPage: React.FC = () => {
   const { openInquiry } = useSafari();
   const [selectedCountry, setSelectedCountry] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [hoveredDestId, setHoveredDestId] = useState<string | null>(null);
 
   const highlightParam = searchParams.get('highlight');
 
@@ -135,30 +137,48 @@ export const DestinationsPage: React.FC = () => {
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
                   {/* Photo / Video Column */}
-                  <div className="lg:col-span-5 relative aspect-[16/10] lg:aspect-auto min-h-[300px] overflow-hidden bg-stone-900 group/media">
-                    {dest.video ? (
+                  <div
+                    onMouseEnter={() => dest.video && setHoveredDestId(dest.id)}
+                    onMouseLeave={() => setHoveredDestId(null)}
+                    className="lg:col-span-5 relative aspect-[16/10] lg:aspect-auto min-h-[300px] overflow-hidden bg-[#EAE3D2] group/media"
+                  >
+                    {/* Primary fast crisp photo */}
+                    <img
+                      src={dest.image}
+                      alt={dest.name}
+                      loading="eager"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover/media:scale-105 transition-transform duration-500"
+                    />
+
+                    {/* Muted video preview on hover only without network choke on load */}
+                    {dest.video && hoveredDestId === dest.id && (
                       <video
                         src={dest.video}
-                        poster={dest.image}
                         autoPlay
                         muted
                         loop
                         playsInline
-                        className="w-full h-full object-cover group-hover/media:scale-105 transition-transform duration-700"
-                      />
-                    ) : (
-                      <img
-                        src={dest.image}
-                        alt={dest.name}
-                        className="w-full h-full object-cover group-hover/media:scale-105 transition-transform duration-500"
+                        className="absolute inset-0 w-full h-full object-cover"
                       />
                     )}
+
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent pointer-events-none" />
-                    <div className="absolute top-4 left-4 flex items-center gap-2">
+                    
+                    <div className="absolute top-4 left-4 flex items-center gap-2 z-10">
                       <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-white/95 text-stone-900 shadow-md">
                         {dest.country}
                       </span>
                     </div>
+
+                    {dest.video && (
+                      <div className="absolute top-4 right-4 z-10">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-black/50 backdrop-blur-xs text-white border border-white/20 shadow-xs">
+                          <Play className="w-2.5 h-2.5 fill-white" />
+                          <span>Video</span>
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Info Column */}

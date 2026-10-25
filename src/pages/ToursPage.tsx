@@ -19,6 +19,7 @@ import {
   Filter,
   X,
   MessageCircle,
+  Play,
 } from 'lucide-react';
 
 export const ToursPage: React.FC = () => {
@@ -32,6 +33,7 @@ export const ToursPage: React.FC = () => {
   const [selectedTier, setSelectedTier] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'featured' | 'duration' | 'duration-asc'>('featured');
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+  const [hoveredTourId, setHoveredTourId] = useState<string | null>(null);
 
   // Sync from URL search params on mount
   useEffect(() => {
@@ -287,35 +289,40 @@ export const ToursPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
             {filteredTours.map((tour) => {
               const imgUrl = failedImages[tour.id]
-                ? 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=80'
+                ? 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=700&q=75'
                 : tour.heroImage;
 
               return (
                 <div
                   key={tour.id}
+                  onMouseEnter={() => tour.video && setHoveredTourId(tour.id)}
+                  onMouseLeave={() => setHoveredTourId(null)}
                   className="group bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
                 >
                   {/* Image/Video Container with Badges */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-stone-900">
-                    {tour.video ? (
+                  <div className="relative aspect-[16/10] overflow-hidden bg-[#EAE3D2]">
+                    {/* Primary fast-loading crisp photo */}
+                    <img
+                      src={imgUrl}
+                      alt={tour.title}
+                      loading="eager"
+                      decoding="async"
+                      onError={() => handleImageError(tour.id)}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+
+                    {/* On hover only: smooth muted video preview without choking network on load */}
+                    {tour.video && hoveredTourId === tour.id && (
                       <video
                         src={tour.video}
-                        poster={imgUrl}
                         autoPlay
                         muted
                         loop
                         playsInline
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                    ) : (
-                      <img
-                        src={imgUrl}
-                        alt={tour.title}
-                        loading="lazy"
-                        onError={() => handleImageError(tour.id)}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="absolute inset-0 w-full h-full object-cover"
                       />
                     )}
+
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent pointer-events-none" />
 
                     {/* Top Badges */}
@@ -329,6 +336,16 @@ export const ToursPage: React.FC = () => {
                         {tour.style}
                       </span>
                     </div>
+
+                    {/* Video preview indicator badge if tour has video */}
+                    {tour.video && (
+                      <div className="absolute top-3 right-3 z-10">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-black/50 backdrop-blur-xs text-white border border-white/20 shadow-xs">
+                          <Play className="w-2.5 h-2.5 fill-white" />
+                          <span>Video</span>
+                        </span>
+                      </div>
+                    )}
 
                     {/* Bottom Specs on Image */}
                     <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-medium z-10">

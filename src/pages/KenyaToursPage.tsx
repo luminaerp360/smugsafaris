@@ -309,12 +309,13 @@ export const KenyaToursPage: React.FC = () => {
                 key={tour.id}
                 className="bg-white rounded-2xl overflow-hidden border border-stone-200 hover:border-emerald-300 transition-all hover:shadow-lg flex flex-col"
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-48 overflow-hidden bg-[#EAE3D2]">
                   <img
                     src={tour.heroImage}
                     alt={`${tour.title} - Kenya Safari Tour`}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                    loading="lazy"
+                    loading="eager"
+                    decoding="async"
                   />
                   <div className="absolute top-3 left-3">
                     <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#122415]/80 backdrop-blur-md text-emerald-200 border border-white/20">
