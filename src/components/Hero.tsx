@@ -41,7 +41,7 @@ const CAROUSEL_SLIDES: CarouselSlide[] = [
     subtitle: 'Maasai Mara · Lake Nakuru · Amboseli & Kilimanjaro',
     badge: 'Trending Itinerary',
     priceUSD: 1850,
-    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=700&q=75',
     video: '/videos/lion-pride.mp4',
     tags: ['100% Private 4x4', 'All Park Fees Incl.'],
   },
@@ -51,7 +51,7 @@ const CAROUSEL_SLIDES: CarouselSlide[] = [
     subtitle: 'Mara River Crossings · Big Cats · Sunrise Game Drives',
     badge: 'World Wonder',
     priceUSD: 1250,
-    image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=700&q=75',
     video: '/videos/safari-landscape.mp4',
     tags: ['River Crossing Track', 'Pop-Up 4x4 Cruiser'],
   },
@@ -61,7 +61,7 @@ const CAROUSEL_SLIDES: CarouselSlide[] = [
     subtitle: 'Massive Elephant Herds beneath Mt. Kilimanjaro Snows',
     badge: 'Kilimanjaro Views',
     priceUSD: 1590,
-    image: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=700&q=75',
     video: '/videos/elephant-herd.mp4',
     tags: ['Mt. Kilimanjaro Views', 'Red Elephants of Tsavo'],
   },
@@ -71,7 +71,7 @@ const CAROUSEL_SLIDES: CarouselSlide[] = [
     subtitle: 'Big Five Safari to Powder-White Zanzibar Sand Beaches',
     badge: 'Honeymoon & Luxury',
     priceUSD: 2890,
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=75',
     video: '/videos/cheetah-wild.mp4',
     tags: ['Savannah + Coast', 'Domestic Flight Incl.'],
   },
@@ -81,7 +81,7 @@ const CAROUSEL_SLIDES: CarouselSlide[] = [
     subtitle: 'Endless Serengeti Plains & 600m Volcanic Crater Floor',
     badge: 'Epic Grand Safari',
     priceUSD: 2490,
-    image: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=700&q=75',
     video: '/videos/safari-hero-bg.mp4',
     tags: ['Kenya & Tanzania', 'Ngorongoro Crater Floor'],
   },
@@ -91,7 +91,7 @@ const CAROUSEL_SLIDES: CarouselSlide[] = [
     subtitle: 'Samburu Special Five & Ultra-Luxury Mara Tented Camps',
     badge: 'Bush Flights',
     priceUSD: 2450,
-    image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=700&q=75',
     video: '/videos/giraffe-savanna.mp4',
     tags: ['Domestic Bush Flights', 'No Dusty Road Transfers'],
   },
@@ -210,7 +210,7 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=2000&q=80"
+          poster="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1000&q=70"
           className="w-full h-full object-cover opacity-25 mix-blend-luminosity filter saturate-150 transform scale-105"
         >
           <source src="/videos/safari-hero-bg.mp4" type="video/mp4" />

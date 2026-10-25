@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSafari } from '../context/SafariContext';
 import {
@@ -34,7 +34,7 @@ const KENYA_TRIPS_SHOWCASE: KenyaTripCard[] = [
     name: 'Maasai Mara',
     region: 'Southwestern Kenya',
     description: 'World-renowned wildebeest migration, dramatic Mara River crossings, and boundless golden savannah skies filled with Africa’s greatest predators.',
-    image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=600&q=75',
     badge: 'World Wonder',
   },
   {
@@ -43,7 +43,7 @@ const KENYA_TRIPS_SHOWCASE: KenyaTripCard[] = [
     name: 'Mount Kenya',
     region: 'Central Highlands',
     description: 'Crisp highland air, lush green bamboo forests, and dramatic jagged alpine peaks offer a refreshing and peaceful wilderness retreat away from the city.',
-    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=75',
     badge: 'Highland Peak',
   },
   {
@@ -52,7 +52,7 @@ const KENYA_TRIPS_SHOWCASE: KenyaTripCard[] = [
     name: 'Amboseli',
     region: 'Southern Kenya',
     description: 'Iconic free-ranging giant elephant herds grazing peacefully against the towering snow-capped summit of Mount Kilimanjaro in Amboseli’s emerald swamps.',
-    image: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=600&q=75',
     badge: 'Kilimanjaro View',
   },
   {
@@ -61,7 +61,7 @@ const KENYA_TRIPS_SHOWCASE: KenyaTripCard[] = [
     name: 'Samburu',
     region: 'Northern Frontier',
     description: 'Dramatic semi-arid landscapes and a rich local heritage serve as the backdrop for encountering unique wildlife in the rugged north, including Grevy’s zebras.',
-    image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=600&q=75',
     badge: 'Special Five',
   },
   {
@@ -70,7 +70,7 @@ const KENYA_TRIPS_SHOWCASE: KenyaTripCard[] = [
     name: 'Watamu Malindi',
     region: 'Kenyan Coast',
     description: 'Ancient Swahili ruins, vibrant marine parks, and sun-drenched white sands shape the ultimate North Coast tropical beach and reef holiday.',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=75',
     badge: 'Beach & Reef',
   },
   {
@@ -79,7 +79,7 @@ const KENYA_TRIPS_SHOWCASE: KenyaTripCard[] = [
     name: 'Nakuru',
     region: 'Great Rift Valley',
     description: 'A renowned black and white rhino sanctuary, diverse birdlife, and stunning Great Rift Valley scenery offer a remarkable setting for a weekend safari.',
-    image: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=600&q=75',
     badge: 'Rhino Sanctuary',
   },
   {
@@ -88,7 +88,7 @@ const KENYA_TRIPS_SHOWCASE: KenyaTripCard[] = [
     name: 'Tsavo',
     region: 'Southeastern Kenya',
     description: 'Legendary red-dusted elephants, vast savannah expanses, volcanic lava flows, and the crystal-clear underwater hippo pools of Mzima Springs.',
-    image: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1551009175-8a68da93d5f9?auto=format&fit=crop&w=600&q=75',
     badge: 'Red Elephants',
   },
   {
@@ -97,7 +97,7 @@ const KENYA_TRIPS_SHOWCASE: KenyaTripCard[] = [
     name: 'Kerio Valley',
     region: 'North Rift Escarpment',
     description: 'Breathtaking Great Rift Valley viewpoints, Torok waterfall hiking trails, and wild elephant tracking in the untouched Rimoi Game Reserve.',
-    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=75',
     badge: 'North Rift',
   },
 ];
@@ -106,6 +106,18 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = () => {
   const navigate = useNavigate();
   const { openInquiry } = useSafari();
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    // Proactively preload all showcase images in parallel into browser cache
+    KENYA_TRIPS_SHOWCASE.forEach((trip) => {
+      const img = new Image();
+      img.src = trip.image;
+      img.onload = () => {
+        setLoadedImages((prev) => ({ ...prev, [trip.id]: true }));
+      };
+    });
+  }, []);
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -237,12 +249,24 @@ export const FeaturedTours: React.FC<FeaturedToursProps> = () => {
                 className="w-[280px] sm:w-[320px] shrink-0 bg-white rounded-t-[145px] rounded-b-[38px] shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_45px_rgba(15,94,31,0.16)] hover:-translate-y-2.5 transition-all duration-300 border border-[#EFE5D6] overflow-hidden flex flex-col items-center text-center group cursor-pointer"
               >
                 {/* 1. Arched Dome Top Image Container */}
-                <div className="w-full h-56 sm:h-64 overflow-hidden relative rounded-t-[145px] bg-stone-200">
+                <div className="w-full h-56 sm:h-64 overflow-hidden relative rounded-t-[145px] bg-[#EBE4D5]">
+                  {/* Warm Safari Skeleton Shimmer while downloading */}
+                  {!loadedImages[trip.id] && (
+                    <div className="absolute inset-0 bg-gradient-to-tr from-[#E6DCB8] via-[#F4EEDC] to-[#E2D6C0] animate-pulse flex items-center justify-center">
+                      <Compass className="w-7 h-7 text-[#A89880]/40 animate-spin" style={{ animationDuration: '6s' }} />
+                    </div>
+                  )}
+
                   <img
                     src={trip.image}
                     alt={`${trip.name} - Kenya Trip`}
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
-                    loading="lazy"
+                    className={`w-full h-full object-cover group-hover:scale-108 transition-all duration-700 ${
+                      loadedImages[trip.id] ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                    }`}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                    onLoad={() => setLoadedImages((prev) => ({ ...prev, [trip.id]: true }))}
                   />
 
                   {/* Subtle Top Vignette */}
