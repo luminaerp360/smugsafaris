@@ -5,22 +5,48 @@
   <!-- 1. Homepage -->
   <url>
     <loc>https://www.smugsafaris.co.ke/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.smugsafaris.co.ke/images/fleet/cruiser-amboseli-kilimanjaro.jpg</image:loc>
       <image:title>Smugsafaris 4x4 Safari Land Cruiser with Mt. Kilimanjaro View</image:title>
-      <image:caption>Premier tours and travel company in Eldoret Kenya - Luxury African safari tours across Kenya and East Africa</image:caption>
+      <image:caption>Premier tours and travel company in Kenya - Luxury African safari tours across Kenya and East Africa</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Dedicated High-Intent Pillar Hub: Maasai Mara Safari Packages -->
+  <url>
+    <loc>https://www.smugsafaris.co.ke/maasai-mara-safari-packages</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.98</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>Maasai Mara Safari Packages and Great Migration Tours - Smugsafaris</image:title>
+      <image:caption>Custom 3 to 7 day Maasai Mara wildlife safari packages with private 4x4 Land Cruiser and certified naturalist guides</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Dedicated High-Intent Pillar Hub: 4x4 Safari Land Cruiser Hire Kenya -->
+  <url>
+    <loc>https://www.smugsafaris.co.ke/4x4-safari-land-cruiser-hire-kenya</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.98</priority>
+    <image:image>
+      <image:loc>https://www.smugsafaris.co.ke/images/fleet/cruiser-amboseli-kilimanjaro.jpg</image:loc>
+      <image:title>4x4 Safari Land Cruiser Hire Kenya with Driver - Smugsafaris</image:title>
+      <image:caption>Rent customized Toyota 4x4 Safari Land Cruisers with pop-up roof and certified driver-guide in Nairobi and Eldoret</image:caption>
     </image:image>
   </url>
 
   <!-- Dedicated Tours & Travel Companies in Kenya Hub -->
   <url>
     <loc>https://www.smugsafaris.co.ke/tours-and-travel-companies-in-kenya</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.99</priority>
+    <priority>0.98</priority>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
       <image:title>Best Tours and Travel Companies in Kenya - Smugsafaris</image:title>
@@ -31,7 +57,7 @@
   <!-- Dedicated Eldoret Tours & Travel Hub -->
   <url>
     <loc>https://www.smugsafaris.co.ke/tours-and-travel-companies-in-eldoret</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
     <image:image>
@@ -44,7 +70,7 @@
   <!-- 2. Safari Tours Index -->
   <url>
     <loc>https://www.smugsafaris.co.ke/tours</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
@@ -52,7 +78,7 @@
   <!-- 3. Tour Packages -->
   <url>
     <loc>https://www.smugsafaris.co.ke/tours/classic-kenya-big-five</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
@@ -63,7 +89,7 @@
 
   <url>
     <loc>https://www.smugsafaris.co.ke/tours/maasai-mara-great-migration</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
@@ -74,7 +100,7 @@
 
   <url>
     <loc>https://www.smugsafaris.co.ke/tours/amboseli-tsavo-kilimanjaro</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
@@ -85,7 +111,7 @@
 
   <url>
     <loc>https://www.smugsafaris.co.ke/tours/kenya-tanzania-serengeti-odyssey</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
@@ -96,7 +122,7 @@
 
   <url>
     <loc>https://www.smugsafaris.co.ke/tours/luxury-flying-safari-mara-samburu</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
@@ -107,7 +133,7 @@
 
   <url>
     <loc>https://www.smugsafaris.co.ke/tours/bush-and-beach-mara-zanzibar</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
     <image:image>
@@ -119,72 +145,72 @@
   <!-- 4. Destinations -->
   <url>
     <loc>https://www.smugsafaris.co.ke/destinations</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.88</priority>
   </url>
 
   <!-- 5. Key Content & Trust Pages -->
   <url>
     <loc>https://www.smugsafaris.co.ke/why-us</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.smugsafaris.co.ke/services</loc>
-    <lastmod>2026-10-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
   </url>
 
   <url>
     <loc>https://www.smugsafaris.co.ke/about</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
     <loc>https://www.smugsafaris.co.ke/reviews</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.smugsafaris.co.ke/gallery</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.80</priority>
   </url>
 
   <!-- 6. Blog & Safari Planning Guides -->
   <url>
     <loc>https://www.smugsafaris.co.ke/blog</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.smugsafaris.co.ke/blog/packing-list-east-africa</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <url>
     <loc>https://www.smugsafaris.co.ke/blog/great-migration-timing</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <url>
     <loc>https://www.smugsafaris.co.ke/blog/kenya-vs-tanzania-safari</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -192,29 +218,29 @@
   <!-- 7. Support & Contact -->
   <url>
     <loc>https://www.smugsafaris.co.ke/faq</loc>
-    <lastmod>2026-10-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.smugsafaris.co.ke/contact</loc>
-    <lastmod>2026-10-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
   </url>
 
   <!-- 8. Legal & Compliance -->
   <url>
     <loc>https://www.smugsafaris.co.ke/privacy-policy</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.50</priority>
   </url>
 
   <url>
     <loc>https://www.smugsafaris.co.ke/terms</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.50</priority>
   </url>

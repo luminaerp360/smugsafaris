@@ -132,6 +132,43 @@ export const ToursPage: React.FC = () => {
     selectedTier !== 'all' ||
     searchQuery.trim().length > 0;
 
+  const toursIndexSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ItemList',
+        name: 'African Safari Packages in Kenya & East Africa',
+        description: 'Comprehensive catalogue of private and customized African wildlife safari packages by Smugsafaris.',
+        numberOfItems: TOURS_DATA.length,
+        itemListElement: TOURS_DATA.map((t, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: t.title,
+          url: `https://www.smugsafaris.co.ke/tours/${t.id}`,
+          image: t.heroImage,
+          description: t.tagline,
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://www.smugsafaris.co.ke',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Tours & Safaris',
+            item: 'https://www.smugsafaris.co.ke/tours',
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="bg-[#FAF9F5] min-h-screen">
       <SeoHead
@@ -139,6 +176,7 @@ export const ToursPage: React.FC = () => {
         description="Discover handcrafted Kenya safari packages. Big Five wildlife tours in Maasai Mara, Amboseli Kilimanjaro views, Serengeti, private 4x4 Land Cruisers, and luxury camps."
         canonicalPath="/tours"
         keywords="Kenya safari packages, Maasai Mara safari, Amboseli safari, Serengeti tours, private safari Land Cruiser, Kenya wildlife holidays, budget camping safari, luxury tented camp"
+        schema={toursIndexSchema}
       />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">

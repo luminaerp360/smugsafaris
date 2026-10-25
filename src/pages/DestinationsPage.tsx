@@ -42,6 +42,42 @@ export const DestinationsPage: React.FC = () => {
     });
   }, [selectedCountry, searchQuery]);
 
+  const destinationsSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ItemList',
+        name: 'Top East Africa Safari Destinations',
+        description: 'Explore premier wildlife reserves and national parks across Kenya and Tanzania curated by Smugsafaris.',
+        numberOfItems: DESTINATIONS_DATA.length,
+        itemListElement: DESTINATIONS_DATA.map((d, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: d.name,
+          description: d.tagline,
+          image: d.heroImage,
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://www.smugsafaris.co.ke',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Destinations',
+            item: 'https://www.smugsafaris.co.ke/destinations',
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
       <SeoHead
@@ -49,6 +85,7 @@ export const DestinationsPage: React.FC = () => {
         description="Explore iconic safari destinations across Kenya and Tanzania. Discover wildlife hotspots: Maasai Mara, Amboseli, Serengeti, Lake Nakuru, Samburu, and Zanzibar."
         canonicalPath="/destinations"
         keywords="Kenya safari destinations, Maasai Mara National Reserve, Amboseli National Park, Serengeti National Park, Lake Nakuru flamingos, Samburu wildlife, East Africa safari map"
+        schema={destinationsSchema}
       />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">

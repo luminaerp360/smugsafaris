@@ -40,15 +40,36 @@ export const FAQPage: React.FC = () => {
 
   const faqSchema = {
     '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQS_DATA.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
+    '@graph': [
+      {
+        '@type': 'FAQPage',
+        mainEntity: FAQS_DATA.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
+        })),
       },
-    })),
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://www.smugsafaris.co.ke',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Safari FAQ',
+            item: 'https://www.smugsafaris.co.ke/faq',
+          },
+        ],
+      },
+    ],
   };
 
   return (

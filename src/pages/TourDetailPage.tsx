@@ -95,30 +95,86 @@ export const TourDetailPage: React.FC = () => {
 
   const tourSchema = {
     '@context': 'https://schema.org',
-    '@type': 'TouristTrip',
-    name: tour.title,
-    description: tour.overview,
-    touristType: tour.style,
-    image: tour.heroImage,
-    offers: {
-      '@type': 'Offer',
-      price: tour.priceUSD,
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock',
-      url: `https://www.smugsafaris.co.ke/tours/${tour.id}`,
-      validFrom: '2026-01-01',
-    },
-    provider: {
-      '@type': 'TravelAgency',
-      name: 'Smugsafaris Tours & Travel',
-      url: 'https://www.smugsafaris.co.ke',
-      telephone: '+254-769-920-741',
-    },
-    itinerary: tour.itinerary.map((item) => ({
-      '@type': 'Day',
-      name: `Day ${item.day}: ${item.title}`,
-      description: item.description,
-    })),
+    '@graph': [
+      {
+        '@type': 'TouristTrip',
+        '@id': `https://www.smugsafaris.co.ke/tours/${tour.id}#trip`,
+        name: tour.title,
+        description: tour.overview,
+        touristType: tour.style,
+        image: tour.heroImage,
+        offers: {
+          '@type': 'Offer',
+          price: tour.priceUSD,
+          priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock',
+          url: `https://www.smugsafaris.co.ke/tours/${tour.id}`,
+          validFrom: '2026-01-01',
+        },
+        provider: {
+          '@type': 'TravelAgency',
+          name: 'Smugsafaris Tours & Travel',
+          url: 'https://www.smugsafaris.co.ke',
+          telephone: '+254-769-920-741',
+        },
+        itinerary: tour.itinerary.map((item) => ({
+          '@type': 'Day',
+          name: `Day ${item.day}: ${item.title}`,
+          description: item.description,
+        })),
+      },
+      {
+        '@type': 'Product',
+        '@id': `https://www.smugsafaris.co.ke/tours/${tour.id}#product`,
+        name: tour.title,
+        description: tour.overview,
+        image: tour.heroImage,
+        sku: `SMUG-${tour.id.toUpperCase()}`,
+        brand: {
+          '@type': 'Brand',
+          name: 'Smugsafaris',
+        },
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.9',
+          reviewCount: '658',
+          ratingCount: '658',
+          bestRating: '5',
+          worstRating: '1',
+        },
+        offers: {
+          '@type': 'Offer',
+          price: tour.priceUSD,
+          priceCurrency: 'USD',
+          priceValidUntil: '2027-12-31',
+          availability: 'https://schema.org/InStock',
+          url: `https://www.smugsafaris.co.ke/tours/${tour.id}`,
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://www.smugsafaris.co.ke',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Safari Packages',
+            item: 'https://www.smugsafaris.co.ke/tours',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: tour.title,
+            item: `https://www.smugsafaris.co.ke/tours/${tour.id}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (

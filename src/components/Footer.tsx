@@ -112,12 +112,28 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Col 2: Top Tours */}
+          {/* Col 2: Top Tours & Searches */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FDB913] mb-4">
-              Top Safaris
+              Top Safari Circuits
             </h4>
             <ul className="space-y-2.5 text-xs text-neutral-300">
+              <li>
+                <Link
+                  to="/maasai-mara-safari-packages"
+                  className="hover:text-white transition-colors cursor-pointer text-left block text-amber-300 font-semibold"
+                >
+                  Maasai Mara Safari Packages
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/4x4-safari-land-cruiser-hire-kenya"
+                  className="hover:text-white transition-colors cursor-pointer text-left block text-emerald-300 font-medium"
+                >
+                  4x4 Safari Land Cruiser Hire
+                </Link>
+              </li>
               <li>
                 <Link
                   to="/tours/classic-kenya-big-five"

@@ -70,6 +70,79 @@ export const ServicesPage: React.FC = () => {
     },
   ];
 
+  const servicesSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        name: '4x4 Safari Land Cruiser Hire & Travel Services Kenya',
+        provider: {
+          '@type': 'TravelAgency',
+          name: 'Smugsafaris Tours & Travel',
+          url: 'https://www.smugsafaris.co.ke',
+          telephone: '+254-769-920-741',
+        },
+        serviceType: 'Safari Transport and Travel Management',
+        areaServed: ['Kenya', 'Tanzania', 'Uganda', 'Rwanda'],
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Safari Travel Services',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Custom 4x4 Safari Land Cruiser Rental with Driver Guide',
+                description: 'Extended Toyota Land Cruiser with pop-up roof hatch, high-lift jack, VHF radio, inverter sockets and certified driver-guide.',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Luxury Safari Lodge & Beach Resort Bookings',
+                description: 'Direct contracted rates with premier wilderness lodges in Maasai Mara, Amboseli, and beachfront resorts in Diani & Zanzibar.',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'VIP Airport Transfers & Inter-City Chauffeuring',
+                description: 'Reliable private transfers between JKIA, Wilson Airport, Eldoret International Airport, and major Kenyan cities.',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Bush Flight & Charter Coordination',
+                description: 'Scheduled light aircraft safaris and private air charters connecting Nairobi to national park bush airstrips.',
+              },
+            },
+          ],
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://www.smugsafaris.co.ke',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Services',
+            item: 'https://www.smugsafaris.co.ke/services',
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
       <SeoHead
@@ -77,6 +150,7 @@ export const ServicesPage: React.FC = () => {
         description="Comprehensive safari & corporate travel services in Kenya: direct contracted rates for luxury safari lodges & beach resorts, 4x4 Land Cruiser hire with pop-up roof, airport VIP transfers, and scenic bush flights."
         canonicalPath="/services"
         keywords="safari vehicle hire Kenya, 4x4 Land Cruiser rental with driver, Kenya safari lodge booking, bush flights Wilson Airport, airport VIP transfer Nairobi, MICE corporate retreats Kenya"
+        schema={servicesSchema}
       />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">

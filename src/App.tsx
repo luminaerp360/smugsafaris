@@ -27,6 +27,8 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
 import { EldoretToursPage } from './pages/EldoretToursPage';
 import { KenyaToursPage } from './pages/KenyaToursPage';
+import { MaasaiMaraPillarPage } from './pages/MaasaiMaraPillarPage';
+import { CarHirePillarPage } from './pages/CarHirePillarPage';
 
 function AppLayout() {
   return (
@@ -52,6 +54,14 @@ function AppLayout() {
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          
+          {/* High-Intent SEO Pillar Landing Hubs */}
+          <Route path="/maasai-mara-safari-packages" element={<MaasaiMaraPillarPage />} />
+          <Route path="/maasai-mara-safari" element={<MaasaiMaraPillarPage />} />
+          <Route path="/great-migration-safari" element={<MaasaiMaraPillarPage />} />
+          <Route path="/4x4-safari-land-cruiser-hire-kenya" element={<CarHirePillarPage />} />
+          <Route path="/safari-land-cruiser-hire-kenya" element={<CarHirePillarPage />} />
+          <Route path="/safari-car-rental-kenya" element={<CarHirePillarPage />} />
           <Route path="/tours-and-travel-companies-in-eldoret" element={<EldoretToursPage />} />
           <Route path="/eldoret-tours-and-travel" element={<EldoretToursPage />} />
           <Route path="/eldoret-safaris" element={<EldoretToursPage />} />

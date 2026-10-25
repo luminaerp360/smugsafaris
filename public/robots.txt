@@ -1,7 +1,57 @@
 # Robots.txt for Smugsafaris Tours & Travel
 # Official Domain: https://www.smugsafaris.co.ke
+# Licensed Kenyan Safari Operator & 4x4 Car Hire Specialist
 
 User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Explicitly Allow Major Search Engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Explicitly Allow AI Search Engines & Knowledge Overviews
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bytespider
 Allow: /
 
 # Host & Sitemap specification
