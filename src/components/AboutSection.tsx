@@ -29,7 +29,7 @@ export const AboutSection: React.FC = () => {
               <div className="mt-6 grid grid-cols-2 gap-4 text-xs font-semibold text-neutral-800">
                 <div className="p-3 bg-white rounded-xl border border-neutral-200 flex items-center gap-2.5">
                   <ShieldCheck className="w-5 h-5 text-[#1E7A2E] shrink-0" />
-                  <span>KATO Bonded Operator #482</span>
+                  <span>TRA Licensed Safari Operator</span>
                 </div>
                 <div className="p-3 bg-white rounded-xl border border-neutral-200 flex items-center gap-2.5">
                   <Award className="w-5 h-5 text-[#F7941D] shrink-0" />

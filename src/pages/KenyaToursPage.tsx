@@ -31,7 +31,7 @@ import {
 const KENYA_FAQS = [
   {
     q: 'Which are the best tours and travel companies in Kenya?',
-    a: 'When choosing among the best tours and travel companies in Kenya, prioritize licensed and bonded operators registered with the Kenya Association of Tour Operators (KATO) and the Tourism Regulatory Authority (TRA). Smugsafaris Tours & Travel (KATO Bonded #482) is a top-rated Kenyan tour operator renowned for bespoke 4x4 Land Cruiser safaris, certified KPSGA naturalist guides, transparent pricing with all park conservation fees included, and AMREF Flying Doctors emergency medical cover.',
+    a: 'When choosing among the best tours and travel companies in Kenya, prioritize licensed operators registered with the Tourism Regulatory Authority (TRA). Smugsafaris Tours & Travel is a top-rated Kenyan tour operator renowned for bespoke 4x4 Land Cruiser safaris, certified KPSGA naturalist guides, transparent pricing with all park conservation fees included, and AMREF Flying Doctors emergency medical cover.',
   },
   {
     q: 'Why should I book with a local Kenyan tour operator instead of an international agency?',
@@ -51,7 +51,7 @@ const KENYA_FAQS = [
   },
   {
     q: 'How do I verify if a tour company in Kenya is legitimate and safe?',
-    a: 'Always verify three credentials before paying any deposit: 1) KATO Membership (check the official KATO directory for bonded status, such as Smugsafaris Bond #482); 2) Valid Tourism Regulatory Authority (TRA) operator license; and 3) Verified reviews on independent platforms like SafariBookings, TripAdvisor, and Google. Reputable companies provide formal VAT invoices and official Kenyan company bank accounts.',
+    a: 'Always verify three credentials before paying any deposit: 1) Valid Tourism Regulatory Authority (TRA) operator license; 2) Company registration credentials with formal corporate bank accounts; and 3) Verified reviews on independent platforms like SafariBookings, TripAdvisor, and Google. Reputable companies provide formal VAT invoices and official Kenyan company bank accounts.',
   },
 ];
 
@@ -148,7 +148,7 @@ export const KenyaToursPage: React.FC = () => {
     <div className="bg-[#FAF9F5] min-h-screen text-[#1A1A1A]">
       <SeoHead
         title="Best Tours and Travel Companies in Kenya | Smugsafaris"
-        description="Looking for the best tours and travel companies in Kenya? Smugsafaris is a licensed Kenyan tour operator (KATO Bonded #482). Custom 4x4 African wildlife safaris, Maasai Mara, Amboseli, and bespoke luxury holidays."
+        description="Looking for the best tours and travel companies in Kenya? Smugsafaris is a licensed Kenyan tour operator. Custom 4x4 African wildlife safaris, Maasai Mara, Amboseli, and bespoke luxury holidays."
         keywords="tours and travel companies in kenya, tour companies in kenya, best tour operators in kenya, travel agents in kenya, kenya safari companies, kenya wildlife tours, tour operators kenya, safari packages kenya, smugsafaris kenya, travel agency kenya"
         canonicalPath="/tours-and-travel-companies-in-kenya"
         schema={kenyaSchema}
@@ -164,7 +164,7 @@ export const KenyaToursPage: React.FC = () => {
             {/* Accreditation Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-emerald-200">
               <ShieldCheck className="w-3.5 h-3.5 text-[#FDB913]" />
-              <span>Licensed & Bonded Kenyan Tour Operator · KATO Bonded #482</span>
+              <span>Licensed Kenyan Tour Operator · TRA Registered</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
@@ -211,7 +211,7 @@ export const KenyaToursPage: React.FC = () => {
             <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-neutral-300">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>KATO Bonded #482</span>
+                <span>TRA Licensed Operator</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -252,7 +252,7 @@ export const KenyaToursPage: React.FC = () => {
               </div>
               <h3 className="text-base font-bold text-neutral-900">100% Financial Protection</h3>
               <p className="text-xs text-neutral-600 mt-2 leading-relaxed">
-                As a fully bonded member of the Kenya Association of Tour Operators (KATO Bonded #482), your deposits and tour payments are completely insured and secured from the moment you book until the conclusion of your safari.
+                As a licensed Kenyan safari operator under the Tourism Regulatory Authority (TRA), your bookings and tour payments are completely transparent and secure from the moment you book until the conclusion of your safari.
               </p>
             </div>
 
@@ -510,7 +510,7 @@ export const KenyaToursPage: React.FC = () => {
                   <ShieldCheck className="w-5 h-5 text-[#FDB913] shrink-0 mt-0.5" />
                   <div>
                     <div className="font-bold text-white">Licensed & Certified</div>
-                    <div className="text-emerald-100/80">KATO Bonded #482 · KPSGA Professional Guides · AMREF Medevac Cover</div>
+                    <div className="text-emerald-100/80">TRA Licensed Operator · KPSGA Professional Guides · AMREF Medevac Cover</div>
                   </div>
                 </div>
               </div>

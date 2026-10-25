@@ -67,10 +67,10 @@ export const EldoretFeatureSection: React.FC = () => {
               <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
                 <div className="flex items-center gap-2 text-[#FDB913] mb-1.5">
                   <ShieldCheck className="w-4 h-4" />
-                  <span className="text-xs font-bold text-white">KATO Bonded #482</span>
+                  <span className="text-xs font-bold text-white">TRA Licensed Operator</span>
                 </div>
                 <p className="text-[11px] text-emerald-100/80 leading-relaxed">
-                  Licensed and bonded tour operator under Kenya Association of Tour Operators for guaranteed peace of mind.
+                  Fully licensed and compliant safari tour operator under Tourism Regulatory Authority (TRA) for peace of mind.
                 </p>
               </div>
 

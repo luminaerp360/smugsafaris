@@ -52,7 +52,7 @@ export const PrivacyPolicyPage: React.FC = () => {
               <h2>Who We Are</h2>
             </div>
             <p>
-              Smugsafaris Tours & Travel (&quot;Smugsafaris&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is a licensed Kenyan safari tour operator and travel agency headquartered in Eldoret, Uasin Gishu County, Kenya (Registration: KATO Bonded #482). We curate bespoke wildlife safaris, hotel and lodge reservations, 4x4 Land Cruiser expeditions, and transfer services across Kenya, Tanzania, Uganda, and Rwanda.
+              Smugsafaris Tours & Travel (&quot;Smugsafaris&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is a licensed Kenyan safari tour operator and travel agency headquartered in Eldoret, Uasin Gishu County, Kenya (Licensed by the Tourism Regulatory Authority - TRA). We curate bespoke wildlife safaris, hotel and lodge reservations, 4x4 Land Cruiser expeditions, and transfer services across Kenya, Tanzania, Uganda, and Rwanda.
             </p>
             <p>
               For any questions regarding this Privacy Policy or your personal data, you may reach our Data Controller at <a href="mailto:info@smugsafaris.co.ke" className="text-emerald-700 font-semibold underline">info@smugsafaris.co.ke</a>.

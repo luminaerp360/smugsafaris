@@ -194,7 +194,7 @@ export const FloatingWhatsApp: React.FC = () => {
           <div className="bg-[#FAF9F5] border-b border-stone-200/70 px-3 py-1 flex items-center justify-between text-[10px] text-stone-600">
             <span className="inline-flex items-center gap-1 font-semibold text-emerald-800">
               <ShieldCheck className="w-3 h-3 text-[#FDB913]" />
-              <span>KATO Bonded #482</span>
+              <span>TRA Licensed Operator</span>
             </span>
             <span className="text-stone-400">Direct: {DISPLAY_NUMBER}</span>
           </div>

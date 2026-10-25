@@ -117,7 +117,7 @@ const ELDORET_PACKAGES: EldoretPackage[] = [
 const ELDORET_FAQS = [
   {
     q: 'Which is the top-rated tours and travel company in Eldoret, Kenya?',
-    a: 'Smugsafaris Tours & Travel is widely recognized as the premier licensed tours and travel company based in Eldoret, Kenya (KATO Bonded #482). We specialize in bespoke African wildlife safaris, North Rift regional excursions (Kerio Valley, Rimoi, Lake Bogoria), custom 4x4 Safari Land Cruiser hire, corporate travel, and airport transfers at Eldoret International Airport (EDL).',
+    a: 'Smugsafaris Tours & Travel is widely recognized as the premier licensed tours and travel company based in Eldoret, Kenya. We specialize in bespoke African wildlife safaris, North Rift regional excursions (Kerio Valley, Rimoi, Lake Bogoria), custom 4x4 Safari Land Cruiser hire, corporate travel, and airport transfers at Eldoret International Airport (EDL).',
   },
   {
     q: 'Can I book a Maasai Mara or Amboseli safari starting directly from Eldoret?',
@@ -266,7 +266,7 @@ export const EldoretToursPage: React.FC = () => {
             {/* Local Trust Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-emerald-200">
               <MapPin className="w-3.5 h-3.5 text-[#FDB913]" />
-              <span>Headquartered in Eldoret, Uasin Gishu County · KATO Bonded #482</span>
+              <span>Headquartered in Eldoret, Uasin Gishu County · TRA Registered</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
@@ -313,7 +313,7 @@ export const EldoretToursPage: React.FC = () => {
             <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-neutral-300">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>KATO Bonded #482</span>
+                <span>TRA Licensed Operator</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />

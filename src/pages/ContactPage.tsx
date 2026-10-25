@@ -253,7 +253,7 @@ export const ContactPage: React.FC = () => {
                 <span>Bonded & Registered Operator</span>
               </div>
               <p className="text-emerald-100/80 leading-relaxed text-[11px]">
-                Smugsafaris is registered under Kenya Tourism Regulatory Authority (TRA) and bonded with KATO Scheme #482. All passenger bookings automatically covered with AMREF Flying Doctors medevac.
+                Smugsafaris is registered and licensed under the Kenya Tourism Regulatory Authority (TRA). All passenger bookings are automatically covered with AMREF Flying Doctors medevac.
               </p>
             </div>
           </div>

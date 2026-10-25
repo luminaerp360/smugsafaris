@@ -101,7 +101,7 @@ export const Footer: React.FC = () => {
             {/* Certifications & Badges */}
             <div className="mt-6 flex flex-wrap items-center gap-3 text-[11px] text-neutral-300">
               <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">
-                KATO Bonded #482
+                TRA Licensed Operator
               </span>
               <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10">
                 KPSGA Naturalists

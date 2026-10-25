@@ -27,10 +27,10 @@ export const WhyUsPage: React.FC = () => {
   const pillars = [
     {
       num: '01',
-      title: 'KATO Bonded & Certified Operator (#482)',
-      subtitle: 'Complete Financial Security & Industry Excellence',
+      title: 'TRA Licensed & Certified Safari Operator',
+      subtitle: 'Complete Operational Security & Industry Excellence',
       description:
-        'Smugsafaris is a fully bonded member of the Kenya Association of Tour Operators (KATO Bond Scheme #482). This guarantees that every dollar you deposit is protected under a strict code of ethics and bonding regulations overseen by Kenya Tourism Board.',
+        'Smugsafaris is a fully licensed and compliant operator regulated by the Tourism Regulatory Authority (TRA). This guarantees that every booking adheres to strict tourism standards, passenger safety, and verified operational protocols.',
       icon: ShieldCheck,
       color: 'text-emerald-700 bg-emerald-50 border-emerald-200',
     },
@@ -141,8 +141,8 @@ export const WhyUsPage: React.FC = () => {
       others: 'Optional extra charge or not offered',
     },
     {
-      feature: 'KATO Bonded Financial Security',
-      smug: 'Bonded #482 (100% deposit protection)',
+      feature: 'Licensed & Verified Operator',
+      smug: 'TRA Certified (100% compliant & transparent)',
       others: 'Unregistered / unlicensed operators',
     },
   ];
@@ -150,10 +150,10 @@ export const WhyUsPage: React.FC = () => {
   return (
     <div className="bg-[#FAF9F5] min-h-screen pb-16">
       <SeoHead
-        title="Why Choose Smugsafaris | KATO Bonded Kenya Safari Operator"
-        description="Experience the Smugsafaris difference: custom heavy-duty 4x4 Land Cruisers, certified KPSGA naturalist guides, KATO Bond Scheme #482 protection, and AMREF Flying Doctors medevac."
+        title="Why Choose Smugsafaris | Licensed Kenya Safari Operator"
+        description="Experience the Smugsafaris difference: custom heavy-duty 4x4 Land Cruisers, certified KPSGA naturalist guides, TRA licensed operations, and AMREF Flying Doctors medevac."
         canonicalPath="/why-us"
-        keywords="KATO bonded tour operator, best Kenya safari company, custom safari Land Cruiser, KPSGA certified safari guides, AMREF flying doctors tourist insurance, trusted African safari specialist"
+        keywords="licensed Kenya safari operator, best Kenya safari company, custom safari Land Cruiser, KPSGA certified safari guides, AMREF flying doctors tourist insurance, trusted African safari specialist"
       />
       {/* 1. Header Banner */}
       <div className="bg-[#0B3813] text-white py-14 relative overflow-hidden">

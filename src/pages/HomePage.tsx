@@ -42,7 +42,7 @@ export const HomePage: React.FC = () => {
       <SeoHead
         title="Leading Tours and Travel Company in Kenya | Smugsafaris"
         canonicalPath="/"
-        description="Smugsafaris is one of the leading licensed tours and travel companies in Kenya (KATO Bonded #482). Bespoke African wildlife safaris, Maasai Mara & Amboseli tours, 4x4 Land Cruiser car hire & North Rift travel."
+        description="Smugsafaris is one of the leading licensed tours and travel companies in Kenya. Bespoke African wildlife safaris, Maasai Mara & Amboseli tours, 4x4 Land Cruiser car hire & North Rift travel."
         keywords="tours and travel companies in kenya, tour companies in kenya, best tour operators in kenya, travel agents in kenya, kenya safari companies, tours and travel companies in eldoret, safari packages kenya, smugsafaris kenya, 4x4 car hire kenya"
       />
       {/* 1. Hero with Safari Search */}

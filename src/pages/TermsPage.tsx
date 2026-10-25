@@ -18,7 +18,7 @@ export const TermsPage: React.FC = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-emerald-200 mb-4">
             <ShieldCheck className="w-4 h-4 text-[#FDB913]" />
-            <span>KATO Bonded #482 Fair Booking Policy</span>
+            <span>Licensed Safari Operator Fair Booking Policy</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 font-serif">
             Booking Terms & Conditions

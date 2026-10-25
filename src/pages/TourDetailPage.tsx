@@ -531,7 +531,7 @@ export const TourDetailPage: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>KATO Bonded Tour Operator #482</span>
+                  <span>TRA Licensed Safari Operator</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Compass className="w-4 h-4 text-emerald-600 shrink-0" />

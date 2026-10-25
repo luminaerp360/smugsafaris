@@ -275,7 +275,7 @@ export const Hero: React.FC<HeroProps> = ({ onSearchFilter }) => {
             <div className="pt-2 border-t border-white/15 flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] sm:text-[11px] text-neutral-300">
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#7CC142]" />
-                <span>KATO Bonded #482</span>
+                <span>TRA Licensed Operator</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Award className="w-3.5 h-3.5 text-[#FDB913]" />

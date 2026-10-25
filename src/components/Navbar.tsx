@@ -145,7 +145,7 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center gap-3 sm:gap-5">
             <div className="hidden lg:inline-flex items-center gap-1.5 text-emerald-200/90">
               <ShieldCheck className="w-3.5 h-3.5 text-[#FDB913]" />
-              <span className="font-semibold">KATO Bonded #482</span>
+              <span className="font-semibold">Licensed Tour Operator</span>
             </div>
 
             {/* Direct WhatsApp Quick Chat */}
@@ -436,7 +436,7 @@ export const Navbar: React.FC = () => {
               </span>
               <span className="text-emerald-200/90 font-medium">Safari Desk Online</span>
             </div>
-            <span className="text-stone-400 font-medium">KATO Bonded #482</span>
+            <span className="text-stone-400 font-medium">Licensed Tour Operator</span>
           </div>
 
           {/* Clean Navigation Menu Items */}
