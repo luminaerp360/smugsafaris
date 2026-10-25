@@ -94,16 +94,6 @@ export const HomePage: React.FC = () => {
       {/* 8. Traveler Reviews & Testimonials */}
       <section className="relative">
         <TestimonialsSection />
-        <div className="bg-stone-50 pb-12 text-center">
-          <Link
-            to="/reviews"
-            className="inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-bold text-[#1E7A2E] bg-white hover:bg-emerald-50 rounded-xl transition-all border border-emerald-200 shadow-sm"
-          >
-            <Award className="w-4 h-4 text-amber-500" />
-            <span>Read All 650+ Verified Traveler Reviews</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
       </section>
 
       {/* 9. Safari Guides & Blog */}
