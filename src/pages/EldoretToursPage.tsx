@@ -158,9 +158,14 @@ export const EldoretToursPage: React.FC = () => {
         '@id': 'https://www.smugsafaris.co.ke/tours-and-travel-companies-in-eldoret#travelagency',
         name: 'Smugsafaris Tours & Travel - Eldoret',
         alternateName: [
+          'Best Tour and Travel Company in Eldoret',
+          'Best Tours and Travel Companies in Eldoret',
+          'Best Tour Company in Eldoret',
+          'Tours and Travel in Eldoret',
+          'Tours and Travel Companies in Eldoret',
           'Smugsafaris Eldoret',
-          'Tours and Travel Company in Eldoret',
           'Eldoret Safari Agency',
+          'Best Tour Operator in Eldoret',
         ],
         url: 'https://www.smugsafaris.co.ke/tours-and-travel-companies-in-eldoret',
         telephone: '+254769920741',
@@ -238,7 +243,7 @@ export const EldoretToursPage: React.FC = () => {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Tours & Travel Companies in Eldoret',
+            name: 'Best Tours and Travel Company in Eldoret',
             item: 'https://www.smugsafaris.co.ke/tours-and-travel-companies-in-eldoret',
           },
         ],
@@ -249,9 +254,9 @@ export const EldoretToursPage: React.FC = () => {
   return (
     <div className="bg-[#FAF9F5] min-h-screen text-[#1A1A1A]">
       <SeoHead
-        title="Tours and Travel Companies in Eldoret, Kenya | Smugsafaris"
-        description="Top-rated tours and travel company in Eldoret, Kenya. Book custom African safaris starting from Eldoret, Maasai Mara tours, 4x4 Land Cruiser hire, and North Rift excursions."
-        keywords="tours and travel companies in eldoret, tour companies in eldoret, tours and travel in eldoret, travel agents in eldoret, best tour company in eldoret, eldoret safari company, eldoret car hire, eldoret airport transfers, north rift tours, smugsafaris eldoret"
+        title="Best Tours and Travel Company in Eldoret, Kenya | Smugsafaris"
+        description="Looking for the best tours and travel company in Eldoret? Smugsafaris is the top-rated local tour operator. Private 4x4 Land Cruiser safaris starting from Eldoret, Maasai Mara packages, car hire & North Rift tours."
+        keywords="best tour and travel company in eldoret, best tour companies in eldoret, tours and travel in eldoret, tours and travel companies in eldoret, best tour company in eldoret, travel agents in eldoret, eldoret safari company, eldoret car hire, eldoret airport transfers, north rift tours, smugsafaris eldoret"
         canonicalPath="/tours-and-travel-companies-in-eldoret"
         schema={eldoretSchema}
       />
@@ -270,14 +275,14 @@ export const EldoretToursPage: React.FC = () => {
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-              Premier Tours and Travel Company in{' '}
+              Best Tours and Travel Company in{' '}
               <span className="bg-gradient-to-r from-[#FDB913] via-[#F7941D] to-[#E8720C] bg-clip-text text-transparent">
                 Eldoret, Kenya
               </span>
             </h1>
 
             <p className="text-sm sm:text-base text-emerald-100/90 leading-relaxed font-normal">
-              Looking for trusted <strong>tours and travel companies in Eldoret</strong>? Smugsafaris is your home-grown safari specialist. From direct departures to the Maasai Mara and Amboseli, to scenic North Rift excursions and airport transfers, we offer 100% private 4x4 safaris tailored to your exact budget and travel style.
+              Looking for the <strong>best tours and travel company in Eldoret</strong>? <strong>Smugsafaris Tours & Travel</strong> is your premier licensed safari specialist. From direct departures to the Maasai Mara and Amboseli, to scenic North Rift excursions and Eldoret International Airport (EDL) executive transfers, we offer 100% private 4x4 safaris tailored to your exact budget and travel style.
             </p>
 
             {/* Quick Action Buttons */}

@@ -71,9 +71,12 @@ export const KenyaToursPage: React.FC = () => {
         '@id': 'https://www.smugsafaris.co.ke/tours-and-travel-companies-in-kenya#travelagency',
         name: 'Smugsafaris Tours & Travel Kenya',
         alternateName: [
-          'Smugsafaris',
-          'Tours and Travel Companies in Kenya',
+          'Best Tour and Travel Company in Kenya',
+          'Best Tours and Travel Companies in Kenya',
+          'Best Tour Company in Kenya',
           'Best Tour Operators in Kenya',
+          'Tours and Travel Companies in Kenya',
+          'Smugsafaris',
           'Kenya Safari Company',
         ],
         url: 'https://www.smugsafaris.co.ke/tours-and-travel-companies-in-kenya',
@@ -136,7 +139,7 @@ export const KenyaToursPage: React.FC = () => {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Tours and Travel Companies in Kenya',
+            name: 'Best Tours and Travel Company in Kenya',
             item: 'https://www.smugsafaris.co.ke/tours-and-travel-companies-in-kenya',
           },
         ],
@@ -147,9 +150,9 @@ export const KenyaToursPage: React.FC = () => {
   return (
     <div className="bg-[#FAF9F5] min-h-screen text-[#1A1A1A]">
       <SeoHead
-        title="Best Tours and Travel Companies in Kenya | Smugsafaris"
-        description="Looking for the best tours and travel companies in Kenya? Smugsafaris is a licensed Kenyan tour operator. Custom 4x4 African wildlife safaris, Maasai Mara, Amboseli, and bespoke luxury holidays."
-        keywords="tours and travel companies in kenya, tour companies in kenya, best tour operators in kenya, travel agents in kenya, kenya safari companies, kenya wildlife tours, tour operators kenya, safari packages kenya, smugsafaris kenya, travel agency kenya"
+        title="Best Tours and Travel Company in Kenya | Smugsafaris"
+        description="Looking for the best tour and travel company in Kenya? Smugsafaris is a premier licensed Kenyan safari operator. Custom 4x4 African wildlife safaris, Maasai Mara, Amboseli, and luxury holidays."
+        keywords="best tour and travel company in kenya, best tour companies in kenya, best tour operators in kenya, tours and travel companies in kenya, travel agents in kenya, kenya safari companies, kenya wildlife tours, tour operators kenya, safari packages kenya, smugsafaris kenya, travel agency kenya"
         canonicalPath="/tours-and-travel-companies-in-kenya"
         schema={kenyaSchema}
       />
@@ -168,14 +171,14 @@ export const KenyaToursPage: React.FC = () => {
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-              Leading Tours and Travel Companies in{' '}
+              Best Tours and Travel Company in{' '}
               <span className="bg-gradient-to-r from-[#FDB913] via-[#F7941D] to-[#E8720C] bg-clip-text text-transparent">
                 Kenya
               </span>
             </h1>
 
             <p className="text-sm sm:text-base text-emerald-100/90 leading-relaxed font-normal">
-              When searching for the <strong>best tours and travel companies in Kenya</strong>, trust, local authenticity, and private 4x4 logistics are everything. <strong>Smugsafaris Tours & Travel</strong> is a premier Kenyan safari specialist offering tailor-made Big Five safaris, Great Wildebeest Migration journeys, and luxury tented experiences with native naturalist guides across Kenya and East Africa.
+              When searching for the <strong>best tours and travel company in Kenya</strong>, trust, local authenticity, and private 4x4 logistics are everything. <strong>Smugsafaris Tours & Travel</strong> is a premier Kenyan safari specialist offering tailor-made Big Five safaris, Great Wildebeest Migration journeys, and luxury tented experiences with native naturalist guides across Kenya and East Africa.
             </p>
 
             {/* Quick Action CTA Bar */}

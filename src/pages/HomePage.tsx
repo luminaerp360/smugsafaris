@@ -40,10 +40,10 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-0">
       <SeoHead
-        title="Leading Tours and Travel Company in Kenya | Smugsafaris"
+        title="Best Tours and Travel Company in Kenya & Eldoret | Smugsafaris"
         canonicalPath="/"
-        description="Smugsafaris is one of the leading licensed tours and travel companies in Kenya. Bespoke African wildlife safaris, Maasai Mara & Amboseli tours, 4x4 Land Cruiser car hire & North Rift travel."
-        keywords="tours and travel companies in kenya, tour companies in kenya, best tour operators in kenya, travel agents in kenya, kenya safari companies, tours and travel companies in eldoret, safari packages kenya, smugsafaris kenya, 4x4 car hire kenya"
+        description="Smugsafaris is ranked among the best tours and travel companies in Kenya and Eldoret. Award-winning private 4x4 African wildlife safaris, Maasai Mara Great Migration, Amboseli, and North Rift excursions."
+        keywords="best tour and travel company in kenya, best tour and travel company in eldoret, tours and travel in eldoret, tours and travel companies in kenya, tours and travel companies in eldoret, best tour operators in kenya, travel agents in eldoret, kenya safari companies, smugsafaris kenya"
       />
       {/* 1. Hero with Safari Search */}
       <Hero onSearchFilter={handleHeroSearch} />

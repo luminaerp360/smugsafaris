@@ -23,14 +23,14 @@ export const EldoretFeatureSection: React.FC = () => {
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight">
-                Top-Rated Tours and Travel Company in{' '}
+                Best Tours and Travel Company in{' '}
                 <span className="bg-gradient-to-r from-[#FDB913] via-[#F7941D] to-[#E8720C] bg-clip-text text-transparent">
                   Eldoret, Kenya
                 </span>
               </h2>
 
               <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed font-normal">
-                Headquartered right here in Eldoret, <strong>Smugsafaris</strong> provides authentic, personalized safari adventures across Kenya. We specialize in private 4x4 Land Cruiser safaris starting from Eldoret to Maasai Mara, Lake Nakuru, and Amboseli, as well as North Rift excursions (Kerio Valley, Rimoi Elephant Sanctuary, Lake Bogoria) and Eldoret International Airport (EDL) executive transfers.
+                Recognized as the <strong>best tours and travel company in Eldoret</strong>, <strong>Smugsafaris</strong> provides authentic, personalized safari adventures across Kenya. We specialize in private 4x4 Land Cruiser safaris starting from Eldoret to Maasai Mara, Lake Nakuru, and Amboseli, as well as North Rift excursions (Kerio Valley, Rimoi Elephant Sanctuary, Lake Bogoria) and Eldoret International Airport (EDL) executive transfers.
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-3">
